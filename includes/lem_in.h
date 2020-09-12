@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/11 18:25:16 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/12 08:15:14 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ typedef struct	s_room_data
 	char		*name;
 }				t_room_data;
 
-typedef struct	s_room_list
+typedef struct			s_room_list
 {
 	t_room_data			room_data;
 	struct s_room_list	*next;
-}				t_room_list;
+}						t_room_list;
 
-typedef struct	s_data
+typedef struct		s_data
 {
 	int				ants_num;
 	int 			rooms_number;
 	t_room_list		*rooms;
 	int				**adjacency_matrix;
-}				t_data;
+}					t_data;
 
 void 	parse_map(t_data *data);
 

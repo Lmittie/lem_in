@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:58:16 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/11 21:48:30 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/12 08:21:11 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,20 @@ int 			parse_ants_number()
 		exit(1);
 	}
 	ft_strdel(&line);
-	return ants_number;
+	return (ants_number);
+}
+
+void			delete_splitted_line(char **splitted_line)
+{
+	int		i;
+
+	i = 0;
+	while (splitted_line[i])
+	{
+		free(splitted_line[i]);
+		i++;
+	}
+	free(splitted_line);
 }
 
 t_room_data		create_room(char *line)
@@ -35,6 +48,12 @@ t_room_data		create_room(char *line)
 	t_point		point;
 
 	// TODO check_comment_func
+	if (ft_strcmp(line, "##START") || ft_strcmp(line, "##start"))
+		room_data.type = START;
+	else if (ft_strcmp(line, "##END") || ft_strcmp(line, "##end"))
+		room_data.type = END;
+	else
+		room_data.type = DEFAULT;
 	if ((splitted_line = ft_strsplit(line, ' ')) == NULL)
 		exit(0);
 	if (!splitted_line[0] || !splitted_line[1] || !splitted_line[2]
@@ -49,8 +68,8 @@ t_room_data		create_room(char *line)
 	if ((room_data.name = ft_strdup(splitted_line[0])) == NULL)
 		exit(0);
 	room_data.coords = point;
-	// TODO write splitted_line delete function
-	return room_data;
+	delete_splitted_line(splitted_line);
+	return (room_data);
 }
 
 void 			create_room_list(t_room_list **list, t_room_data room_data)
