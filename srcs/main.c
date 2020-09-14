@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:39:05 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/12 05:24:04 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/14 20:36:37 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void init_structure(t_data *data) {
 	(data)->adjacency_matrix = NULL;
 	(data)->rooms = NULL;
 	(data)->rooms_number = 0;
+	(data)->start = -1;
+	(data)->end = -1;
 }
 
 int 	main()
@@ -26,12 +28,12 @@ int 	main()
 
 	init_structure(&data);
 	parse_map(&data);
-	// printf("rooms number: %d\n", data.rooms_number);
-	// while (data.rooms != NULL)
-	// {
-	// 	printf("room name: %s, room id: %d, room coords: %d, %d\n",
-	// 	 data.rooms->room_data.name, data.rooms->room_data.id, data.rooms->room_data.coords.x, data.rooms->room_data.coords.y);
-	// 	data.rooms = data.rooms->next;
-	// }
+	 printf("rooms number: %d\n", data.rooms_number);
+	 while (data.rooms != NULL)
+	 {
+	 	printf("room name: %s, room id: %d, room coords: %d, %d\n",
+		  data.rooms->room_data.name, data.rooms->room_data.id, data.rooms->room_data.coords.x, data.rooms->room_data.coords.y);
+	 	data.rooms = data.rooms->next;
+	 }
 	return (0);
 }

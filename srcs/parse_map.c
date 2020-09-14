@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:58:16 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/12 08:21:11 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/14 21:14:44 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,89 +28,170 @@ int 			parse_ants_number()
 	return (ants_number);
 }
 
-void			delete_splitted_line(char **splitted_line)
+int 			size_of_matrix_rows(char **matrix)
 {
-	int		i;
+	int counter;
 
-	i = 0;
-	while (splitted_line[i])
+	counter = 0;
+	while (matrix[counter] != NULL)
 	{
-		free(splitted_line[i]);
-		i++;
+		if (!matrix[counter][0])
+			return (10);
+		counter++;
 	}
-	free(splitted_line);
+	return (counter);
 }
 
-t_room_data		create_room(char *line)
+t_room_data		create_room(char *line, t_room_type room_type)
 {
 	char		**splitted_line;
 	t_room_data room_data;
 	t_point		point;
 
-	// TODO check_comment_func
-	if (ft_strcmp(line, "##START") || ft_strcmp(line, "##start"))
-		room_data.type = START;
-	else if (ft_strcmp(line, "##END") || ft_strcmp(line, "##end"))
-		room_data.type = END;
-	else
-		room_data.type = DEFAULT;
 	if ((splitted_line = ft_strsplit(line, ' ')) == NULL)
-		exit(0);
-	if (!splitted_line[0] || !splitted_line[1] || !splitted_line[2]
-		|| !splitted_line[0][0] || !splitted_line[1][0]
-		|| !splitted_line[2][0])
+		exit(10);
+	if (size_of_matrix_rows(splitted_line) != 3
+		|| (((point.x = ft_atoi(splitted_line[1])) < 0)
+		|| ((point.y = ft_atoi(splitted_line[2])) < 0)))
+	{
+		delete_splitted_line(splitted_line);
 		exit(2);
-	if (splitted_line[3])
-		exit(2);
-	if (((point.x = ft_atoi(splitted_line[1])) < 0)
-		|| ((point.y = ft_atoi(splitted_line[2])) < 0))
-		exit(2);
+	}
 	if ((room_data.name = ft_strdup(splitted_line[0])) == NULL)
-		exit(0);
+	{
+		delete_splitted_line(splitted_line);
+		exit(10);
+	}
 	room_data.coords = point;
+	room_data.type = room_type;
 	delete_splitted_line(splitted_line);
 	return (room_data);
 }
 
-void 			create_room_list(t_room_list **list, t_room_data room_data)
+int 			return_room_index(char *room_name, t_room_list *list)
 {
-	if (((*list) = malloc(sizeof(t_room_list))) == NULL)
-		exit(0);
-	(*list)->room_data = room_data;
-	(*list)->next = NULL;
+	t_room_list *head;
+
+	head = list;
+	while (head)
+	{
+		printf("name in list = %s, name from params = %s\n", head->room_data.name, room_name);
+		if (!ft_strcmp(head->room_data.name, room_name))
+			return (head->room_data.id);
+		head = head->next;
+	}
+	return (-1);
 }
 
-void 			push_back_room(t_room_list **list, t_room_data room_data, int *rooms_number)
+void 			init_matrix(int ***adjacency_matrix, int size)
 {
-	t_room_list *last;
+	int i;
 
-	if (*list == NULL)
+	i = -1;
+	if ((*adjacency_matrix = malloc(sizeof(int*) * size)) == NULL)
+		exit(10);
+	while (++i < size)
 	{
-		room_data.id = *rooms_number;
-		create_room_list(list, room_data);
-		(*rooms_number)++;
+		if (((*adjacency_matrix)[i] = malloc(sizeof(int) * size)) == NULL)
+			exit(10);
+		ft_bzero((*adjacency_matrix)[i], sizeof(int) * size);
 	}
-	else
+}
+
+void 			fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size)
+{
+	if (*adjacency_matrix == NULL)
+		init_matrix(adjacency_matrix, size);
+	(*adjacency_matrix)[index1][index2] = 1;
+	(*adjacency_matrix)[index2][index1] = 1;
+}
+
+// TODO free line
+void 			add_link(char *line, t_data *data)
+{
+	char		**splitted_line;
+	int 		index1;
+	int 		index2;
+
+	if ((splitted_line = ft_strsplit(line, '-')) == NULL)
+		exit(10);
+	if (size_of_matrix_rows(splitted_line) != 2)
 	{
-		last = (*list);
-		while (last->next)
-			last = last->next;
-		if (((last)->next = malloc(sizeof(t_room_list))) == NULL)
-			exit(0);
-		room_data.id = *rooms_number;
-		(last)->next->room_data = room_data;
-		(*rooms_number)++;
-		(last)->next->next = NULL;
+		delete_splitted_line(splitted_line);
+		exit(3);
 	}
+	if ((index1 = return_room_index(splitted_line[0], data->rooms)) == -1
+		|| (index2 = return_room_index(splitted_line[1], data->rooms)) == -1)
+	{
+		delete_splitted_line(splitted_line);
+		exit(3);
+	}
+	fill_adjacency_matrix(index1, index2, &data->adjacency_matrix, data->rooms_number);
+}
+
+t_room_type		check_if_comment(char **line, t_data *data)
+{
+	t_room_type type;
+
+	type = DEFAULT;
+	if (!ft_strncmp(*line, "#", 1))
+	{
+		if (!ft_strcmp(*line, "##start"))
+		{
+			type = (data->start == -1) ? START : PARSE_ERROR;
+		}
+		if (!ft_strcmp(*line, "##end"))
+		{
+			type = (data->end == -1) ? END : PARSE_ERROR;
+		}
+		get_next_line(0, line);
+	}
+	return type;
 }
 
 void 			parse_rooms(t_data *data)
 {
 	char 	*line;
+	t_room_type room_type;
 
 	while (get_next_line(0, &line) > 0)
 	{
-		push_back_room(&data->rooms, create_room(line), &data->rooms_number);
+		if (line[0] == '\0')
+			exit(6);
+		if (ft_strchr(line, '-') != NULL)
+		{
+			add_link(line, data);
+			break ;
+		}
+		if ((room_type = check_if_comment(&line, data)) == PARSE_ERROR)
+		{
+			ft_strdel(&line);
+			exit(5);
+		}
+		push_back_room(&data->rooms, create_room(line, room_type), &data->rooms_number);
+		if (room_type == START)
+			data->start = data->rooms_number - 1;
+		if (room_type == END)
+			data->end = data->rooms_number - 1;
+		ft_strdel(&line);
+	}
+	// TODO check if links exists
+}
+
+void 		parse_links(t_data *data)
+{
+	char 	*line;
+
+	while (get_next_line(0, &line) > 0)
+	{
+		if (line[0] == '\0')
+			exit(6);
+		if (check_if_comment(&line, data) == PARSE_ERROR)
+		{
+			ft_strdel(&line);
+			exit(5);
+		}
+		add_link(line, data);
 		ft_strdel(&line);
 	}
 }
@@ -119,5 +200,5 @@ void 	parse_map(t_data *data)
 {
 	data->ants_num = parse_ants_number();
 	parse_rooms(data);
-//	parse_links();
+	parse_links(data);
 }
