@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/14 17:55:39 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/14 20:27:40 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct	s_room_data
 
 typedef struct	s_room_list
 {
-	t_room_data			room_data;
+	t_room_data			*room_data;
 	struct s_room_list	*next;
 }				t_room_list;
 
@@ -65,7 +65,7 @@ void 	parse_map(t_data *data);
  */
 void			delete_splitted_line(char **splitted_line);
 
-void 			create_room_list(t_room_list **list, t_room_data room_data);
-void 			push_back_room(t_room_list **list, t_room_data room_data, int *rooms_number);
+void 			create_room_list(t_room_list **list, t_room_data *room_data);
+void 			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number);
 
 #endif

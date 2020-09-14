@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:58:16 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/14 21:14:44 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/14 21:40:19 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int 			size_of_matrix_rows(char **matrix)
 	return (counter);
 }
 
-t_room_data		create_room(char *line, t_room_type room_type)
+t_room_data		*create_room(char *line, t_room_type room_type)
 {
 	char		**splitted_line;
-	t_room_data room_data;
+	t_room_data *room_data;
 	t_point		point;
 
 	if ((splitted_line = ft_strsplit(line, ' ')) == NULL)
@@ -57,13 +57,15 @@ t_room_data		create_room(char *line, t_room_type room_type)
 		delete_splitted_line(splitted_line);
 		exit(2);
 	}
-	if ((room_data.name = ft_strdup(splitted_line[0])) == NULL)
+	if ((room_data = malloc(sizeof(t_room_data))) == NULL)
+		exit(10);
+	if ((room_data->name = ft_strdup(splitted_line[0])) == NULL)
 	{
 		delete_splitted_line(splitted_line);
 		exit(10);
 	}
-	room_data.coords = point;
-	room_data.type = room_type;
+	room_data->coords = point;
+	room_data->type = room_type;
 	delete_splitted_line(splitted_line);
 	return (room_data);
 }
@@ -75,9 +77,9 @@ int 			return_room_index(char *room_name, t_room_list *list)
 	head = list;
 	while (head)
 	{
-		printf("name in list = %s, name from params = %s\n", head->room_data.name, room_name);
-		if (!ft_strcmp(head->room_data.name, room_name))
-			return (head->room_data.id);
+//		printf("name in list = %s, name from params = %s\n", head->room_data->name, room_name);
+		if (!ft_strcmp(head->room_data->name, room_name))
+			return (head->room_data->id);
 		head = head->next;
 	}
 	return (-1);

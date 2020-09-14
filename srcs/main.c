@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:39:05 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/14 20:36:37 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/14 21:39:52 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,14 @@ int 	main()
 	 while (data.rooms != NULL)
 	 {
 	 	printf("room name: %s, room id: %d, room coords: %d, %d\n",
-		  data.rooms->room_data.name, data.rooms->room_data.id, data.rooms->room_data.coords.x, data.rooms->room_data.coords.y);
+		  data.rooms->room_data->name, data.rooms->room_data->id, data.rooms->room_data->coords.x, data.rooms->room_data->coords.y);
 	 	data.rooms = data.rooms->next;
+	 }
+	 printf("matrix:\n");
+	 for (int i = 0; i < data.rooms_number; ++i) {
+	 	for (int j = 0; j < data.rooms_number; ++j)
+	 		printf("%d ", data.adjacency_matrix[i][j]);
+	 	printf("\n");
 	 }
 	return (0);
 }

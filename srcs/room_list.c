@@ -12,7 +12,7 @@
 
 #include "../includes/lem_in.h"
 
-void 			create_room_list(t_room_list **list, t_room_data room_data)
+void 			create_room_list(t_room_list **list, t_room_data *room_data)
 {
 	if (((*list) = malloc(sizeof(t_room_list))) == NULL)
 		exit(0);
@@ -20,13 +20,13 @@ void 			create_room_list(t_room_list **list, t_room_data room_data)
 	(*list)->next = NULL;
 }
 
-void 			push_back_room(t_room_list **list, t_room_data room_data, int *rooms_number)
+void 			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number)
 {
 	t_room_list *last;
 
 	if (*list == NULL)
 	{
-		room_data.id = *rooms_number;
+		room_data->id = *rooms_number;
 		create_room_list(list, room_data);
 		(*rooms_number)++;
 	}
@@ -37,7 +37,7 @@ void 			push_back_room(t_room_list **list, t_room_data room_data, int *rooms_num
 			last = last->next;
 		if (((last)->next = malloc(sizeof(t_room_list))) == NULL)
 			exit(0);
-		room_data.id = *rooms_number;
+		room_data->id = *rooms_number;
 		(last)->next->room_data = room_data;
 		(*rooms_number)++;
 		(last)->next->next = NULL;
