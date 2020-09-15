@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   parse_ants_number.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 17:26:45 by lmittie           #+#    #+#             */
-/*   Updated: 2019/09/23 18:04:42 by lmittie          ###   ########.fr       */
+/*   Created: 2020/09/15 18:22:52 by lmittie           #+#    #+#             */
+/*   Updated: 2020/09/15 18:23:43 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/lem_in.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+int 			parse_ants_number()
 {
-	char	*sub;
-	size_t	i;
+	char	*line;
+	int		ants_number;
 
-	if (!s)
-		return (NULL);
-	if (!(sub = (char*)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	i = 0;
-	while (i < len)
-		*(sub + i++) = *(s + start++);
-	sub[i] = '\0';
-	return (sub);
+	if (get_next_line(0, &line) <= 0)
+		exit(1);
+	if ((ants_number = ft_atoi(line)) <= 0)
+	{
+		ft_strdel(&line);
+		exit(1);
+	}
+	ft_strdel(&line);
+	return (ants_number);
 }

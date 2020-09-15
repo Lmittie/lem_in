@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lst_push_front.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 20:35:03 by lmittie           #+#    #+#             */
-/*   Updated: 2019/09/07 20:27:01 by lmittie          ###   ########.fr       */
+/*   Created: 2019/09/12 15:41:07 by lmittie           #+#    #+#             */
+/*   Updated: 2019/09/12 15:51:27 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isascii(int c)
+void	ft_lst_push_front(t_list **alst, void const *cont, size_t cont_size)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	t_list *lst;
+
+	if (!(lst = ft_lstnew(cont, cont_size)))
+		return ;
+	lst->next = *alst;
+	*alst = lst;
 }

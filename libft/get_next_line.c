@@ -3,88 +3,98 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 17:54:13 by acarlett          #+#    #+#             */
-/*   Updated: 2020/08/06 17:34:05 by acarlett         ###   ########.fr       */
+/*   Created: 2019/09/22 20:26:05 by lmittie           #+#    #+#             */
+/*   Updated: 2019/09/25 13:57:34 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-static int		ft_c_b(char *buff, char c)
+t_lst	*crt_lst(int fd)
 {
-	int i;
+	t_lst	*new_lst;
 
-	i = 0;
-	if (c == '\n')
-		while (buff[i])
-		{
-			if (buff[i] == c)
-				return (i);
-			i++;
-		}
-	else
-		while (1)
-		{
-			if (buff[i] == c)
-				return (i);
-			i++;
-		}
-	return (-1);
+	if (!(new_lst = (t_lst*)malloc(sizeof(t_lst))))
+		return (NULL);
+	new_lst->fd = fd;
+	new_lst->cont = NULL;
+	new_lst->next = NULL;
+	return (new_lst);
 }
 
-static	int		ft_error(char **a)
+t_lst	*find_lst(t_lst **b_lst, int fd)
 {
-	if (a && *a)
-		free(*a);
-	return (-1);
+	t_lst	*lst;
+	t_lst	*tmp_lst;
+
+	if (!*b_lst)
+		return (*b_lst = crt_lst(fd));
+	lst = *b_lst;
+	while (lst && lst->fd != fd)
+	{
+		tmp_lst = lst;
+		lst = lst->next;
+	}
+	if (!lst)
+	{
+		lst = crt_lst(fd);
+		tmp_lst->next = lst;
+	}
+	return (lst);
 }
 
-static int		g_n_l_two(t_params *p, char *a[10240], int fd, char **line)
+int		ret_line(int size, char **cont, char **line)
 {
-	if (p->i == -1)
+	char	*tmp_str;
+
+	tmp_str = *cont;
+	if (!(*line = ft_strsub(tmp_str, 0, size)))
 		return (-1);
-	if (p->i == 0 && (!a[fd] || !a[fd][0]))
-		return (0);
-	if (p->i == 0)
-		p->c = '\0';
-	if (!(*line = (char *)malloc(sizeof(char) * (ft_c_b(a[fd], p->c) + 1))))
+	if (!(*cont = ft_strsub(tmp_str, size + 1, ft_strlen(tmp_str) - size - 1)))
+	{
+		ft_strdel(&tmp_str);
 		return (-1);
-	if (!ft_strncpy(*line, a[fd], (size_t)(ft_c_b(a[fd], p->c))))
-		return (ft_error(&a[fd]));
-	(*line)[ft_c_b(a[fd], p->c)] = '\0';
-	if (p->c == '\n' && !(p->tmp = ft_strdup(ft_strchr(a[fd], p->c) + 1)))
-		return (ft_error(&a[fd]));
-	if (p->c == '\0' && !(p->tmp = ft_strdup(ft_strchr(a[fd], p->c))))
-		return (ft_error(&a[fd]));
-	free(a[fd]);
-	a[fd] = p->tmp;
+	}
+	if (!*cont[0])
+	{
+		free(*cont);
+		*cont = NULL;
+	}
+	ft_strdel(&tmp_str);
 	return (1);
 }
 
-int				get_next_line(const int fd, char **line)
+int		ret_all_cont(char **line, char **cont)
 {
-	t_params		p;
-	char			buff[BUFF_SIZE + 1];
-	static char		*a[10240];
+	*line = *cont;
+	*cont = NULL;
+	return (1);
+}
 
-	p.c = '\n';
-	if (fd > 10240 || fd < 0)
+int		get_next_line(const int fd, char **line)
+{
+	static t_lst	*b_lst;
+	char			buff[BUFF_SIZE + 1];
+	t_lst			*lst;
+	char			*buff_n;
+	int				nread;
+
+	if (read(fd, buff, 0) < 0 || !(lst = find_lst(&b_lst, fd)) || line == NULL)
 		return (-1);
-	p.i = -2;
-	if (!a[fd] && !(a[fd] = ft_strnew(1)))
-		return (-1);
-	if (ft_c_b(a[fd], p.c) == -1)
-		while ((p.i = read(fd, buff, BUFF_SIZE)) > 0)
-		{
-			buff[p.i] = '\0';
-			if (!(p.tmp = ft_strjoin(a[fd], buff)))
-				return (ft_error(&a[fd]));
-			free(a[fd]);
-			a[fd] = p.tmp;
-			if (ft_c_b(buff, p.c) >= 0)
-				break ;
-		}
-	return (g_n_l_two(&p, a, fd, &*line));
+	*line = NULL;
+	while ((nread = read(fd, buff, BUFF_SIZE)) > 0)
+	{
+		buff[nread] = '\0';
+		if (!(lst->cont = ft_strjoin_free(lst->cont, buff, 1, 0)))
+			return (-1);
+		if (lst->cont && (buff_n = ft_strchr(lst->cont, '\n')))
+			return (ret_line(buff_n - lst->cont, &lst->cont, line));
+	}
+	if (lst->cont && (buff_n = ft_strchr(lst->cont, '\n')))
+		return (ret_line(buff_n - lst->cont, &lst->cont, line));
+	if (lst->cont)
+		return (ret_all_cont(line, &lst->cont));
+	return (0);
 }

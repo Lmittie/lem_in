@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_str_isdigit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 20:35:03 by lmittie           #+#    #+#             */
-/*   Updated: 2019/09/07 20:27:01 by lmittie          ###   ########.fr       */
+/*   Created: 2019/09/12 16:51:03 by lmittie           #+#    #+#             */
+/*   Updated: 2019/09/12 16:51:04 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isascii(int c)
+int		ft_str_isdigit(char *str)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	if (ft_strlen(str) == 0)
+		return (0);
+	while (*str)
+	{
+		if (!(ft_isdigit(*str)))
+			return (0);
+		str++;
+	}
+	return (1);
 }

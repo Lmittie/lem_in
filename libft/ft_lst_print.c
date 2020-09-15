@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lst_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 20:35:03 by lmittie           #+#    #+#             */
-/*   Updated: 2019/09/07 20:27:01 by lmittie          ###   ########.fr       */
+/*   Created: 2019/09/12 16:18:20 by lmittie           #+#    #+#             */
+/*   Updated: 2019/09/12 16:43:15 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isascii(int c)
+void	ft_lst_print(t_list *lst)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	while (lst)
+	{
+		ft_putendl(lst->content);
+		lst = lst->next;
+	}
 }

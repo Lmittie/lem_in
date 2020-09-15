@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/14 20:27:40 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/15 21:43:22 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ typedef struct	s_room_list
 	struct s_room_list	*next;
 }				t_room_list;
 
+typedef struct s_dinic_data
+{
+	int 			*ptr;
+	int 			*distance;
+	int				**capacity_matrix;
+	int 			*queue;
+	int 			start;
+	int 			end;
+	int 			n;
+}				t_dinic_data;
+
 typedef struct	s_data
 {
 	int				ants_num;
@@ -55,17 +66,39 @@ typedef struct	s_data
 	int 			end;
 }				t_data;
 
+int				dinic(t_data data);
+
 /*
  * parse_map.c
- * */
-void 	parse_map(t_data *data);
+ */
+void 			parse_map(t_data *data);
+
+int 			parse_ants_number();
+
+void 			add_link(char *line, t_data *data);
+void 			parse_links(t_data *data);
+
+t_room_type		check_if_comment(char **line, t_data *data);
+int 			size_of_matrix_rows(char **matrix);
+
+t_room_data		*create_room(char *line, t_room_type room_type);
+void 			parse_rooms(t_data *data);
+
+/*
+ * adjacency_matrix.c
+ */
+void 			init_matrix(int ***adjacency_matrix, int size);
+void 			fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size);
 
 /*
  * deleting.c
  */
 void			delete_splitted_line(char **splitted_line);
 
-void 			create_room_list(t_room_list **list, t_room_data *room_data);
+/*
+ * room_list.c
+ */
+int 			return_room_index(char *room_name, t_room_list *list);
 void 			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number);
 
 #endif
