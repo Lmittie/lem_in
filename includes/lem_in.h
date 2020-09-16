@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 16:54:37 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 17:29:33 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ typedef enum	e_room_type
 	PARSE_ERROR
 }				t_room_type;
 
-typedef enum 	e_error_code
+typedef enum 	e_exit_code
 {
 	MALLOC_ERROR = 10,
 	INVALID_ANTS,
 	INVALID_ROOMS,
 	INVALID_LINKS
-}				t_error_code;
+}				t_exit_code;
 
 typedef struct	s_point
 {
