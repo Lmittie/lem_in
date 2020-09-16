@@ -6,13 +6,13 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:28:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/15 18:34:47 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 17:46:52 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void		copy(int **dst, int **src, int size)
+void	copy(int **dst, int **src, int size)
 {
 	int	i;
 	int j;
@@ -33,7 +33,7 @@ void		copy(int **dst, int **src, int size)
 	}
 }
 
-void 			init_matrix(int ***adjacency_matrix, int size)
+void	init_matrix(int ***adjacency_matrix, int size)
 {
 	int i;
 
@@ -48,7 +48,7 @@ void 			init_matrix(int ***adjacency_matrix, int size)
 	}
 }
 
-void 			fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size)
+void	fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size)
 {
 	if (*adjacency_matrix == NULL)
 		init_matrix(adjacency_matrix, size);

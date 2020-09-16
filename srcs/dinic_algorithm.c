@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 16:54:37 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 18:23:26 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define INF 1000000000
 
-void 	init_algo_params(t_dinic_data *dinic_data, t_data data)
+void	init_algo_params(t_dinic_data *dinic_data, t_data data)
 {
 	dinic_data->n = data.rooms_number;
 	init_matrix(&dinic_data->capacity_matrix, dinic_data->n);
@@ -24,11 +24,9 @@ void 	init_algo_params(t_dinic_data *dinic_data, t_data data)
 		exit(10);
 	if (!(dinic_data->distance = malloc(sizeof(int) * dinic_data->n)))
 		exit(10);
-	copy(
-			dinic_data->capacity_matrix,
+	copy(dinic_data->capacity_matrix,
 			data.adjacency_matrix,
-			dinic_data->n
-	);
+			dinic_data->n);
 	dinic_data->start = data.start;
 	dinic_data->end = data.end;
 }
@@ -62,11 +60,11 @@ int		bfs(t_dinic_data *data)
 	return (data->distance[data->end] != -1);
 }
 
-int 	min(int a, int b)
+int		min(int a, int b)
 {
 	if (a < b)
-		return a;
-	return b;
+		return (a);
+	return (b);
 }
 
 int		dfs(int v, int flow, t_dinic_data *data)
@@ -81,9 +79,11 @@ int		dfs(int v, int flow, t_dinic_data *data)
 		|| !data->capacity_matrix[v][data->ptr[v]])
 		{
 			++data->ptr[v];
-			continue;
+			continue ;
 		}
-		pushed = dfs(data->ptr[v], min(flow, data->capacity_matrix[v][data->ptr[v]]), data);
+		pushed = dfs(data->ptr[v],
+					min(flow, data->capacity_matrix[v][data->ptr[v]]),
+					data);
 		if (pushed)
 		{
 			data->capacity_matrix[v][data->ptr[v]] -= pushed;
@@ -103,12 +103,12 @@ int		dinic(t_data data)
 
 	init_algo_params(&dinic_data, data);
 	max_flow = 0;
-	while(bfs(&dinic_data))
+	while (bfs(&dinic_data))
 	{
 		ft_bzero(dinic_data.ptr, sizeof(int) * data.rooms_number);
 		while ((pushed = dfs(dinic_data.start, INF, &dinic_data)))
 			max_flow += pushed;
 	}
 	printf("max flow = %d\n", max_flow);
-	return max_flow;
+	return (max_flow);
 }

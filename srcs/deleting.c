@@ -6,13 +6,13 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 17:54:10 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 16:46:43 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 18:09:57 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void			delete_splitted_line(char **splitted_line)
+void		delete_splitted_line(char **splitted_line)
 {
 	int		i;
 
@@ -27,17 +27,9 @@ void			delete_splitted_line(char **splitted_line)
 	splitted_line = NULL;
 }
 
-void			free_line(char **line)
+void		free_delete_exit(char **line, char **splitted_line, int exit_num)
 {
-	if ((*line) != NULL)
-		free((*line));
-	(*line) = NULL;
-}
-
-void			free_delete_exit(char **line, char **splitted_line, int exit_num)
-{
-
-	free_line(line);
+	ft_strdel(line);
 	delete_splitted_line(splitted_line);
 	exit(exit_num);
 }

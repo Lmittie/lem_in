@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 21:30:04 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/16 16:36:51 by acarlett         ###   ########.fr        #
+#    Updated: 2020/09/16 18:11:08 by lmittie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ DIR_SRC =	srcs
 DIR_INC =	includes
 
 DIR_LIB =	libft
+
+LIBNAME =	$(DIR_LIB)/libft.a
 
 NAME = 		lem_in
 
@@ -29,9 +31,9 @@ SOURCES =	$(DIR_SRC)/adjacency_matrix.c \
 			$(DIR_SRC)/parse_map.c \
 			$(DIR_SRC)/parse_rooms.c \
 			$(DIR_SRC)/room_list.c \
-			$(DIR_SRC)/dinic_algorithm.c \
+			$(DIR_SRC)/dinic_algorithm.c
 			
-INCLUDES = 	$(DIR_INC)/lem_in.h \
+INCLUDES = 	$(DIR_INC)/lem_in.h
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 
@@ -39,19 +41,19 @@ OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@make -C libft all
-	@gcc -o $(NAME) $(SOURCES) -I $(INCLUDES) libft/libft.a
+	@make -C $(DIR_LIB) all
+	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(LIBNAME)
 
 %.o: %.c $(INCLUDES)
-	@cc -I $(INCLUDES) $< -c -o $@
+	@cc -I $(DIR_INC) $< -c -o $@
 
 clean:
 	@rm -rf $(OBJECTS)
-	@make -C libft clean
+	@make -C $(DIR_LIB) clean
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make -C libft fclean
+	@make -C $(DIR_LIB) fclean
 
 re: fclean all
 

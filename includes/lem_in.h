@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 17:29:33 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/16 18:08:01 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/libft.h"
 
-#include <stdio.h>
+# include <stdio.h>
 
 typedef enum	e_room_type
 {
@@ -25,12 +25,12 @@ typedef enum	e_room_type
 	PARSE_ERROR
 }				t_room_type;
 
-typedef enum 	e_exit_code
+typedef enum	e_exit_code
 {
 	MALLOC_ERROR = 10,
-	INVALID_ANTS,
-	INVALID_ROOMS,
-	INVALID_LINKS
+	INVALID_ANTS = 1,
+	INVALID_ROOMS = 2,
+	INVALID_LINKS = 3
 }				t_exit_code;
 
 typedef struct	s_point
@@ -53,25 +53,25 @@ typedef struct	s_room_list
 	struct s_room_list	*next;
 }				t_room_list;
 
-typedef struct s_dinic_data
+typedef struct	s_dinic_data
 {
-	int 			*ptr;
-	int 			*distance;
+	int				*ptr;
+	int				*distance;
 	int				**capacity_matrix;
-	int 			*queue;
-	int 			start;
-	int 			end;
-	int 			n;
+	int				*queue;
+	int				start;
+	int				end;
+	int				n;
 }				t_dinic_data;
 
 typedef struct	s_data
 {
 	int				ants_num;
-	int 			rooms_number;
+	int				rooms_number;
 	t_room_list		*rooms;
 	int				**adjacency_matrix;
-	int 			start;
-	int 			end;
+	int				start;
+	int				end;
 }				t_data;
 
 int				dinic(t_data data);
@@ -79,24 +79,24 @@ int				dinic(t_data data);
 /*
  * parse_map.c
  */
-void 			parse_map(t_data *data);
+void			parse_map(t_data *data);
 
-int 			parse_ants_number();
+int				parse_ants_number(void);
 
-void 			add_link(char *line, t_data *data);
-void 			parse_links(t_data *data);
+void			add_link(char *line, t_data *data);
+void			parse_links(t_data *data);
 
 t_room_type		check_if_comment(char **line, t_data *data);
-int 			size_of_matrix_rows(char **matrix);
+int				size_of_matrix_rows(char **matrix);
 
 t_room_data		*create_room(char *line, t_room_type room_type);
-void 			parse_rooms(t_data *data);
+void			parse_rooms(t_data *data);
 
 /*
  * adjacency_matrix.c
  */
-void 			init_matrix(int ***adjacency_matrix, int size);
-void 			fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size);
+void			init_matrix(int ***adjacency_matrix, int size);
+void			fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size);
 void			copy(int **dst, int **src, int size);
 
 /*
@@ -108,7 +108,7 @@ void			free_delete_exit(char **line, char **splitted_line, int exit_num);
 /*
  * room_list.c
  */
-int 			return_room_index(char *room_name, t_room_list *list);
-void 			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number);
+int				return_room_index(char *room_name, t_room_list *list);
+void			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number);
 
 #endif
