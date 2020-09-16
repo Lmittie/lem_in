@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:37:30 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 14:52:31 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/16 15:48:17 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void 			add_link(char *line, t_data *data)
 	if ((index1 = return_room_index(splitted_line[0], data->rooms)) == -1
 		|| (index2 = return_room_index(splitted_line[1], data->rooms)) == -1)
 		free_delete_exit(&line, splitted_line, 3);
-	fill_adjacency_matrix(index1, index2, &data->adjacency_matrix, data->rooms_number);
+	fill_adjacency_matrix(index1, index2, &(data->adjacency_matrix), data->rooms_number);
 }
 
 void 		parse_links(t_data *data)

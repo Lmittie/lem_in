@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:39:05 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 15:04:09 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/16 15:54:47 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,12 @@ void 	print_rooms_info(t_data data)
 		data.rooms = data.rooms->next;
 	}
 
-	printf("matrix:\n");
+	printf("adjacency_matrix:\n");
 	printf("   ");
 	for (int i = 0; i < data.rooms_number; ++i) {
 		printf("%d ", i);
 	}
 	printf(":\n");
-
 	for (int i = 0; i < data.rooms_number; ++i) {
 		printf("%d: ", i);
 		for (int j = 0; j < data.rooms_number; ++j)

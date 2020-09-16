@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 15:26:50 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/16 16:36:48 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,11 @@ void			free_delete_exit(char **line, char **splitted_line, int exit_num);
  */
 int 			return_room_index(char *room_name, t_room_list *list);
 void 			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number);
+
+/*
+* checkers.c
+*/
+void			new_memcpy(int **src, int **dst, int size);
+
 
 #endif
