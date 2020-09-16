@@ -3,41 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rooms.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/15 18:34:47 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 14:55:17 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-// TODO deleting line
 t_room_data		*create_room(char *line, t_room_type room_type)
 {
 	char		**splitted_line;
-	t_room_data *room_data;
+	t_room_data	*room_data;
 	t_point		point;
 
 	if ((splitted_line = ft_strsplit(line, ' ')) == NULL)
+	{
+		free_line(&line);
 		exit(10);
+	}
 	if (size_of_matrix_rows(splitted_line) != 3
 		|| (((point.x = ft_atoi(splitted_line[1])) < 0)
 			|| ((point.y = ft_atoi(splitted_line[2])) < 0)))
-	{
-		delete_splitted_line(splitted_line);
-		exit(2);
-	}
+		free_delete_exit(&line, splitted_line, 2);
 	if ((room_data = malloc(sizeof(t_room_data))) == NULL)
-	{
-		delete_splitted_line(splitted_line);
-		exit(10);
-	}
+		free_delete_exit(&line, splitted_line, 10);
 	if ((room_data->name = ft_strdup(splitted_line[0])) == NULL)
-	{
-		delete_splitted_line(splitted_line);
-		exit(10);
-	}
+		free_delete_exit(&line, splitted_line, 10);
 	room_data->coords = point;
 	room_data->type = room_type;
 	delete_splitted_line(splitted_line);
@@ -46,7 +39,7 @@ t_room_data		*create_room(char *line, t_room_type room_type)
 
 void 			parse_rooms(t_data *data)
 {
-	char 	*line;
+	char		*line;
 	t_room_type room_type;
 
 	while (get_next_line(0, &line) > 0)

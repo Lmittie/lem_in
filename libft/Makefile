@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+         #
+#    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/06 20:47:57 by lmittie           #+#    #+#              #
-#    Updated: 2020/09/15 18:13:16 by lmittie          ###   ########.fr        #
+#    Updated: 2020/09/16 14:55:41 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,12 @@ $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 
 %.o: %.c $(HEADER)
-	gcc $(CFLAGS) -c $<
+	@gcc $(CFLAGS) -c $<
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

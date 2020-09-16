@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/15 21:43:22 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 14:53:00 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ void 			fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, i
 /*
  * deleting.c
  */
+void			free_line(char **line);
 void			delete_splitted_line(char **splitted_line);
+void			free_delete_exit(char **line, char **splitted_line, int exit_num);
 
 /*
  * room_list.c
