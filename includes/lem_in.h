@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 18:08:01 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 21:04:53 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 # define LEM_IN_H
 
 # include "../libft/libft.h"
-
+# include <mlx.h>
 # include <stdio.h>
+
+# define WIN_X 1000
+# define WIN_Y 1000
 
 typedef enum	e_room_type
 {
@@ -46,6 +49,19 @@ typedef struct	s_room_data
 	t_room_type	type;
 	char		*name;
 }				t_room_data;
+
+typedef struct	s_visual
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	int			*data;
+	int			x_end;
+	int			y_end;
+	int			undef1;
+	int			undef2;
+	int			undef3;
+}				t_visual;
 
 typedef struct	s_room_list
 {
@@ -110,5 +126,10 @@ void			free_delete_exit(char **line, char **splitted_line, int exit_num);
  */
 int				return_room_index(char *room_name, t_room_list *list);
 void			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number);
+
+/*
+* visual/
+*/
+void		make_visual(t_data data);
 
 #endif

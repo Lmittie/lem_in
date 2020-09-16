@@ -6,13 +6,15 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 21:30:04 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/16 18:11:08 by lmittie          ###   ########.fr        #
+#    Updated: 2020/09/16 20:36:53 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS =		-Wall -Wextra -Werror
 
 DIR_SRC =	srcs
+
+DIR_VIS =	srcs/visual
 
 DIR_INC =	includes
 
@@ -31,7 +33,8 @@ SOURCES =	$(DIR_SRC)/adjacency_matrix.c \
 			$(DIR_SRC)/parse_map.c \
 			$(DIR_SRC)/parse_rooms.c \
 			$(DIR_SRC)/room_list.c \
-			$(DIR_SRC)/dinic_algorithm.c
+			$(DIR_SRC)/dinic_algorithm.c \
+			$(DIR_VIS)/init_window.c
 			
 INCLUDES = 	$(DIR_INC)/lem_in.h
 
@@ -42,7 +45,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(DIR_LIB) all
-	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(LIBNAME)
+	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(LIBNAME) -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c $(INCLUDES)
 	@cc -I $(DIR_INC) $< -c -o $@
@@ -62,3 +65,6 @@ val: all clean
 
 lem: all
 	@./$(NAME) < test
+
+visual:
+	@./$(NAME) -visual < test

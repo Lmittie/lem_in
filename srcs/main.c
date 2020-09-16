@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:39:05 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 17:46:52 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 20:39:58 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ void	init_structure(t_data *data) {
 
 void 	print_rooms_info(t_data data);
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_data data;
 
 	init_structure(&data);
 	parse_map(&data);
 	dinic(data);
-
 	print_rooms_info(data);
+	if (!(ft_strcmp(av[1], "-visual")))
+		make_visual(data);
 	return (0);
 }
 
