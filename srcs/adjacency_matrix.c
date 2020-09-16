@@ -12,6 +12,27 @@
 
 #include "../includes/lem_in.h"
 
+void		copy(int **dst, int **src, int size)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (dst == NULL || src == NULL || *(dst) == NULL || *(src) == NULL)
+		return ;
+	while (i != size)
+	{
+		while (j != size)
+		{
+			dst[i][j] = src[i][j];
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+}
+
 void 			init_matrix(int ***adjacency_matrix, int size)
 {
 	int i;

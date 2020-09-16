@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 16:46:42 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:54:37 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void 			parse_rooms(t_data *data);
  */
 void 			init_matrix(int ***adjacency_matrix, int size);
 void 			fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size);
+void			copy(int **dst, int **src, int size);
 
 /*
  * deleting.c

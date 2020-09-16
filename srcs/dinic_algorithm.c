@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 16:46:43 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:54:37 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void 	init_algo_params(t_dinic_data *dinic_data, t_data data)
 		exit(10);
 	if (!(dinic_data->distance = malloc(sizeof(int) * dinic_data->n)))
 		exit(10);
-	ft_memcpy(
+	copy(
 			dinic_data->capacity_matrix,
 			data.adjacency_matrix,
-			sizeof(int) * dinic_data->n * dinic_data->n
+			dinic_data->n
 	);
 	dinic_data->start = data.start;
 	dinic_data->end = data.end;
