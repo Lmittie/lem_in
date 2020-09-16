@@ -17,6 +17,6 @@ void 	parse_map(t_data *data)
 	data->ants_num = parse_ants_number();
 	parse_rooms(data);
 	if (data->start == -1 || data->end == -1)
-		exit(7);
+		exit(INVALID_ROOMS);
 	parse_links(data);
 }

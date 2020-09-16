@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 14:55:17 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/16 16:46:43 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ t_room_data		*create_room(char *line, t_room_type room_type)
 
 	if ((splitted_line = ft_strsplit(line, ' ')) == NULL)
 	{
-		free_line(&line);
-		exit(10);
+		ft_strdel(&line);
+		exit(MALLOC_ERROR);
 	}
 	if (size_of_matrix_rows(splitted_line) != 3
 		|| (((point.x = ft_atoi(splitted_line[1])) < 0)
 			|| ((point.y = ft_atoi(splitted_line[2])) < 0)))
-		free_delete_exit(&line, splitted_line, 2);
+		free_delete_exit(&line, splitted_line, INVALID_ROOMS);
 	if ((room_data = malloc(sizeof(t_room_data))) == NULL)
-		free_delete_exit(&line, splitted_line, 10);
+		free_delete_exit(&line, splitted_line, MALLOC_ERROR);
 	if ((room_data->name = ft_strdup(splitted_line[0])) == NULL)
-		free_delete_exit(&line, splitted_line, 10);
+		free_delete_exit(&line, splitted_line, MALLOC_ERROR);
 	room_data->coords = point;
 	room_data->type = room_type;
 	delete_splitted_line(splitted_line);
@@ -47,7 +47,7 @@ void 			parse_rooms(t_data *data)
 		if (line[0] == '\0')
 		{
 			ft_strdel(&line);
-			exit(6);
+			exit(INVALID_ROOMS);
 		}
 		if (ft_strchr(line, '-') != NULL)
 		{
@@ -57,7 +57,7 @@ void 			parse_rooms(t_data *data)
 		if ((room_type = check_if_comment(&line, data)) == PARSE_ERROR)
 		{
 			ft_strdel(&line);
-			exit(5);
+			exit(INVALID_ROOMS);
 		}
 		push_back_room(&data->rooms, create_room(line, room_type), &data->rooms_number);
 		if (room_type == START)

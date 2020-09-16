@@ -18,11 +18,11 @@ int 			parse_ants_number()
 	int		ants_number;
 
 	if (get_next_line(0, &line) <= 0)
-		exit(1);
+		exit(INVALID_ANTS);
 	if ((ants_number = ft_atoi(line)) <= 0)
 	{
 		ft_strdel(&line);
-		exit(1);
+		exit(INVALID_ANTS);
 	}
 	ft_strdel(&line);
 	return (ants_number);
