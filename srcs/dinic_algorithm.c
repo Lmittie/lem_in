@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 19:48:02 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/17 19:54:05 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 #define INF 1000000000
 
-void	init_algo_params(t_dinic_data *dinic_data, t_data data)
+void	init_algo_params(t_dinic_data *dinic_data, t_data *data)
 {
 	int i;
 
-	dinic_data->start = data.start;
-	dinic_data->end = data.end;
-	dinic_data->n = data.rooms_number;
+	dinic_data->start = data->start;
+	dinic_data->end = data->end;
+	dinic_data->n = data->rooms_number;
 	init_matrix(&dinic_data->capacity_matrix, dinic_data->n);
 	if (!(dinic_data->room_entry = malloc(sizeof(int) * dinic_data->n)))
 		exit(10);
@@ -36,7 +36,7 @@ void	init_algo_params(t_dinic_data *dinic_data, t_data data)
 	if (!(dinic_data->distance = malloc(sizeof(int) * dinic_data->n)))
 		exit(10);
 	copy(dinic_data->capacity_matrix,
-			data.adjacency_matrix,
+			data->adjacency_matrix,
 			dinic_data->n);
 }
 
@@ -77,7 +77,18 @@ int		min(int a, int b)
 	return (b);
 }
 
-int		dfs(int v, int flow, t_dinic_data *data)
+void 	add_room_to_path(t_path_data *path_data, int room_id, int len)
+{
+	if (path_data->path == NULL)
+	{
+		if (!(path_data->path = malloc(sizeof(int) * (len + 1))))
+			exit(MALLOC_ERROR);
+		ft_bzero(path_data->path, sizeof(int) * (len + 1));
+	}
+	path_data->path[len] = room_id;
+}
+
+int		dfs(int v, int flow, t_dinic_data *data, t_path_data *path_data)
 {
 	int pushed;
 
@@ -94,9 +105,10 @@ int		dfs(int v, int flow, t_dinic_data *data)
 		}
 		pushed = dfs(data->ptr[v],
 					min(flow, data->capacity_matrix[v][data->ptr[v]]),
-					data);
+					data, path_data);
 		if (pushed)
 		{
+			add_room_to_path(path_data, data->ptr[v], data->distance[data->ptr[v]]);
 			data->room_entry[data->ptr[v]]--;
 			data->capacity_matrix[v][data->ptr[v]] -= pushed;
 			data->capacity_matrix[data->ptr[v]][v] += pushed;
@@ -107,25 +119,50 @@ int		dfs(int v, int flow, t_dinic_data *data)
 	return (0);
 }
 
-int		dinic(t_data data)
+void 	push_back_path(t_path_list **paths_list, t_path_data path_data)
+{
+	t_path_list *last;
+
+	if ((*paths_list) == NULL)
+	{
+		if (!(*paths_list = malloc(sizeof(t_path_list))))
+			exit(MALLOC_ERROR);
+		if (!((*paths_list)->path_data = malloc(sizeof(t_path_data))))
+			exit(MALLOC_ERROR);
+		(*paths_list)->path_data = &path_data;
+		(*paths_list)->next = NULL;
+	} else
+	{
+		last = (*paths_list);
+		while (last->next)
+			last = last->next;
+		if (((last)->next = malloc(sizeof(t_path_list))) == NULL)
+			exit(MALLOC_ERROR);
+		(last)->next->path_data = &path_data;
+		(last)->next->next = NULL;
+	}
+}
+
+int		dinic(t_data *data)
 {
 	int				max_flow;
 	int				pushed;
 	t_dinic_data	dinic_data;
+	t_path_data		path_data;
 
 	init_algo_params(&dinic_data, data);
 	max_flow = 0;
 	while (bfs(&dinic_data))
 	{
-		ft_bzero(dinic_data.ptr, sizeof(int) * data.rooms_number);
-		while ((pushed = dfs(dinic_data.start, INF, &dinic_data)))
+		ft_bzero(dinic_data.ptr, sizeof(int) * data->rooms_number);
+		ft_bzero(&path_data, sizeof(t_path_data));
+		while ((pushed = dfs(dinic_data.start, INF, &dinic_data, &path_data)))
+		{
 			max_flow += pushed;
+			push_back_path(&data->paths, path_data);
+			path_data.path = NULL;
+		}
 	}
 	printf("max flow = %d\n", max_flow);
-	for (int i = 0; i < dinic_data.n; ++i)
-	{
-		printf("%d: %d, ", i, dinic_data.room_entry[i]);
-	}
-	printf("\n");
 	return (max_flow);
 }

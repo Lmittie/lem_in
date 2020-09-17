@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 19:19:33 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/17 20:30:55 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,21 @@ typedef struct	s_room_list
 	struct s_room_list	*next;
 }				t_room_list;
 
+typedef struct	s_path_data
+{
+	int		length;
+	int		*path;
+	int 	ants;
+	int		dist_from_start;
+	int 	dist_from_end;
+}				t_path_data;
+
+typedef struct	s_path_list
+{
+	t_path_data			*path_data;
+	struct s_path_list	*next;
+}				t_path_list;
+
 typedef struct	s_dinic_data
 {
 	int				*ptr;
@@ -72,12 +87,13 @@ typedef struct	s_data
 	int				ants_num;
 	int				rooms_number;
 	t_room_list		*rooms;
+	t_path_list		*paths;
 	int				**adjacency_matrix;
 	int				start;
 	int				end;
 }				t_data;
 
-int				dinic(t_data data);
+int				dinic(t_data *data);
 
 /*
  * parse_map.c

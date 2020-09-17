@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:39:05 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 18:56:15 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/17 21:18:48 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		main(void)
 
 	init_structure(&data);
 	parse_map(&data);
-	dinic(data);
+	dinic(&data);
 
 	print_rooms_info(data);
 	return (0);
@@ -67,5 +67,14 @@ void 	print_rooms_info(t_data data)
 		for (int j = 0; j < data.rooms_number; ++j)
 			printf("%d ", data.adjacency_matrix[i][j]);
 		printf("\n");
+	}
+	printf("\n");
+
+	while (data.paths)
+	{
+		for (int i = 0; i < data.paths->path_data->length; ++i)
+			printf("%d ", data.paths->path_data->path[i]);
+		printf("\n");
+		data.paths = data.paths->next;
 	}
 }
