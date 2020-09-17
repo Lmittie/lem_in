@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/16 18:23:26 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/17 19:48:02 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,19 @@
 
 void	init_algo_params(t_dinic_data *dinic_data, t_data data)
 {
+	int i;
+
+	dinic_data->start = data.start;
+	dinic_data->end = data.end;
 	dinic_data->n = data.rooms_number;
 	init_matrix(&dinic_data->capacity_matrix, dinic_data->n);
+	if (!(dinic_data->room_entry = malloc(sizeof(int) * dinic_data->n)))
+		exit(10);
+	i = 0;
+	while (i < dinic_data->n)
+		dinic_data->room_entry[i++] = 1;
+	dinic_data->room_entry[dinic_data->start] = -1;
+	dinic_data->room_entry[dinic_data->end] = -1;
 	if (!(dinic_data->queue = malloc(sizeof(int) * dinic_data->n)))
 		exit(10);
 	if (!(dinic_data->ptr = malloc(sizeof(int) * dinic_data->n)))
@@ -27,8 +38,6 @@ void	init_algo_params(t_dinic_data *dinic_data, t_data data)
 	copy(dinic_data->capacity_matrix,
 			data.adjacency_matrix,
 			dinic_data->n);
-	dinic_data->start = data.start;
-	dinic_data->end = data.end;
 }
 
 int		bfs(t_dinic_data *data)
@@ -49,7 +58,8 @@ int		bfs(t_dinic_data *data)
 		to = 0;
 		while (to < data->n)
 		{
-			if (data->distance[to] == -1 && data->capacity_matrix[v][to])
+			if (data->distance[to] == -1 && data->capacity_matrix[v][to]
+				&& data->room_entry[to])
 			{
 				data->queue[qt++] = to;
 				data->distance[to] = data->distance[v] + 1;
@@ -76,7 +86,8 @@ int		dfs(int v, int flow, t_dinic_data *data)
 	while (data->ptr[v] < data->n)
 	{
 		if (data->distance[data->ptr[v]] != data->distance[v] + 1
-		|| !data->capacity_matrix[v][data->ptr[v]])
+		|| !data->capacity_matrix[v][data->ptr[v]]
+		|| !data->room_entry[data->ptr[v]])
 		{
 			++data->ptr[v];
 			continue ;
@@ -86,6 +97,7 @@ int		dfs(int v, int flow, t_dinic_data *data)
 					data);
 		if (pushed)
 		{
+			data->room_entry[data->ptr[v]]--;
 			data->capacity_matrix[v][data->ptr[v]] -= pushed;
 			data->capacity_matrix[data->ptr[v]][v] += pushed;
 			return (pushed);
@@ -110,5 +122,10 @@ int		dinic(t_data data)
 			max_flow += pushed;
 	}
 	printf("max flow = %d\n", max_flow);
+	for (int i = 0; i < dinic_data.n; ++i)
+	{
+		printf("%d: %d, ", i, dinic_data.room_entry[i]);
+	}
+	printf("\n");
 	return (max_flow);
 }
