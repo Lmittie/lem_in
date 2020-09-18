@@ -275,19 +275,24 @@ CMakeFiles/lem_lem.dir/libft/get_next_line.c.o: ../libft/get_next_line.c
 CMakeFiles/lem_lem.dir/libft/get_next_line.c.o: ../libft/get_next_line.h
 CMakeFiles/lem_lem.dir/libft/get_next_line.c.o: ../libft/libft.h
 
-CMakeFiles/lem_lem.dir/srcs/adjacency_matrix.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/adjacency_matrix.c.o: ../libft/get_next_line.h
 CMakeFiles/lem_lem.dir/srcs/adjacency_matrix.c.o: ../libft/libft.h
+CMakeFiles/lem_lem.dir/srcs/adjacency_matrix.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/adjacency_matrix.c.o: ../srcs/adjacency_matrix.c
 
-CMakeFiles/lem_lem.dir/srcs/checkers.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/checkers.c.o: ../libft/get_next_line.h
 CMakeFiles/lem_lem.dir/srcs/checkers.c.o: ../libft/libft.h
+CMakeFiles/lem_lem.dir/srcs/checkers.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/checkers.c.o: ../srcs/checkers.c
 
-CMakeFiles/lem_lem.dir/srcs/deleting.c.o: ../includes/lem_in.h
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o: ../includes/lem_in.h
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o: ../libft/get_next_line.h
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o: ../libft/libft.h
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o: ../srcs/count_ants_on_each_path.c
+
 CMakeFiles/lem_lem.dir/srcs/deleting.c.o: ../libft/get_next_line.h
 CMakeFiles/lem_lem.dir/srcs/deleting.c.o: ../libft/libft.h
+CMakeFiles/lem_lem.dir/srcs/deleting.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/deleting.c.o: ../srcs/deleting.c
 
 CMakeFiles/lem_lem.dir/srcs/dinic_algorithm.c.o: ../includes/lem_in.h
@@ -305,20 +310,25 @@ CMakeFiles/lem_lem.dir/srcs/parse_ants_number.c.o: ../libft/get_next_line.h
 CMakeFiles/lem_lem.dir/srcs/parse_ants_number.c.o: ../libft/libft.h
 CMakeFiles/lem_lem.dir/srcs/parse_ants_number.c.o: ../srcs/parse_ants_number.c
 
-CMakeFiles/lem_lem.dir/srcs/parse_links.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/parse_links.c.o: ../libft/get_next_line.h
 CMakeFiles/lem_lem.dir/srcs/parse_links.c.o: ../libft/libft.h
+CMakeFiles/lem_lem.dir/srcs/parse_links.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/parse_links.c.o: ../srcs/parse_links.c
 
-CMakeFiles/lem_lem.dir/srcs/parse_map.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/parse_map.c.o: ../libft/get_next_line.h
 CMakeFiles/lem_lem.dir/srcs/parse_map.c.o: ../libft/libft.h
+CMakeFiles/lem_lem.dir/srcs/parse_map.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/parse_map.c.o: ../srcs/parse_map.c
 
 CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o: ../libft/get_next_line.h
 CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o: ../libft/libft.h
 CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o: ../srcs/parse_rooms.c
+
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.o: ../includes/lem_in.h
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.o: ../libft/get_next_line.h
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.o: ../libft/libft.h
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.o: ../srcs/print_ants.c
 
 CMakeFiles/lem_lem.dir/srcs/room_list.c.o: ../includes/lem_in.h
 CMakeFiles/lem_lem.dir/srcs/room_list.c.o: ../libft/get_next_line.h

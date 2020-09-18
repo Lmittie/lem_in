@@ -276,52 +276,62 @@ CMakeFiles/lem_lem.dir/libft/get_next_line.c.o
  /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
  /Users/lmittie/Desktop/lem_lem/libft/libft.h
 CMakeFiles/lem_lem.dir/srcs/adjacency_matrix.c.o
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/adjacency_matrix.c
 CMakeFiles/lem_lem.dir/srcs/checkers.c.o
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/checkers.c
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o
+ ../includes/lem_in.h
+ ../libft/get_next_line.h
+ ../libft/libft.h
+ /Users/lmittie/Desktop/lem_lem/srcs/count_ants_on_each_path.c
 CMakeFiles/lem_lem.dir/srcs/deleting.c.o
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/deleting.c
 CMakeFiles/lem_lem.dir/srcs/dinic_algorithm.c.o
- /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
+ ../includes/lem_in.h
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/dinic_algorithm.c
 CMakeFiles/lem_lem.dir/srcs/main.c.o
- /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
+ ../includes/lem_in.h
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/main.c
 CMakeFiles/lem_lem.dir/srcs/parse_ants_number.c.o
- /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
+ ../includes/lem_in.h
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/parse_ants_number.c
 CMakeFiles/lem_lem.dir/srcs/parse_links.c.o
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/parse_links.c
 CMakeFiles/lem_lem.dir/srcs/parse_map.c.o
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/parse_map.c
 CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o
- /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
+ ../includes/lem_in.h
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/parse_rooms.c
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.o
+ ../includes/lem_in.h
+ ../libft/get_next_line.h
+ ../libft/libft.h
+ /Users/lmittie/Desktop/lem_lem/srcs/print_ants.c
 CMakeFiles/lem_lem.dir/srcs/room_list.c.o
- /Users/lmittie/Desktop/lem_lem/includes/lem_in.h
- /Users/lmittie/Desktop/lem_lem/libft/get_next_line.h
- /Users/lmittie/Desktop/lem_lem/libft/libft.h
+ ../includes/lem_in.h
+ ../libft/get_next_line.h
+ ../libft/libft.h
  /Users/lmittie/Desktop/lem_lem/srcs/room_list.c

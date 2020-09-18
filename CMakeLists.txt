@@ -89,4 +89,4 @@ add_executable(lem_lem
         srcs/parse_links.c
         srcs/parse_map.c
         srcs/parse_rooms.c
-        srcs/room_list.c)
+        srcs/room_list.c srcs/count_ants_on_each_path.c srcs/print_ants.c)

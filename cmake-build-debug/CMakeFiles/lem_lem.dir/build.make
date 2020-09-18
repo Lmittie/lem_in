@@ -1104,6 +1104,32 @@ CMakeFiles/lem_lem.dir/srcs/room_list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/room_list.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/room_list.c -o CMakeFiles/lem_lem.dir/srcs/room_list.c.s
 
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o: ../srcs/count_ants_on_each_path.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/count_ants_on_each_path.c
+
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/count_ants_on_each_path.c > CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.i
+
+CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/count_ants_on_each_path.c -o CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.s
+
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.o: ../srcs/print_ants.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/lem_lem.dir/srcs/print_ants.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/print_ants.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/print_ants.c
+
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/print_ants.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/print_ants.c > CMakeFiles/lem_lem.dir/srcs/print_ants.c.i
+
+CMakeFiles/lem_lem.dir/srcs/print_ants.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/print_ants.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/print_ants.c -o CMakeFiles/lem_lem.dir/srcs/print_ants.c.s
+
 # Object files for target lem_lem
 lem_lem_OBJECTS = \
 "CMakeFiles/lem_lem.dir/libft/ft_atoi.c.o" \
@@ -1184,7 +1210,9 @@ lem_lem_OBJECTS = \
 "CMakeFiles/lem_lem.dir/srcs/parse_links.c.o" \
 "CMakeFiles/lem_lem.dir/srcs/parse_map.c.o" \
 "CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o" \
-"CMakeFiles/lem_lem.dir/srcs/room_list.c.o"
+"CMakeFiles/lem_lem.dir/srcs/room_list.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/print_ants.c.o"
 
 # External object files for target lem_lem
 lem_lem_EXTERNAL_OBJECTS =
@@ -1268,9 +1296,11 @@ lem_lem: CMakeFiles/lem_lem.dir/srcs/parse_links.c.o
 lem_lem: CMakeFiles/lem_lem.dir/srcs/parse_map.c.o
 lem_lem: CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o
 lem_lem: CMakeFiles/lem_lem.dir/srcs/room_list.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/print_ants.c.o
 lem_lem: CMakeFiles/lem_lem.dir/build.make
 lem_lem: CMakeFiles/lem_lem.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Linking C executable lem_lem"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Linking C executable lem_lem"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lem_lem.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

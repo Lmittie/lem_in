@@ -75,6 +75,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/lmittie/Desktop/lem_lem/libft/get_next_line.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/libft/get_next_line.c.o"
   "/Users/lmittie/Desktop/lem_lem/srcs/adjacency_matrix.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/adjacency_matrix.c.o"
   "/Users/lmittie/Desktop/lem_lem/srcs/checkers.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/checkers.c.o"
+  "/Users/lmittie/Desktop/lem_lem/srcs/count_ants_on_each_path.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o"
   "/Users/lmittie/Desktop/lem_lem/srcs/deleting.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/deleting.c.o"
   "/Users/lmittie/Desktop/lem_lem/srcs/dinic_algorithm.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/dinic_algorithm.c.o"
   "/Users/lmittie/Desktop/lem_lem/srcs/main.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/main.c.o"
@@ -82,6 +83,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/lmittie/Desktop/lem_lem/srcs/parse_links.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/parse_links.c.o"
   "/Users/lmittie/Desktop/lem_lem/srcs/parse_map.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/parse_map.c.o"
   "/Users/lmittie/Desktop/lem_lem/srcs/parse_rooms.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o"
+  "/Users/lmittie/Desktop/lem_lem/srcs/print_ants.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/print_ants.c.o"
   "/Users/lmittie/Desktop/lem_lem/srcs/room_list.c" "/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles/lem_lem.dir/srcs/room_list.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")

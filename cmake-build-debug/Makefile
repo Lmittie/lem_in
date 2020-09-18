@@ -2060,6 +2060,33 @@ srcs/checkers.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/checkers.c.s
 .PHONY : srcs/checkers.c.s
 
+srcs/count_ants_on_each_path.o: srcs/count_ants_on_each_path.c.o
+
+.PHONY : srcs/count_ants_on_each_path.o
+
+# target to build an object file
+srcs/count_ants_on_each_path.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o
+.PHONY : srcs/count_ants_on_each_path.c.o
+
+srcs/count_ants_on_each_path.i: srcs/count_ants_on_each_path.c.i
+
+.PHONY : srcs/count_ants_on_each_path.i
+
+# target to preprocess a source file
+srcs/count_ants_on_each_path.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.i
+.PHONY : srcs/count_ants_on_each_path.c.i
+
+srcs/count_ants_on_each_path.s: srcs/count_ants_on_each_path.c.s
+
+.PHONY : srcs/count_ants_on_each_path.s
+
+# target to generate assembly for a file
+srcs/count_ants_on_each_path.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.s
+.PHONY : srcs/count_ants_on_each_path.c.s
+
 srcs/deleting.o: srcs/deleting.c.o
 
 .PHONY : srcs/deleting.o
@@ -2248,6 +2275,33 @@ srcs/parse_rooms.s: srcs/parse_rooms.c.s
 srcs/parse_rooms.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.s
 .PHONY : srcs/parse_rooms.c.s
+
+srcs/print_ants.o: srcs/print_ants.c.o
+
+.PHONY : srcs/print_ants.o
+
+# target to build an object file
+srcs/print_ants.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/print_ants.c.o
+.PHONY : srcs/print_ants.c.o
+
+srcs/print_ants.i: srcs/print_ants.c.i
+
+.PHONY : srcs/print_ants.i
+
+# target to preprocess a source file
+srcs/print_ants.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/print_ants.c.i
+.PHONY : srcs/print_ants.c.i
+
+srcs/print_ants.s: srcs/print_ants.c.s
+
+.PHONY : srcs/print_ants.s
+
+# target to generate assembly for a file
+srcs/print_ants.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/print_ants.c.s
+.PHONY : srcs/print_ants.c.s
 
 srcs/room_list.o: srcs/room_list.c.o
 
@@ -2498,6 +2552,9 @@ help:
 	@echo "... srcs/checkers.o"
 	@echo "... srcs/checkers.i"
 	@echo "... srcs/checkers.s"
+	@echo "... srcs/count_ants_on_each_path.o"
+	@echo "... srcs/count_ants_on_each_path.i"
+	@echo "... srcs/count_ants_on_each_path.s"
 	@echo "... srcs/deleting.o"
 	@echo "... srcs/deleting.i"
 	@echo "... srcs/deleting.s"
@@ -2519,6 +2576,9 @@ help:
 	@echo "... srcs/parse_rooms.o"
 	@echo "... srcs/parse_rooms.i"
 	@echo "... srcs/parse_rooms.s"
+	@echo "... srcs/print_ants.o"
+	@echo "... srcs/print_ants.i"
+	@echo "... srcs/print_ants.s"
 	@echo "... srcs/room_list.o"
 	@echo "... srcs/room_list.i"
 	@echo "... srcs/room_list.s"

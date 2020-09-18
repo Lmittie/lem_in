@@ -306,6 +306,9 @@
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/checkers.c">
 			<Option target="lem_lem"/>
 		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/count_ants_on_each_path.c">
+			<Option target="lem_lem"/>
+		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/deleting.c">
 			<Option target="lem_lem"/>
 		</Unit>
@@ -325,6 +328,9 @@
 			<Option target="lem_lem"/>
 		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/parse_rooms.c">
+			<Option target="lem_lem"/>
+		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/print_ants.c">
 			<Option target="lem_lem"/>
 		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/room_list.c">
