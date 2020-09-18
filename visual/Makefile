@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/18 15:55:20 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/18 19:10:38 by acarlett         ###   ########.fr        #
+#    Updated: 2020/09/18 19:39:00 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ LIB_NAME =	$(DIR_LIB)/libft.a
 INC_NAME =	$(DIR_INC)/visualizer.h
 
 SOURCES =	$(DIR_SRC)/main.c \
-			$(DIR_SRC)/random.c
+			$(DIR_SRC)/random.c \
+			$(DIR_SRC)/flow_color.c 
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 
