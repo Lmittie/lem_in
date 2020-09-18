@@ -6,11 +6,11 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 18:56:15 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/18 17:08:54 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 t_room_data		*create_room(char *line, t_room_type room_type)
 {

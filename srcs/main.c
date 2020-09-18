@@ -6,12 +6,11 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:39:05 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 21:18:48 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/18 21:10:31 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
-#include <stdio.h>
+#include "lem_in.h"
 
 void	init_structure(t_data *data) {
 	(data)->ants_num = -1;
@@ -30,7 +29,9 @@ int		main(void)
 
 	init_structure(&data);
 	parse_map(&data);
-	dinic(&data);
+	data.max_flow = dinic(&data);
+	count_ants_on_each_path(&data);
+	print_ants(&data);
 
 	print_rooms_info(data);
 	return (0);
@@ -72,6 +73,8 @@ void 	print_rooms_info(t_data data)
 
 	while (data.paths)
 	{
+		printf("path info: len = %d, ants_num = %d, dist to end = %d\n",
+		 data.paths->path_data->length, data.paths->path_data->ants, data.paths->path_data->dist_from_end);
 		for (int i = 0; i < data.paths->path_data->length; ++i)
 			printf("%d ", data.paths->path_data->path[i]);
 		printf("\n");

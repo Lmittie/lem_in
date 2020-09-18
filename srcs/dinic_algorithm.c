@@ -6,11 +6,11 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 19:54:05 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/18 17:26:47 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 #define INF 1000000000
 
@@ -84,6 +84,7 @@ void 	add_room_to_path(t_path_data *path_data, int room_id, int len)
 		if (!(path_data->path = malloc(sizeof(int) * (len + 1))))
 			exit(MALLOC_ERROR);
 		ft_bzero(path_data->path, sizeof(int) * (len + 1));
+		path_data->length = len + 1;
 	}
 	path_data->path[len] = room_id;
 }
@@ -129,7 +130,9 @@ void 	push_back_path(t_path_list **paths_list, t_path_data path_data)
 			exit(MALLOC_ERROR);
 		if (!((*paths_list)->path_data = malloc(sizeof(t_path_data))))
 			exit(MALLOC_ERROR);
-		(*paths_list)->path_data = &path_data;
+		(*paths_list)->path_data->path = path_data.path;
+		(*paths_list)->path_data->length = path_data.length;
+		(*paths_list)->path_data->dist_from_end = path_data.length - 1;
 		(*paths_list)->next = NULL;
 	} else
 	{
@@ -138,7 +141,11 @@ void 	push_back_path(t_path_list **paths_list, t_path_data path_data)
 			last = last->next;
 		if (((last)->next = malloc(sizeof(t_path_list))) == NULL)
 			exit(MALLOC_ERROR);
-		(last)->next->path_data = &path_data;
+		if (!((last)->next->path_data = malloc(sizeof(t_path_data))))
+			exit(MALLOC_ERROR);
+		(last)->next->path_data->path = path_data.path;
+		(last)->next->path_data->length = path_data.length;
+		(last)->next->path_data->dist_from_end = path_data.length - 1;
 		(last)->next->next = NULL;
 	}
 }

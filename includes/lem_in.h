@@ -6,14 +6,14 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 20:30:55 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/18 19:57:54 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <stdio.h>
 
 # define WIN_X 1000
@@ -60,7 +60,8 @@ typedef struct	s_path_data
 	int		length;
 	int		*path;
 	int 	ants;
-	int		dist_from_start;
+	int 	*ants_by_id;
+	int 	last_ant_id;
 	int 	dist_from_end;
 }				t_path_data;
 
@@ -86,12 +87,18 @@ typedef struct	s_data
 {
 	int				ants_num;
 	int				rooms_number;
+	char 			**rooms_by_id;
 	t_room_list		*rooms;
 	t_path_list		*paths;
 	int				**adjacency_matrix;
 	int				start;
 	int				end;
+	int 			max_flow;
 }				t_data;
+
+void			print_ants(t_data *data);
+
+void			count_ants_on_each_path(t_data *data);
 
 int				dinic(t_data *data);
 
