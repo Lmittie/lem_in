@@ -29,16 +29,20 @@ void 	move_ants_in_current_path(t_path_data **path_data, int ***ants, int *ants_
 	i = 0;
 	while (i < (*path_data)->last_ant_id)
 	{
-		if (*((*ants)[(*path_data)->ants_by_id[i]]) <= (*path_data)->length)
+	    // if ant isnt in the end room
+		if ((*ants)[(*path_data)->ants_by_id[i]] != NULL &&
+		*((*ants)[(*path_data)->ants_by_id[i]]) != (*path_data)->path[(*path_data)->length - 1])
 		{
-			if (*((*ants)[(*path_data)->ants_by_id[i]]) == (*path_data)->length)
-				(*ants_at_end)++;
-			else
-			{
-				ptr = (*ants)[(*path_data)->ants_by_id[i]];
-				(*ants)[(*path_data)->ants_by_id[i]]++;
-			}
-		}
+            // move ant in the next room
+            (*ants)[(*path_data)->ants_by_id[i]]++;
+            // if its the end room then increment number of ants at the end
+            if (*((*ants)[(*path_data)->ants_by_id[i]]) == (*path_data)->path[(*path_data)->length - 1])
+                (*ants_at_end)++;
+		} else
+        {
+            // else dont count the ants which are already at the end while printing
+            (*ants)[(*path_data)->ants_by_id[i]] = NULL;
+        }
 		i++;
 	}
 }
@@ -50,11 +54,11 @@ void 	print_current_movements(int **ants, int last_ant_id, char **rooms_by_id, i
 	j = 0;
 	while (j < last_ant_id)
 	{
-//		if (*(ants[j]) == end_id)
-//		{
-//			j++;
-//			continue;
-//		}
+		if (ants[j] == NULL)
+		{
+			j++;
+			continue;
+		}
 		ft_putchar('L');
 		ft_putnbr(j + 1);
 		ft_putchar('-');
