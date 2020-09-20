@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 16:08:37 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/20 19:10:01 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/20 19:50:29 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		main()
 	SDL_Texture		*tex;
 	bool			run;
 
-	write(1, "RT\n", 3);
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	{
 		ft_putstr("SDL initialization error:");
@@ -38,18 +37,23 @@ int		main()
 							SDL_WINDOW_SHOWN);
 	render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 	rend = SDL_CreateRenderer(win, -1, render_flags);
-	surface = SDL_LoadBMP("dog.bmp");
-	printf ("IMG_Load: %s\n", IMG_GetError());
-	tex = SDL_CreateTextureFromSurface(rend, surface);
-	SDL_FreeSurface(surface);
-	SDL_RenderPresent(rend);
-	return (0);
-	
+	surface = SDL_LoadBMP("images/dog.bmp");
 
 	//TODO привести все в порядок под структуру!!!
 	//TODO сделать обработку клавишы escape для выхода
+
 	
+	tex = SDL_CreateTextureFromSurface(rend, surface);
+	SDL_FreeSurface(surface);
+	SDL_RenderClear(rend);
 	run = true;
+
+	int ii = 100;
+	int	f_i = 0;
+	int jj = 30; 
+	int	f_j = 0; 
+	int	kk = 100;
+	int	f_k = 0;
 	while (run)
 	{
 		while (SDL_PollEvent(&event))
@@ -58,20 +62,14 @@ int		main()
 				run = false;
 		}
 		
-	int ii = 100;
-	int	f_i = 0;
-	int jj = 30; 
-	int	f_j = 0; 
-	int	kk = 100;
-	int	f_k = 0;
-		ii = flow_color(30, 100, &f_i, ii);
-		jj = flow_color(30, 80, &f_j, jj);
-		kk = flow_color(100, 140, &f_k, kk);
-		SDL_SetRenderDrawColor(rend, ii, jj, kk, 255);
-		SDL_RenderClear(rend);
-		
-		SDL_SetRenderDrawColor(rend, 250, 250, 0, 255);
-		draw_random_points(20000, false, rend);
+
+	SDL_RenderCopy(rend, tex, NULL, NULL);
+		// ii = flow_color(30, 100, &f_i, ii);
+		// jj = flow_color(30, 80, &f_j, jj);
+		// kk = flow_color(100, 140, &f_k, kk);
+		// SDL_SetRenderDrawColor(rend, ii, jj, kk, 255);
+
+		draw_random_points(200000, true, rend);
 
 		SDL_RenderPresent(rend);
 	}
