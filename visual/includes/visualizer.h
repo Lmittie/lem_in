@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/18 19:42:58 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/20 16:35:51 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VISUALIZER_H
 
 # include "../SDL/include/SDL.h"
+# include "../SDL/include/SDL_image.h"
 # include <stdbool.h>
 # include <time.h>
 # include "../../libft/libft.h"

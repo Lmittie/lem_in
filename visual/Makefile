@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/18 15:55:20 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/18 19:39:00 by acarlett         ###   ########.fr        #
+#    Updated: 2020/09/20 19:11:36 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ DIR_INC =	includes
 
 NAME =		visualizer
 
+FRAME =		-F ./Frameworks/ -framework SDL2 -framework SDL2_image
+
 LIB_NAME =	$(DIR_LIB)/libft.a
 
 INC_NAME =	$(DIR_INC)/visualizer.h
@@ -36,7 +38,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(DIR_LIB)
-	@cc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(SDL_LIB) $(LIB_NAME)
+	@cc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(SDL_LIB) $(FRAME) $(LIB_NAME)
 
 %.o: %.c $(INC_NAME)
 	@cc -I $(DIR_INC) $< -c -o $@
