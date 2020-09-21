@@ -24,7 +24,6 @@ void 	add_new_ant(t_path_data **path_data, int ***ants, int last_ant_id)
 void 	move_ants_in_current_path(t_path_data **path_data, int ***ants, int *ants_at_end)
 {
 	int i;
-	int *ptr;
 
 	i = 0;
 	while (i < (*path_data)->last_ant_id)
@@ -63,7 +62,8 @@ void 	print_current_movements(int **ants, int last_ant_id, char **rooms_by_id, i
 		ft_putnbr(j + 1);
 		ft_putchar('-');
 		ft_putstr(rooms_by_id[*(ants[j])]);
-		ft_putchar(' ');
+		if (j + 1 != last_ant_id)
+			ft_putchar(' ');
 		j++;
 	}
 	ft_putchar('\n');
