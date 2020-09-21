@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+// /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,76 +6,36 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 16:08:37 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/20 19:50:29 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/21 16:20:37 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/visualizer.h"
 
+void	init_structure(t_map_data *data)
+{
+	(data)->ants_num = -1;
+	(data)->adjacency_matrix = NULL;
+	(data)->rooms_number = 0;
+	(data)->start = -1;
+	(data)->end = -1;
+}
+
 int		main()
 {
-	SDL_Window		*win;
-	SDL_Renderer	*rend;
-	Uint32			render_flags;
-	SDL_Event		event;
-	SDL_Surface		*surface;
-	SDL_Texture		*tex;
-	bool			run;
+	t_map_data data;
 
-	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
+	init_structure(&data);
+	parse_map(&data);
+	printf("rooms_number = %d\n", data.rooms_number);
+	while (data.rooms != NULL)
 	{
-		ft_putstr("SDL initialization error:");
-		ft_putstr(SDL_GetError());
-		exit(INIT_ERROR);
+		printf("NAME = %s	ID = %d		X_CORD = %d		Y_CORD = %d\n",
+					data.rooms->room_data->name,
+					data.rooms->room_data->id,
+					data.rooms->room_data->coords.x,
+					data.rooms->room_data->coords.y);
+		data.rooms = data.rooms->next;		
 	}
-	IMG_Init(IMG_INIT_PNG);
-	win = SDL_CreateWindow("LEM IN VISUAL",
-							SDL_WINDOWPOS_UNDEFINED,
-							SDL_WINDOWPOS_UNDEFINED,
-							WIDTH,
-							HEIGHT,
-							SDL_WINDOW_SHOWN);
-	render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
-	rend = SDL_CreateRenderer(win, -1, render_flags);
-	surface = SDL_LoadBMP("images/dog.bmp");
-
-	//TODO привести все в порядок под структуру!!!
-	//TODO сделать обработку клавишы escape для выхода
-
-	
-	tex = SDL_CreateTextureFromSurface(rend, surface);
-	SDL_FreeSurface(surface);
-	SDL_RenderClear(rend);
-	run = true;
-
-	int ii = 100;
-	int	f_i = 0;
-	int jj = 30; 
-	int	f_j = 0; 
-	int	kk = 100;
-	int	f_k = 0;
-	while (run)
-	{
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type ==SDL_QUIT)
-				run = false;
-		}
-		
-
-	SDL_RenderCopy(rend, tex, NULL, NULL);
-		// ii = flow_color(30, 100, &f_i, ii);
-		// jj = flow_color(30, 80, &f_j, jj);
-		// kk = flow_color(100, 140, &f_k, kk);
-		// SDL_SetRenderDrawColor(rend, ii, jj, kk, 255);
-
-		draw_random_points(200000, true, rend);
-
-		SDL_RenderPresent(rend);
-	}
-
-
-	SDL_DestroyRenderer(rend);
-	SDL_DestroyWindow(win);
-	SDL_Quit();
+	return (0);
 }
