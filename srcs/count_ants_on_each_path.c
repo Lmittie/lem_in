@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 17:08:01 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/18 19:20:17 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/21 17:17:36 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void 	delete_useless_paths(t_path_list **paths)
 				continue ;
 			}
 		}
+//		printf("ants num: %d, path len = %d\n", path_iter->path_data->ants, path_iter->path_data->length);
 		if (!(path_iter->path_data->ants_by_id =
 				malloc(sizeof(int) * path_iter->path_data->ants)))
 			exit(MALLOC_ERROR);

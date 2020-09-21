@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -16,14 +17,12 @@
 # include "libft.h"
 # include <stdio.h>
 
-# define WIN_X 1000
-# define WIN_Y 1000
-
 typedef enum	e_room_type
 {
 	START,
 	END,
 	DEFAULT,
+	NOT_COMMENT,
 	PARSE_ERROR
 }				t_room_type;
 
@@ -136,10 +135,5 @@ void			free_delete_exit(char **line, char **splitted_line, int exit_num);
  */
 int				return_room_index(char *room_name, t_room_list *list);
 void			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number);
-
-/*
-* visual/
-*/
-void		make_visual(t_data data);
 
 #endif

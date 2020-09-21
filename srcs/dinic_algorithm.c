@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/18 17:26:47 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/21 17:23:02 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ void	init_algo_params(t_dinic_data *dinic_data, t_data *data)
 	dinic_data->n = data->rooms_number;
 	init_matrix(&dinic_data->capacity_matrix, dinic_data->n);
 	if (!(dinic_data->room_entry = malloc(sizeof(int) * dinic_data->n)))
-		exit(10);
+		exit(MALLOC_ERROR);
 	i = 0;
 	while (i < dinic_data->n)
 		dinic_data->room_entry[i++] = 1;
 	dinic_data->room_entry[dinic_data->start] = -1;
 	dinic_data->room_entry[dinic_data->end] = -1;
 	if (!(dinic_data->queue = malloc(sizeof(int) * dinic_data->n)))
-		exit(10);
+		exit(MALLOC_ERROR);
 	if (!(dinic_data->ptr = malloc(sizeof(int) * dinic_data->n)))
-		exit(10);
+		exit(MALLOC_ERROR);
 	if (!(dinic_data->distance = malloc(sizeof(int) * dinic_data->n)))
-		exit(10);
+		exit(MALLOC_ERROR);
 	copy(dinic_data->capacity_matrix,
 			data->adjacency_matrix,
 			dinic_data->n);
@@ -133,6 +133,7 @@ void 	push_back_path(t_path_list **paths_list, t_path_data path_data)
 		(*paths_list)->path_data->path = path_data.path;
 		(*paths_list)->path_data->length = path_data.length;
 		(*paths_list)->path_data->dist_from_end = path_data.length - 1;
+		(*paths_list)->path_data->ants = 0;
 		(*paths_list)->next = NULL;
 	} else
 	{
@@ -146,6 +147,7 @@ void 	push_back_path(t_path_list **paths_list, t_path_data path_data)
 		(last)->next->path_data->path = path_data.path;
 		(last)->next->path_data->length = path_data.length;
 		(last)->next->path_data->dist_from_end = path_data.length - 1;
+		(last)->next->path_data->ants = 0;
 		(last)->next->next = NULL;
 	}
 }

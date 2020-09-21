@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:37:30 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 18:56:15 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/21 17:06:10 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,17 @@ void	parse_links(t_data *data)
 	{
 		if (line[0] == '\0')
 			exit(INVALID_LINKS);
-		if (check_if_comment(&line, data) == PARSE_ERROR)
+		while (line && !ft_strncmp(line, "#", 1))
 		{
-			ft_strdel(&line);
-			exit(INVALID_LINKS);
+			if (check_if_comment(&line, data) == PARSE_ERROR)
+			{
+				ft_strdel(&line);
+				exit(INVALID_ROOMS);
+			}
+			if (!line)
+				return ;
 		}
-		add_link(line, data);
-		ft_strdel(&line);
+			add_link(line, data);
+			ft_strdel(&line);
 	}
 }

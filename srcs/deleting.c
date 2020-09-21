@@ -29,6 +29,7 @@ void		delete_splitted_line(char **splitted_line)
 
 void		free_delete_exit(char **line, char **splitted_line, int exit_num)
 {
+	printf("hereee\n");
 	ft_strdel(line);
 	delete_splitted_line(splitted_line);
 	exit(exit_num);
