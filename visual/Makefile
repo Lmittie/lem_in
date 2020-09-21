@@ -6,13 +6,11 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/18 15:55:20 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/20 19:27:29 by acarlett         ###   ########.fr        #
+#    Updated: 2020/09/21 20:42:44 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS =		-Wall -Werror -Wextra
-
-SDL_LIB =	-L ~/.brew/lib -lSDL2
 
 DIR_SRC =	srcs
 
@@ -20,12 +18,14 @@ DIR_LIB =	../libft
 
 DIR_INC =	includes
 
+DIR_OBJ =	obj
+
 NAME =		visualizer
 
 FRAME = -I./frameworks/SDL2_image.framework/Versions/A/Headers
 
-SDL_INC := -F./frameworks \
-		-rpath Frameworks \
+SDL_INC := -F./SDL/frameworks \
+		-rpath SDL/frameworks \
 		-framework SDL2 \
 		-framework SDL2_image
 
@@ -35,7 +35,13 @@ INC_NAME =	$(DIR_INC)/visualizer.h
 
 SOURCES =	$(DIR_SRC)/main.c \
 			$(DIR_SRC)/random.c \
-			$(DIR_SRC)/flow_color.c 
+			$(DIR_SRC)/flow_color.c \
+			$(DIR_SRC)/v_parse_ants_number.c \
+			$(DIR_SRC)/v_parse_links.c \
+			$(DIR_SRC)/v_parse_map.c \
+			$(DIR_SRC)/v_parse_rooms.c \
+			$(DIR_SRC)/v_deleting.c \
+			$(DIR_SRC)/v_checkers.c
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 
@@ -43,14 +49,16 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(DIR_LIB)
+	@mkdir $(DIR_OBJ)
 	@cc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(SDL_INC) $(FRAME) $(LIB_NAME)
+	@mv $(DIR_SRC)/*.o $(DIR_OBJ)
 
 %.o: %.c $(INC_NAME)
 	@cc -I $(DIR_INC) $< -c -o $@
 
 clean:
 	@make -C $(DIR_LIB) clean
-	@rm -rf $(OBJECTS)
+	@rm -rf $(DIR_OBJ)
 
 fclean: clean
 	@make -C $(DIR_LIB) fclean
