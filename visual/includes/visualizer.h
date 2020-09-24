@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/21 20:34:20 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/23 20:38:53 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef enum	e_exit_code
 	INVALID_ANTS = 1,
 	INVALID_ROOMS = 2,
 	INVALID_LINKS = 3,
-	INIT_SDL_ERROR = 4
+	INIT_SDL_ERROR = 4,
+	SIMILAR_COORDS = 5
 }				t_error_code;
 
 typedef struct	s_point
@@ -59,6 +60,14 @@ typedef struct			s_room_list
 	struct s_room_list	*next;
 }						t_room_list;
 
+typedef struct		s_max_coords
+{
+	int				max_x;
+	int				min_x;
+	int				max_y;
+	int				min_y;
+}					t_max_coords;
+
 typedef struct		s_map_data
 {
 	int				rooms_number;
@@ -66,25 +75,42 @@ typedef struct		s_map_data
 	int				**adjacency_matrix;
 	int				start;
 	t_room_list		*rooms;
+	t_max_coords	max_coords;
 	char 			**rooms_by_id;
 	int				end;
+
 }					t_map_data;
 
+typedef struct		s_window
+{
+	int				x;
+	int				y;
+}					t_window;
+
+typedef struct		s_visual
+{
+	t_window		size;
+	int				delta_x;
+	int				delta_y;
+	
+}					t_visual;
 
 /*
-* random.c
+** random.c
 */
 int				random_number(int nbr_min, int nbr_max);
 int				random_color();
 void			draw_random_points(int nbr_points, bool randomize_color, SDL_Renderer *rend);
 
+
 /*
-* flow_color.c
+** flow_color.c
 */
 int				flow_color(int low, int high, int *flag, int myself);
 
+
 /*
-* all parse
+** all parse
 */
 int				parse_ants_number(void);
 void			parse_links(t_map_data *data);
@@ -99,4 +125,22 @@ void			add_link(char *line, t_map_data *data);
 void			push_back_room(t_room_list **list, t_room_data *room_data,
 							int *rooms_number);
 
+
+/*
+**	check_coords.c
+*/
+void			check_coords(t_map_data *data);
+
+
+/*
+** min_max_coords.c
+*/
+void			init_coord(t_room_list *root, t_map_data *data);
+void			find_min_max(t_room_list *room, t_map_data *data);
+
+
+/*
+** fill_delta.c
+*/
+void			new_coords(t_map_data *data, t_visual *vis);
 #endif
