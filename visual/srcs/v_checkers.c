@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:34:59 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/25 15:21:43 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/25 20:53:31 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,8 @@ int			return_room_index(char *room_name, t_room_list *list)
 	t_room_list *head;
 
 	head = list;
-	printf ("id = %d\n", list->room_data->id);
 	while (head)
 	{
-		write (1, "RT\n", 3);
-		// printf ("%s		\n", head->room_data->name);
 		if (!ft_strcmp(head->room_data->name, room_name))
 			return (head->room_data->id);
 		head = head->next;

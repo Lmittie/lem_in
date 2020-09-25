@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/25 15:08:37 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/25 18:46:01 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 
 # define WIDTH	1000
 # define HEIGHT	1000
+
+typedef struct		s_max_coords
+{
+	int				max_x;
+	int				min_x;
+	int				max_y;
+	int				min_y;
+}					t_max_coords;
 
 typedef enum	e_room_type
 {
@@ -60,14 +68,6 @@ typedef struct			s_room_list
 	struct s_room_list	*next;
 }						t_room_list;
 
-typedef struct		s_max_coords
-{
-	int				max_x;
-	int				min_x;
-	int				max_y;
-	int				min_y;
-}					t_max_coords;
-
 typedef struct		s_map_data
 {
 	int				rooms_number;
@@ -87,9 +87,18 @@ typedef struct		s_window
 	int				y;
 }					t_window;
 
+typedef struct		s_line
+{
+	int				x1;
+	int				y1;
+	int				x2;
+	int				y2;
+}					t_line;
+
 typedef struct		s_visual
 {
 	t_window		size;
+	t_line			line;
 	int				delta_x;
 	int				delta_y;
 	SDL_Window		*win;
@@ -99,7 +108,6 @@ typedef struct		s_visual
 	SDL_Texture		*tex;
 	Uint32			render_flags;
 	bool			run;
-	
 }					t_visual;
 
 /*
@@ -131,6 +139,8 @@ int				return_room_index(char *room_name, t_room_list *list);
 void			add_link(char *line, t_map_data *data);
 void			push_back_room(t_room_list **list, t_room_data *room_data,
 							int *rooms_number);
+void			fill_adjacency_matrix(int index1, int index2,
+							int ***adjacency_matrix, int size);
 
 
 /*
@@ -159,7 +169,7 @@ void			render_surface(t_visual *vis);
 /*
 ** background_graph.c
 */
-void			background_graph(t_visual *vis);
+void			background_graph(t_visual *vis, t_map_data *data);
 void			destroy_all_quit(t_visual *vis);
 
 

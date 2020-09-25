@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/18 15:55:20 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/25 15:08:21 by acarlett         ###   ########.fr        #
+#    Updated: 2020/09/25 18:45:25 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SOURCES =	$(DIR_SRC)/background_graph.c \
 			$(DIR_SRC)/v_parse_map.c \
 			$(DIR_SRC)/v_parse_rooms.c \
 			$(DIR_SRC)/v_deleting.c \
-			$(DIR_SRC)/v_checkers.c
+			$(DIR_SRC)/v_checkers.c \
+			$(DIR_SRC)/v_adjacency_matrix.c
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 

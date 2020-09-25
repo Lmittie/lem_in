@@ -16,6 +16,7 @@ void	init_structure(t_map_data *data)
 {
 	(data)->ants_num = -1;
 	(data)->adjacency_matrix = NULL;
+	(data)->rooms = NULL;
 	(data)->rooms_number = 0;
 	(data)->start = -1;
 	(data)->end = -1;
@@ -41,17 +42,21 @@ void	init_sdl(t_visual *vis)
 int		main()
 {
 	t_map_data	data;
+	int			i;
+	int			j;
 	t_visual	vis;
 
+	i = 0;
+	j = 0;
 	init_structure(&data);
 	parse_map(&data);
-	// check_coords(&data);
-	// new_coords(&data, &vis);
-	// init_sdl(&vis);
-	// render_surface(&vis);
-	// background_graph(&vis);
-	// destroy_all_quit(&vis);
-	// return (0);
+	check_coords(&data);
+	new_coords(&data, &vis);
+	init_sdl(&vis);
+	render_surface(&vis);
+	background_graph(&vis, &data);
+	destroy_all_quit(&vis);
+	return (0);
 
 	printf("rooms_number = %d\n", data.rooms_number);
 	printf ("delta_x = %d		delta_y = %d\n", vis.delta_x, vis.delta_y);

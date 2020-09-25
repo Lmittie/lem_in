@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/25 15:14:27 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/25 20:57:02 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void			parse_rooms(t_map_data *data)
 {
 	char		*line;
 	t_room_type room_type;
-
+	
+	room_type = DEFAULT;
 	while (get_next_line(0, &line) > 0)
 	{
 		if (line[0] == '\0')
@@ -54,17 +55,21 @@ void			parse_rooms(t_map_data *data)
 			add_link(line, data);
 			break ;
 		}
-		if ((room_type = check_if_comment(&line, data)) == PARSE_ERROR)
+		while (!ft_strncmp(line, "#", 1))
+		{
+			room_type = check_if_comment(&line, data);
+		if (room_type == PARSE_ERROR)
 		{
 			ft_strdel(&line);
 			exit(INVALID_ROOMS);
 		}
-		push_back_room(&data->rooms, create_room(line, room_type), &data->rooms_number);
 		if (room_type == START)
-			data->start = data->rooms_number - 1;
+			data->start = data->rooms_number;
 		if (room_type == END)
-			data->end = data->rooms_number - 1;
+			data->end = data->rooms_number;
+		}
+		push_back_room(&data->rooms, create_room(line, room_type), &data->rooms_number);
+		room_type = DEFAULT;
 		ft_strdel(&line);
 	}
-	// TODO check if links exists
 }
