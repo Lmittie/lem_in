@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/23 20:38:53 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/25 15:08:37 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,13 @@ typedef struct		s_visual
 	t_window		size;
 	int				delta_x;
 	int				delta_y;
+	SDL_Window		*win;
+	SDL_Renderer	*rend;
+	SDL_Event		event;
+	SDL_Surface		*surface;
+	SDL_Texture		*tex;
+	Uint32			render_flags;
+	bool			run;
 	
 }					t_visual;
 
@@ -143,4 +150,17 @@ void			find_min_max(t_room_list *room, t_map_data *data);
 ** fill_delta.c
 */
 void			new_coords(t_map_data *data, t_visual *vis);
+
+/*
+** render_load_surface.c
+*/
+void			render_surface(t_visual *vis);
+
+/*
+** background_graph.c
+*/
+void			background_graph(t_visual *vis);
+void			destroy_all_quit(t_visual *vis);
+
+
 #endif

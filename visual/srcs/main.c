@@ -21,6 +21,23 @@ void	init_structure(t_map_data *data)
 	(data)->end = -1;
 }
 
+void	init_sdl(t_visual *vis)
+{
+	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
+	{
+		ft_putstr("SDL initialization error:");
+		ft_putstr(SDL_GetError());
+		exit(INIT_SDL_ERROR);
+	}
+	IMG_Init(IMG_INIT_PNG);
+	vis->win = SDL_CreateWindow("LEM IN VISUAL",
+							SDL_WINDOWPOS_UNDEFINED,
+							SDL_WINDOWPOS_UNDEFINED,
+							WIDTH,
+							HEIGHT,
+							SDL_WINDOW_SHOWN);
+}
+
 int		main()
 {
 	t_map_data	data;
@@ -28,10 +45,14 @@ int		main()
 
 	init_structure(&data);
 	parse_map(&data);
-	check_coords(&data);
-	new_coords(&data, &vis); //TODO Минимальная и максимальная координата по X и Y должны стоять на границах
-							// рисуемой зоны (200, 800)px
-	
+	// check_coords(&data);
+	// new_coords(&data, &vis);
+	// init_sdl(&vis);
+	// render_surface(&vis);
+	// background_graph(&vis);
+	// destroy_all_quit(&vis);
+	// return (0);
+
 	printf("rooms_number = %d\n", data.rooms_number);
 	printf ("delta_x = %d		delta_y = %d\n", vis.delta_x, vis.delta_y);
 	while (data.rooms != NULL)
@@ -50,11 +71,4 @@ int		main()
 					data.max_coords.min_y);
 	return (0);
 }
-
-/* 800 - 200 = 600 px -> Область для рисования
-**
-** 600 / (max_x(~42) - min_x(4)) = 38 ячеек каждая по 15 px
-**
-** ((all_coords - min_x) * 15(px)) + 200
-*/
 

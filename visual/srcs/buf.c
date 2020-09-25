@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 17:40:02 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/21 17:40:34 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:56:27 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main()
 	{
 		ft_putstr("SDL initialization error:");
 		ft_putstr(SDL_GetError());
-		exit(INIT_ERROR);
+		exit(INIT_SDL_ERROR);
 	}
 	IMG_Init(IMG_INIT_PNG);
 	win = SDL_CreateWindow("LEM IN VISUAL",
