@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 17:08:01 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/25 21:25:08 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/25 21:26:03 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ int		count_ants_on_each_path(t_paths **paths, int ants_num)
 			}
 			// in case first path is begining of list
 			path->ants_num++;
-			if (path->path_len + path->ants_num > counter)
-				counter = path->path_len + path->ants_num;
+			if ((path->path_len - 1) + (path->ants_num - 1) > counter)
+				counter = (path->path_len - 1) + (path->ants_num - 1);
 		}
 		else
 		{
 			next_path->ants_num++;
-			if (next_path->path_len + next_path->ants_num > counter)
+			if ((next_path->path_len - 1) + (next_path->ants_num - 1) > counter)
 				counter = next_path->path_len + next_path->ants_num;
 			if (next_path->next == NULL)
 			{
