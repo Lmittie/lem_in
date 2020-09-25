@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/18 15:55:20 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/21 20:42:44 by acarlett         ###   ########.fr        #
+#    Updated: 2020/09/25 18:45:25 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,15 +33,21 @@ LIB_NAME =	$(DIR_LIB)/libft.a
 
 INC_NAME =	$(DIR_INC)/visualizer.h
 
-SOURCES =	$(DIR_SRC)/main.c \
-			$(DIR_SRC)/random.c \
+SOURCES =	$(DIR_SRC)/background_graph.c \
+			$(DIR_SRC)/check_coords.c \
 			$(DIR_SRC)/flow_color.c \
+			$(DIR_SRC)/main.c \
+			$(DIR_SRC)/min_max_coords.c \
+			$(DIR_SRC)/new_coords.c \
+			$(DIR_SRC)/random.c \
+			$(DIR_SRC)/render_load_surface.c \
 			$(DIR_SRC)/v_parse_ants_number.c \
 			$(DIR_SRC)/v_parse_links.c \
 			$(DIR_SRC)/v_parse_map.c \
 			$(DIR_SRC)/v_parse_rooms.c \
 			$(DIR_SRC)/v_deleting.c \
-			$(DIR_SRC)/v_checkers.c
+			$(DIR_SRC)/v_checkers.c \
+			$(DIR_SRC)/v_adjacency_matrix.c
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 
@@ -49,7 +55,6 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(DIR_LIB)
-	@mkdir $(DIR_OBJ)
 	@cc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(SDL_INC) $(FRAME) $(LIB_NAME)
 	@mv $(DIR_SRC)/*.o $(DIR_OBJ)
 
@@ -58,7 +63,7 @@ $(NAME): $(OBJECTS)
 
 clean:
 	@make -C $(DIR_LIB) clean
-	@rm -rf $(DIR_OBJ)
+	@rm -rf $(DIR_OBJ)/*
 
 fclean: clean
 	@make -C $(DIR_LIB) fclean
