@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/21 17:23:02 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/25 21:19:41 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,8 @@ void	init_algo_params(t_dinic_data *dinic_data, t_data *data)
 
 	dinic_data->start = data->start;
 	dinic_data->end = data->end;
-	dinic_data->n = data->rooms_number;
+	dinic_data->n = data->id_counter;
 	init_matrix(&dinic_data->capacity_matrix, dinic_data->n);
-	if (!(dinic_data->room_entry = malloc(sizeof(int) * dinic_data->n)))
-		exit(MALLOC_ERROR);
-	i = 0;
-	while (i < dinic_data->n)
-		dinic_data->room_entry[i++] = 1;
-	dinic_data->room_entry[dinic_data->start] = -1;
-	dinic_data->room_entry[dinic_data->end] = -1;
 	if (!(dinic_data->queue = malloc(sizeof(int) * dinic_data->n)))
 		exit(MALLOC_ERROR);
 	if (!(dinic_data->ptr = malloc(sizeof(int) * dinic_data->n)))
@@ -38,6 +31,7 @@ void	init_algo_params(t_dinic_data *dinic_data, t_data *data)
 	copy(dinic_data->capacity_matrix,
 			data->adjacency_matrix,
 			dinic_data->n);
+	init_matrix(&dinic_data->flow_matrix, dinic_data->n);
 }
 
 int		bfs(t_dinic_data *data)
@@ -58,8 +52,8 @@ int		bfs(t_dinic_data *data)
 		to = 0;
 		while (to < data->n)
 		{
-			if (data->distance[to] == -1 && data->capacity_matrix[v][to]
-				&& data->room_entry[to])
+			if (data->distance[to] == -1
+				&& (data->flow_matrix[v][to] < data->capacity_matrix[v][to]))
 			{
 				data->queue[qt++] = to;
 				data->distance[to] = data->distance[v] + 1;
@@ -77,19 +71,7 @@ int		min(int a, int b)
 	return (b);
 }
 
-void 	add_room_to_path(t_path_data *path_data, int room_id, int len)
-{
-	if (path_data->path == NULL)
-	{
-		if (!(path_data->path = malloc(sizeof(int) * (len + 1))))
-			exit(MALLOC_ERROR);
-		ft_bzero(path_data->path, sizeof(int) * (len + 1));
-		path_data->length = len + 1;
-	}
-	path_data->path[len] = room_id;
-}
-
-int		dfs(int v, int flow, t_dinic_data *data, t_path_data *path_data)
+int		dfs(int v, int flow, t_dinic_data *data)
 {
 	int pushed;
 
@@ -98,21 +80,19 @@ int		dfs(int v, int flow, t_dinic_data *data, t_path_data *path_data)
 	while (data->ptr[v] < data->n)
 	{
 		if (data->distance[data->ptr[v]] != data->distance[v] + 1
-		|| !data->capacity_matrix[v][data->ptr[v]]
-		|| !data->room_entry[data->ptr[v]])
+		|| !(data->capacity_matrix[v][data->ptr[v]]
+			- data->flow_matrix[v][data->ptr[v]]))
 		{
 			++data->ptr[v];
 			continue ;
 		}
 		pushed = dfs(data->ptr[v],
-					min(flow, data->capacity_matrix[v][data->ptr[v]]),
-					data, path_data);
+					min(flow, data->capacity_matrix[v][data->ptr[v]])
+							- data->flow_matrix[v][data->ptr[v]], data);
 		if (pushed)
 		{
-			add_room_to_path(path_data, data->ptr[v], data->distance[data->ptr[v]]);
-			data->room_entry[data->ptr[v]]--;
-			data->capacity_matrix[v][data->ptr[v]] -= pushed;
-			data->capacity_matrix[data->ptr[v]][v] += pushed;
+			data->flow_matrix[v][data->ptr[v]] += pushed;
+			data->flow_matrix[data->ptr[v]][v] -= pushed;
 			return (pushed);
 		}
 		++data->ptr[v];
@@ -120,58 +100,190 @@ int		dfs(int v, int flow, t_dinic_data *data, t_path_data *path_data)
 	return (0);
 }
 
-void 	push_back_path(t_path_list **paths_list, t_path_data path_data)
+void 	add_room_to_path(t_path **path, int room_id, int *dir_id, int *length)
 {
-	t_path_list *last;
+	t_path *path_iter;
 
-	if ((*paths_list) == NULL)
+	if ((*path) == NULL)
 	{
-		if (!(*paths_list = malloc(sizeof(t_path_list))))
+		if (!((*path) = malloc(sizeof(t_path))))
 			exit(MALLOC_ERROR);
-		if (!((*paths_list)->path_data = malloc(sizeof(t_path_data))))
-			exit(MALLOC_ERROR);
-		(*paths_list)->path_data->path = path_data.path;
-		(*paths_list)->path_data->length = path_data.length;
-		(*paths_list)->path_data->dist_from_end = path_data.length - 1;
-		(*paths_list)->path_data->ants = 0;
-		(*paths_list)->next = NULL;
-	} else
+		(*path)->id = dir_id[room_id];
+		(*path)->next = NULL;
+		(*length)++;
+		return ;
+	}
+	path_iter = (*path);
+	while (path_iter->next)
+		path_iter = path_iter->next;
+	if (path_iter->id != dir_id[room_id])
 	{
-		last = (*paths_list);
-		while (last->next)
-			last = last->next;
-		if (((last)->next = malloc(sizeof(t_path_list))) == NULL)
+		if (!(path_iter->next = malloc(sizeof(t_path))))
 			exit(MALLOC_ERROR);
-		if (!((last)->next->path_data = malloc(sizeof(t_path_data))))
-			exit(MALLOC_ERROR);
-		(last)->next->path_data->path = path_data.path;
-		(last)->next->path_data->length = path_data.length;
-		(last)->next->path_data->dist_from_end = path_data.length - 1;
-		(last)->next->path_data->ants = 0;
-		(last)->next->next = NULL;
+		path_iter->next->id = dir_id[room_id];
+		path_iter->next->next = NULL;
+		(*length)++;
 	}
 }
 
-int		dinic(t_data *data)
+void 	push_back_path(t_paths *path_before, t_path *path, int path_length)
 {
+	t_paths *path_to_add;
+
+	if (!(path_to_add = malloc(sizeof(t_paths))))
+		exit(MALLOC_ERROR);
+	path_to_add->id_list = path;
+	path_to_add->path_len = path_length;
+	path_to_add->ants_num = 0;
+	path_to_add->next = NULL;
+	path_to_add->prev = path_before;
+	path_before->next = path_to_add;
+}
+
+void 	push_front_path(t_paths **head, t_path *path, int path_length)
+{
+	t_paths *path_to_add;
+
+	if (!(path_to_add = malloc(sizeof(t_paths))))
+		exit(MALLOC_ERROR);
+	path_to_add->id_list = path;
+	path_to_add->path_len = path_length;
+	path_to_add->ants_num = 0;
+	path_to_add->prev = NULL;
+	path_to_add->next = *head;
+	(*head)->prev = path_to_add;
+	*head = path_to_add;
+}
+
+void 	insert_before_path(t_paths *path_after, t_path *path, int path_length)
+{
+	t_paths *path_to_add;
+
+	if (!(path_to_add = malloc(sizeof(t_paths))))
+		exit(MALLOC_ERROR);
+	path_to_add->id_list = path;
+	path_to_add->path_len = path_length;
+	path_to_add->ants_num = 0;
+	path_to_add->next = path_after;
+	path_to_add->prev = path_after->prev;
+	path_after->prev->next = path_to_add;
+	path_after->prev = path_to_add;
+}
+
+void 	add_path(t_paths **paths, t_path *path, int path_length)
+{
+	t_paths *path_iter;
+
+	if (*paths == NULL)
+	{
+		if (!(*paths = malloc(sizeof(t_paths))))
+			exit(MALLOC_ERROR);
+		(*paths)->id_list = path;
+		(*paths)->ants_num = 0;
+		(*paths)->path_len = path_length;
+		(*paths)->next = NULL;
+		(*paths)->prev = NULL;
+		return ;
+	}
+	path_iter = (*paths);
+	while (path_iter && path_length > path_iter->path_len)
+		path_iter = path_iter->next;
+	if (path_iter == NULL)
+		push_back_path(path_iter, path, path_length);
+	else if (path_iter == (*paths))
+		push_front_path(paths, path, path_length);
+	else
+		insert_before_path(path_iter, path, path_length);
+}
+
+void 	pathfinding(int v, t_dinic_data *data, t_paths **paths, int *dir_id)
+{
+	int				to;
+	static int 		path_length = 0;
+	static t_path	*path = NULL;
+
+	if (v == data->end)
+	{
+		add_room_to_path(&path, v, dir_id, &path_length);
+		add_path(paths, path, path_length);
+		path = NULL;
+		path_length = 0;
+		return ;
+	}
+	to = 0;
+	while (to < data->n)
+	{
+		if (data->flow_matrix[v][to] == 1)
+		{
+			add_room_to_path(&path, v, dir_id, &path_length);
+			pathfinding(to, data, paths, dir_id);
+			if (v != data->start)
+				return ;
+		}
+		to++;
+	}
+}
+
+void 	find_best_path(t_paths **best_paths, t_dinic_data *data, int ants_num, int *dir_id)
+{
+	t_paths *current_paths;
+	int 	output_lines;
+
+	// bfs for current paths
+	current_paths = NULL;
+	pathfinding(data->start, data, &current_paths, dir_id);
+	// check lines count -> if it more - dont add new path, return old
+	output_lines = count_ants_on_each_path(&current_paths, ants_num);
+	current_paths->output_lines = output_lines;
+	if ((*best_paths == NULL) || (output_lines < (*best_paths)->output_lines))
+		*best_paths = current_paths;
+}
+
+t_paths		*dinic(t_data *data)
+{
+	// delete
 	int				max_flow;
 	int				pushed;
+	// not delete
+	t_paths 		*best_paths;
 	t_dinic_data	dinic_data;
-	t_path_data		path_data;
 
 	init_algo_params(&dinic_data, data);
 	max_flow = 0;
 	while (bfs(&dinic_data))
 	{
-		ft_bzero(dinic_data.ptr, sizeof(int) * data->rooms_number);
-		ft_bzero(&path_data, sizeof(t_path_data));
-		while ((pushed = dfs(dinic_data.start, INF, &dinic_data, &path_data)))
+		ft_bzero(dinic_data.ptr, sizeof(int) * data->id_counter);
+		while ((pushed = dfs(dinic_data.start, INF, &dinic_data)))
 		{
+//			printf("   ");
+//			for (int k = 0; k < data->id_counter; k++)
+//				printf("%2d ", k);
+//			printf(":\n");
+//			for (int i = 0; i < data->id_counter; i++)
+//			{
+//				printf("%2d: ", i);
+//				for (int j = 0; j < data->id_counter; ++j)
+//				{
+//					printf("%2d ", dinic_data.flow_matrix[i][j]);
+//				}
+//				printf("\n");
+//			}
 			max_flow += pushed;
-			push_back_path(&data->paths, path_data);
-			path_data.path = NULL;
+			find_best_path(&best_paths, &dinic_data, data->ants_num, data->direction_id);
 		}
 	}
 	printf("max flow = %d\n", max_flow);
-	return (max_flow);
+	while (best_paths)
+	{
+		printf("best_paths->output_lines = %d\n", best_paths->output_lines);
+		printf("ants = %d, len = %d\n", best_paths->ants_num, best_paths->path_len);
+		while (best_paths->id_list)
+		{
+			printf("%s ", data->rooms_by_id[best_paths->id_list->id]);
+			best_paths->id_list = best_paths->id_list->next;
+		}
+		printf("\n");
+		best_paths = best_paths->next;
+	}
+	return (best_paths);
 }

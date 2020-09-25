@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:28:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/17 18:56:15 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/24 18:28:30 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,18 @@ void	init_matrix(int ***adjacency_matrix, int size)
 	}
 }
 
-void	fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size)
+void	fill_adjacency_matrix(t_room_data *room1, t_room_data *room2, int ***adjacency_matrix, int size)
 {
 	if (*adjacency_matrix == NULL)
 		init_matrix(adjacency_matrix, size);
-	(*adjacency_matrix)[index1][index2] = 1;
-	(*adjacency_matrix)[index2][index1] = 1;
+
+	if (room1->type != END && room2->type != START)
+		(*adjacency_matrix)[room1->output_id][room2->input_id] = 1;
+	if (room2->type != END && room1->type != START)
+		(*adjacency_matrix)[room2->output_id][room1->input_id] = 1;
+
+	if (room1->type != START && room1->type != END)
+		(*adjacency_matrix)[room1->input_id][room1->output_id] = 1;
+	if (room2->type != START && room2->type != END)
+		(*adjacency_matrix)[room2->input_id][room2->output_id] = 1;
 }

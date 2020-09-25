@@ -22,7 +22,6 @@ typedef enum	e_room_type
 	START,
 	END,
 	DEFAULT,
-	NOT_COMMENT,
 	PARSE_ERROR
 }				t_room_type;
 
@@ -43,7 +42,9 @@ typedef struct	s_point
 typedef struct	s_room_data
 {
 	t_point		coords;
-	size_t		id;
+	size_t		input_id;
+	size_t		output_id;
+	size_t 		id;
 	t_room_type	type;
 	char		*name;
 }				t_room_data;
@@ -70,12 +71,28 @@ typedef struct	s_path_list
 	struct s_path_list	*next;
 }				t_path_list;
 
+typedef struct	s_path
+{
+	int 			id;
+	struct s_path	*next;
+}				t_path;
+
+typedef struct	s_paths
+{
+	t_path			*id_list;
+	int 			path_len;
+	int 			ants_num;
+	int 			output_lines;
+	struct s_paths	*next;
+	struct s_paths	*prev;
+}				t_paths;
+
 typedef struct	s_dinic_data
 {
 	int				*ptr;
-	int				*room_entry;
 	int				*distance;
 	int				**capacity_matrix;
+	int 			**flow_matrix;
 	int				*queue;
 	int				start;
 	int				end;
@@ -85,8 +102,10 @@ typedef struct	s_dinic_data
 typedef struct	s_data
 {
 	int				ants_num;
+	int 			id_counter;
 	int				rooms_number;
 	char 			**rooms_by_id;
+	int 			*direction_id;
 	t_room_list		*rooms;
 	t_path_list		*paths;
 	int				**adjacency_matrix;
@@ -97,9 +116,9 @@ typedef struct	s_data
 
 void			print_ants(t_data *data);
 
-void			count_ants_on_each_path(t_data *data);
+int				count_ants_on_each_path(t_paths **paths, int ants_num);
 
-int				dinic(t_data *data);
+t_paths			*dinic(t_data *data);
 
 /*
  * parse_map.c
@@ -121,7 +140,7 @@ void			parse_rooms(t_data *data);
  * adjacency_matrix.c
  */
 void			init_matrix(int ***adjacency_matrix, int size);
-void			fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size);
+void			fill_adjacency_matrix(t_room_data *room1, t_room_data *room2, int ***adjacency_matrix, int size);
 void			copy(int **dst, int **src, int size);
 
 /*
@@ -133,7 +152,7 @@ void			free_delete_exit(char **line, char **splitted_line, int exit_num);
 /*
  * room_list.c
  */
-int				return_room_index(char *room_name, t_room_list *list);
-void			push_back_room(t_room_list **list, t_room_data *room_data, int *rooms_number);
+t_room_data		*return_room(char *room_name, t_room_list *list);
+void			push_back_room(t_room_list **list, t_room_data *room_data, int *id_counter);
 
 #endif

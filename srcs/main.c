@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:39:05 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/21 20:10:36 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/25 20:21:23 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_structure(t_data *data) {
 	(data)->adjacency_matrix = NULL;
 	(data)->rooms = NULL;
 	(data)->rooms_number = 0;
+	(data)->id_counter = 0;
 	(data)->start = -1;
 	(data)->end = -1;
 }
@@ -29,11 +30,10 @@ int		main(void)
 
 	init_structure(&data);
 	parse_map(&data);
-	data.max_flow = dinic(&data);
-	count_ants_on_each_path(&data);
-	print_ants(&data);
+	dinic(&data);
+//	print_ants(&data);
 
-	print_rooms_info(data);
+//	print_rooms_info(data);
 	return (0);
 }
 
@@ -43,10 +43,11 @@ void 	print_rooms_info(t_data data)
 	printf("rooms number: %d\n", data.rooms_number);
 	while (data.rooms != NULL)
 	{
-		if (data.rooms->room_data->type == START || data.rooms->room_data->type == END) {
-			printf("room name: %s, room id: %lu, room coords: %d, %d, ",
+			printf("room name: %s, room id: %lu, room input: %lu, room output: %lu, room coords: %d, %d, ",
 				   data.rooms->room_data->name,
 				   data.rooms->room_data->id,
+				   data.rooms->room_data->input_id,
+					data.rooms->room_data->output_id,
 				   data.rooms->room_data->coords.x, data.rooms->room_data->coords.y);
 
 			if (data.rooms->room_data->type == START)
@@ -54,24 +55,23 @@ void 	print_rooms_info(t_data data)
 			else if (data.rooms->room_data->type == END)
 				printf("room type: END\n");
 			else printf("room type: DEFAULT\n");
-		}
 		data.rooms = data.rooms->next;
 	}
 
-//	printf("matrix:\n");
-//	printf("   ");
-//	for (int i = 0; i < data.rooms_number; ++i) {
-//		printf("%d ", i);
-//	}
-//	printf(":\n");
-//
-//	for (int i = 0; i < data.rooms_number; ++i) {
-//		printf("%d: ", i);
-//		for (int j = 0; j < data.rooms_number; ++j)
-//			printf("%d ", data.adjacency_matrix[i][j]);
-//		printf("\n");
-//	}
-//	printf("\n");
+	printf("matrix:\n");
+	printf("   ");
+	for (int i = 0; i < data.id_counter; ++i) {
+		printf("%2d ", i);
+	}
+	printf(":\n");
+
+	for (int i = 0; i < data.id_counter; ++i) {
+		printf("%d: ", i);
+		for (int j = 0; j < data.id_counter; ++j)
+			printf("%2d ", data.adjacency_matrix[i][j]);
+		printf("\n");
+	}
+	printf("\n");
 
 	while (data.paths)
 	{

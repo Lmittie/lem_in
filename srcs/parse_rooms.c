@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/21 16:48:19 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/23 19:40:41 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_room_data		*create_room(char *line, t_room_type room_type)
 		free_delete_exit(&line, splitted_line, MALLOC_ERROR);
 	room_data->coords = point;
 	room_data->type = room_type;
+	room_data->input_id = -1;
+	room_data->output_id = -1;
 	delete_splitted_line(splitted_line);
 	return (room_data);
 }
@@ -44,6 +46,7 @@ void			parse_rooms(t_data *data)
 	char		*line;
 	t_room_type room_type;
 
+	room_type = DEFAULT;
 	while (get_next_line(0, &line) > 0)
 	{
 		if (line[0] == '\0')
@@ -59,16 +62,17 @@ void			parse_rooms(t_data *data)
 				exit(INVALID_ROOMS);
 			}
 			if (room_type == START)
-				data->start = data->rooms_number;
+				data->start = data->id_counter;
 			if (room_type == END)
-				data->end = data->rooms_number;
+				data->end = data->id_counter;
 		}
 		if (ft_strchr(line, '-') != NULL)
 		{
 			add_link(line, data);
 			break ;
 		}
-		push_back_room(&data->rooms, create_room(line, room_type), &data->rooms_number);
+		push_back_room(&data->rooms, create_room(line, room_type), &data->id_counter);
+		data->rooms_number++;
 		room_type = DEFAULT;
 		ft_strdel(&line);
 	}

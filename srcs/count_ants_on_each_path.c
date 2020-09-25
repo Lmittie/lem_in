@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 17:08:01 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/21 17:17:36 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/25 21:25:08 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,66 @@ void 	delete_useless_paths(t_path_list **paths)
 	}
 }
 
-void	count_ants_on_each_path(t_data *data)
+int		count_ants_on_each_path(t_paths **paths, int ants_num)
 {
-	int			ants_at_end;
-	t_path_list *path_iter;
+	int			ants_on_path;
+	t_paths		*path;
+	t_paths		*next_path;
+	int			counter;
 
-	ants_at_end = 0;
-	while (ants_at_end < data->ants_num)
+	counter = 0;
+	ants_on_path = 0;
+	path = (*paths);
+	next_path = (*paths)->next;
+	while (ants_on_path < ants_num)
 	{
-		path_iter = data->paths;
-		while (path_iter)
+		if ((*paths)->next == NULL)
 		{
-			if (path_iter->path_data->dist_from_end)
-				path_iter->path_data->dist_from_end--;
-			if (!path_iter->path_data->dist_from_end)
-			{
-				path_iter->path_data->ants++;
-				if (++ants_at_end >= data->ants_num)
-					break ;
-			}
-			path_iter = path_iter->next;
+			path->ants_num = ants_num;
+			counter = path->path_len + ants_num;
+			break ;
 		}
+		else if (path->path_len + path->ants_num
+				<= next_path->path_len + next_path->ants_num)
+		{
+			// in case both paths have prev paths
+			if (path->prev && next_path->prev)
+			{
+				path = path->prev;
+				next_path = next_path->prev;
+				continue ;
+			// in case we compare first and last paths
+			} else if (next_path->prev == NULL)
+			{
+				path = *paths;
+				next_path = path->next;
+				continue ;
+			}
+			// in case first path is begining of list
+			path->ants_num++;
+			if (path->path_len + path->ants_num > counter)
+				counter = path->path_len + path->ants_num;
+		}
+		else
+		{
+			next_path->ants_num++;
+			if (next_path->path_len + next_path->ants_num > counter)
+				counter = next_path->path_len + next_path->ants_num;
+			if (next_path->next == NULL)
+			{
+				next_path = *paths;
+				path = path->next;
+			} else if (path->next == NULL)
+			{
+				next_path = next_path->next;
+				path = *paths;
+			} else
+			{
+				path = path->next;
+				next_path = next_path->next;
+			}
+		}
+		ants_on_path++;
 	}
-	delete_useless_paths(&data->paths);
+	return (counter);
 }

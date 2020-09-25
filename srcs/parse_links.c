@@ -6,17 +6,17 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:37:30 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/21 17:06:10 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/23 19:40:41 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	add_link(char *line, t_data *data)
 {
-	char	**splitted_line;
-	int		index1;
-	int		index2;
+	char			**splitted_line;
+	t_room_data		*room1;
+	t_room_data		*room2;
 
 	if ((splitted_line = ft_strsplit(line, '-')) == NULL)
 	{
@@ -25,11 +25,11 @@ void	add_link(char *line, t_data *data)
 	}
 	if (size_of_matrix_rows(splitted_line) != 2)
 		free_delete_exit(&line, splitted_line, INVALID_LINKS);
-	index1 = return_room_index(splitted_line[0], data->rooms);
-	index2 = return_room_index(splitted_line[1], data->rooms);
-	if ((index1 == -1) || (index2 == -1))
+	room1 = return_room(splitted_line[0], data->rooms);
+	room2 = return_room(splitted_line[1], data->rooms);
+	if ((room1 == NULL) || (room2 == NULL))
 		free_delete_exit(&line, splitted_line, INVALID_LINKS);
-	fill_adjacency_matrix(index1, index2, &(data->adjacency_matrix), data->rooms_number);
+	fill_adjacency_matrix(room1, room2, &(data->adjacency_matrix), data->id_counter);
 }
 
 void	parse_links(t_data *data)
