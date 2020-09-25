@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 21:30:04 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/18 16:05:07 by acarlett         ###   ########.fr        #
+#    Updated: 2020/09/21 15:14:41 by lmittie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,10 @@ SOURCES =	$(DIR_SRC)/adjacency_matrix.c \
 			$(DIR_SRC)/parse_rooms.c \
 			$(DIR_SRC)/room_list.c \
 			$(DIR_SRC)/dinic_algorithm.c \
+			$(DIR_SRC)/print_ants.c \
+			$(DIR_SRC)/count_ants_on_each_path.c
 			
-INCLUDES = 	$(DIR_INC)/lem_in.h
+INCLUDES = 	$(DIR_INC)
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 
@@ -43,11 +45,11 @@ OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@make -C $(DIR_LIB) all
-	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(LIBNAME)
+	@make -C $(DIR_LIB)
+	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) -I $(DIR_LIB) $(LIBNAME)
 
 %.o: %.c $(INCLUDES)
-	@cc -I $(DIR_INC) $< -c -o $@
+	@cc -I $(DIR_INC) -I $(DIR_LIB) $< -c -o $@
 
 clean:
 	@rm -rf $(OBJECTS)
