@@ -55,22 +55,6 @@ typedef struct	s_room_list
 	struct s_room_list	*next;
 }				t_room_list;
 
-typedef struct	s_path_data
-{
-	int		length;
-	int		*path;
-	int 	ants;
-	int 	*ants_by_id;
-	int 	last_ant_id;
-	int 	dist_from_end;
-}				t_path_data;
-
-typedef struct	s_path_list
-{
-	t_path_data			*path_data;
-	struct s_path_list	*next;
-}				t_path_list;
-
 typedef struct	s_path
 {
 	int 			id;
@@ -82,6 +66,8 @@ typedef struct	s_paths
 	t_path			*id_list;
 	int 			path_len;
 	int 			ants_num;
+	int				*ants_by_id;
+	int				last_ant_id;
 	int 			output_lines;
 	struct s_paths	*next;
 	struct s_paths	*prev;
@@ -91,7 +77,6 @@ typedef struct	s_dinic_data
 {
 	int				*ptr;
 	int				*distance;
-	int				**capacity_matrix;
 	int 			**flow_matrix;
 	int				*queue;
 	int				start;
@@ -107,11 +92,10 @@ typedef struct	s_data
 	char 			**rooms_by_id;
 	int 			*direction_id;
 	t_room_list		*rooms;
-	t_path_list		*paths;
+	t_paths			*paths;
 	int				**adjacency_matrix;
 	int				start;
 	int				end;
-	int 			max_flow;
 }				t_data;
 
 void			print_ants(t_data *data);

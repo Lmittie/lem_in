@@ -54,7 +54,7 @@ void			parse_rooms(t_data *data)
 			ft_strdel(&line);
 			exit(INVALID_ROOMS);
 		}
-		while (!ft_strncmp(line, "#", 1))
+		while (line[0] == '#')
 		{
 			room_type = check_if_comment(&line, data);
 			if (room_type == PARSE_ERROR) {

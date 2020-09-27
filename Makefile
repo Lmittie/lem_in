@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 21:30:04 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/21 15:14:41 by lmittie          ###   ########.fr        #
+#    Updated: 2020/09/27 20:07:01 by lmittie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,10 +46,10 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(DIR_LIB)
-	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) -I $(DIR_LIB) $(LIBNAME)
+	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) -I $(DIR_LIB) $(LIBNAME) -O2
 
 %.o: %.c $(INCLUDES)
-	@cc -I $(DIR_INC) -I $(DIR_LIB) $< -c -o $@
+	@cc -I $(DIR_INC) -I $(DIR_LIB) $< -c -o $@ -O2
 
 clean:
 	@rm -rf $(OBJECTS)

@@ -31,7 +31,7 @@ t_room_type		check_if_comment(char **line, t_data *data)
 	t_room_type type;
 
 	type = DEFAULT;
-	if (!ft_strncmp(*line, "#", 1))
+	if ((*line)[0] == '#')
 	{
 		if (!ft_strcmp(*line, "##start"))
 			type = (data->start == -1) ? START : PARSE_ERROR;

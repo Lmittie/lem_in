@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/25 21:19:41 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/27 20:34:01 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,19 @@
 
 void	init_algo_params(t_dinic_data *dinic_data, t_data *data)
 {
-	int i;
-
 	dinic_data->start = data->start;
 	dinic_data->end = data->end;
 	dinic_data->n = data->id_counter;
-	init_matrix(&dinic_data->capacity_matrix, dinic_data->n);
 	if (!(dinic_data->queue = malloc(sizeof(int) * dinic_data->n)))
 		exit(MALLOC_ERROR);
 	if (!(dinic_data->ptr = malloc(sizeof(int) * dinic_data->n)))
 		exit(MALLOC_ERROR);
 	if (!(dinic_data->distance = malloc(sizeof(int) * dinic_data->n)))
 		exit(MALLOC_ERROR);
-	copy(dinic_data->capacity_matrix,
-			data->adjacency_matrix,
-			dinic_data->n);
 	init_matrix(&dinic_data->flow_matrix, dinic_data->n);
 }
 
-int		bfs(t_dinic_data *data)
+int		bfs(t_dinic_data *data, int **capacity_matrix)
 {
 	int qh;
 	int qt;
@@ -46,14 +40,14 @@ int		bfs(t_dinic_data *data)
 	data->queue[qt++] = data->start;
 	ft_memset(data->distance, -1, sizeof(int) * data->n);
 	data->distance[data->start] = 0;
-	while (qh < qt)
+	while (qh < qt && data->distance[data->end] == -1)
 	{
 		v = data->queue[qh++];
 		to = 0;
 		while (to < data->n)
 		{
 			if (data->distance[to] == -1
-				&& (data->flow_matrix[v][to] < data->capacity_matrix[v][to]))
+				&& (data->flow_matrix[v][to] < capacity_matrix[v][to]))
 			{
 				data->queue[qt++] = to;
 				data->distance[to] = data->distance[v] + 1;
@@ -71,7 +65,7 @@ int		min(int a, int b)
 	return (b);
 }
 
-int		dfs(int v, int flow, t_dinic_data *data)
+int		dfs(int v, int flow, t_dinic_data *data, int **capacity_matrix)
 {
 	int pushed;
 
@@ -80,15 +74,15 @@ int		dfs(int v, int flow, t_dinic_data *data)
 	while (data->ptr[v] < data->n)
 	{
 		if (data->distance[data->ptr[v]] != data->distance[v] + 1
-		|| !(data->capacity_matrix[v][data->ptr[v]]
+		|| !(capacity_matrix[v][data->ptr[v]]
 			- data->flow_matrix[v][data->ptr[v]]))
 		{
 			++data->ptr[v];
 			continue ;
 		}
 		pushed = dfs(data->ptr[v],
-					min(flow, data->capacity_matrix[v][data->ptr[v]])
-							- data->flow_matrix[v][data->ptr[v]], data);
+					min(flow, capacity_matrix[v][data->ptr[v]]
+					- data->flow_matrix[v][data->ptr[v]]), data, capacity_matrix);
 		if (pushed)
 		{
 			data->flow_matrix[v][data->ptr[v]] += pushed;
@@ -135,6 +129,8 @@ void 	push_back_path(t_paths *path_before, t_path *path, int path_length)
 	path_to_add->id_list = path;
 	path_to_add->path_len = path_length;
 	path_to_add->ants_num = 0;
+	path_to_add->ants_by_id = NULL;
+	path_to_add->last_ant_id = 0;
 	path_to_add->next = NULL;
 	path_to_add->prev = path_before;
 	path_before->next = path_to_add;
@@ -149,6 +145,8 @@ void 	push_front_path(t_paths **head, t_path *path, int path_length)
 	path_to_add->id_list = path;
 	path_to_add->path_len = path_length;
 	path_to_add->ants_num = 0;
+	path_to_add->ants_by_id = NULL;
+	path_to_add->last_ant_id = 0;
 	path_to_add->prev = NULL;
 	path_to_add->next = *head;
 	(*head)->prev = path_to_add;
@@ -164,6 +162,8 @@ void 	insert_before_path(t_paths *path_after, t_path *path, int path_length)
 	path_to_add->id_list = path;
 	path_to_add->path_len = path_length;
 	path_to_add->ants_num = 0;
+	path_to_add->ants_by_id = NULL;
+	path_to_add->last_ant_id = 0;
 	path_to_add->next = path_after;
 	path_to_add->prev = path_after->prev;
 	path_after->prev->next = path_to_add;
@@ -173,6 +173,7 @@ void 	insert_before_path(t_paths *path_after, t_path *path, int path_length)
 void 	add_path(t_paths **paths, t_path *path, int path_length)
 {
 	t_paths *path_iter;
+	t_paths *prev_iter;
 
 	if (*paths == NULL)
 	{
@@ -181,15 +182,20 @@ void 	add_path(t_paths **paths, t_path *path, int path_length)
 		(*paths)->id_list = path;
 		(*paths)->ants_num = 0;
 		(*paths)->path_len = path_length;
+		(*paths)->ants_by_id = NULL;
+		(*paths)->last_ant_id = 0;
 		(*paths)->next = NULL;
 		(*paths)->prev = NULL;
 		return ;
 	}
 	path_iter = (*paths);
 	while (path_iter && path_length > path_iter->path_len)
+	{
+		prev_iter = path_iter;
 		path_iter = path_iter->next;
+	}
 	if (path_iter == NULL)
-		push_back_path(path_iter, path, path_length);
+		push_back_path(prev_iter, path, path_length);
 	else if (path_iter == (*paths))
 		push_front_path(paths, path, path_length);
 	else
@@ -249,41 +255,25 @@ t_paths		*dinic(t_data *data)
 	t_dinic_data	dinic_data;
 
 	init_algo_params(&dinic_data, data);
+	best_paths = NULL;
 	max_flow = 0;
-	while (bfs(&dinic_data))
+	while (bfs(&dinic_data, data->adjacency_matrix) && ++max_flow)
 	{
 		ft_bzero(dinic_data.ptr, sizeof(int) * data->id_counter);
-		while ((pushed = dfs(dinic_data.start, INF, &dinic_data)))
+		while ((pushed = dfs(dinic_data.start, INF, &dinic_data, data->adjacency_matrix)))
 		{
-//			printf("   ");
-//			for (int k = 0; k < data->id_counter; k++)
-//				printf("%2d ", k);
-//			printf(":\n");
-//			for (int i = 0; i < data->id_counter; i++)
-//			{
-//				printf("%2d: ", i);
-//				for (int j = 0; j < data->id_counter; ++j)
-//				{
-//					printf("%2d ", dinic_data.flow_matrix[i][j]);
-//				}
-//				printf("\n");
-//			}
 			max_flow += pushed;
 			find_best_path(&best_paths, &dinic_data, data->ants_num, data->direction_id);
 		}
 	}
 	printf("max flow = %d\n", max_flow);
-	while (best_paths)
+	t_paths *iter = best_paths;
+	int count = 0;
+	while (iter)
 	{
-		printf("best_paths->output_lines = %d\n", best_paths->output_lines);
-		printf("ants = %d, len = %d\n", best_paths->ants_num, best_paths->path_len);
-		while (best_paths->id_list)
-		{
-			printf("%s ", data->rooms_by_id[best_paths->id_list->id]);
-			best_paths->id_list = best_paths->id_list->next;
-		}
-		printf("\n");
-		best_paths = best_paths->next;
+		count++;
+		iter = iter->next;
 	}
+	printf("count = %d\n", count);
 	return (best_paths);
 }
