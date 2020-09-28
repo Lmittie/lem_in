@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/18 19:57:54 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/28 20:28:04 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +15,8 @@
 
 # include "libft.h"
 # include <stdio.h>
+
+# define INF 1000000000
 
 typedef enum	e_room_type
 {
@@ -44,7 +45,7 @@ typedef struct	s_room_data
 	t_point		coords;
 	size_t		input_id;
 	size_t		output_id;
-	size_t 		id;
+	size_t		id;
 	t_room_type	type;
 	char		*name;
 }				t_room_data;
@@ -98,6 +99,15 @@ typedef struct	s_data
 	int				end;
 }				t_data;
 
+void			init_structure(t_data *data);
+
+void 			find_best_path(t_paths **best_paths,
+					   t_dinic_data *data,
+					   int ants_num,
+					   const int *dir_id);
+
+void 			add_path(t_paths **paths, t_path *path, int path_length);
+
 void			print_ants(t_data *data);
 
 int				count_ants_on_each_path(t_paths **paths, int ants_num);
@@ -124,8 +134,10 @@ void			parse_rooms(t_data *data);
  * adjacency_matrix.c
  */
 void			init_matrix(int ***adjacency_matrix, int size);
-void			fill_adjacency_matrix(t_room_data *room1, t_room_data *room2, int ***adjacency_matrix, int size);
-void			copy(int **dst, int **src, int size);
+void			fill_adjacency_matrix(t_room_data *room1,
+							 t_room_data *room2,
+							 int ***adjacency_matrix,
+							 int size);
 
 /*
  * deleting.c

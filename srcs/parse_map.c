@@ -12,7 +12,7 @@
 
 #include "../includes/lem_in.h"
 
-void 	fill_rooms_by_id(char ***rooms, t_room_list *room_list, int n)
+void	fill_rooms_by_id(char ***rooms, t_room_list *room_list, int n)
 {
 	int				i;
 	t_room_list		*list_iter;
@@ -30,7 +30,7 @@ void 	fill_rooms_by_id(char ***rooms, t_room_list *room_list, int n)
 	}
 }
 
-void 	fill_direction_id(int **direction_id, t_room_list *room_list, int n)
+void	fill_direction_id(int **direction_id, t_room_list *room_list, int n)
 {
 	int				i;
 	t_room_list		*list_iter;

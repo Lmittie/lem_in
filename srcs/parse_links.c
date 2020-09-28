@@ -29,7 +29,10 @@ void	add_link(char *line, t_data *data)
 	room2 = return_room(splitted_line[1], data->rooms);
 	if ((room1 == NULL) || (room2 == NULL))
 		free_delete_exit(&line, splitted_line, INVALID_LINKS);
-	fill_adjacency_matrix(room1, room2, &(data->adjacency_matrix), data->id_counter);
+	fill_adjacency_matrix(room1,
+						room2,
+						&(data->adjacency_matrix),
+						data->id_counter);
 }
 
 void	parse_links(t_data *data)
@@ -50,7 +53,7 @@ void	parse_links(t_data *data)
 			if (!line)
 				return ;
 		}
-			add_link(line, data);
-			ft_strdel(&line);
+		add_link(line, data);
+		ft_strdel(&line);
 	}
 }

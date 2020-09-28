@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 21:30:04 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/27 20:07:01 by lmittie          ###   ########.fr        #
+#    Updated: 2020/09/28 19:04:17 by lmittie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,14 @@ SOURCES =	$(DIR_SRC)/adjacency_matrix.c \
 			$(DIR_SRC)/room_list.c \
 			$(DIR_SRC)/dinic_algorithm.c \
 			$(DIR_SRC)/print_ants.c \
-			$(DIR_SRC)/count_ants_on_each_path.c
+			$(DIR_SRC)/count_ants_on_each_path.c \
+			$(DIR_SRC)/add_path.c \
+			$(DIR_SRC)/finding_best_path.c \
+			$(DIR_SRC)/init.c
 			
 INCLUDES = 	$(DIR_INC)
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
-
 
 all: $(NAME)
 
@@ -63,9 +65,3 @@ re: fclean all
 
 val: all clean
 	valgrind --leak-check=full ./$(NAME)
-
-lem: all
-	@./$(NAME) < test
-
-visual:
-	@./$(NAME) -visual < test

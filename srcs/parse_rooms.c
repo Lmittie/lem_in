@@ -57,7 +57,8 @@ void			parse_rooms(t_data *data)
 		while (line[0] == '#')
 		{
 			room_type = check_if_comment(&line, data);
-			if (room_type == PARSE_ERROR) {
+			if (room_type == PARSE_ERROR)
+			{
 				ft_strdel(&line);
 				exit(INVALID_ROOMS);
 			}
@@ -71,7 +72,9 @@ void			parse_rooms(t_data *data)
 			add_link(line, data);
 			break ;
 		}
-		push_back_room(&data->rooms, create_room(line, room_type), &data->id_counter);
+		push_back_room(&data->rooms,
+				create_room(line, room_type),
+				&data->id_counter);
 		data->rooms_number++;
 		room_type = DEFAULT;
 		ft_strdel(&line);

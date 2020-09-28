@@ -23,7 +23,7 @@ t_room_data	*return_room(char *room_name, t_room_list *list)
 			return (head->room_data);
 		head = head->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
 static void	create_room_list(t_room_list **list, t_room_data *room_data)
