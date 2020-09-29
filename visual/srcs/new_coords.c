@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 19:29:33 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/25 19:14:59 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/27 17:34:32 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		new_coords(t_map_data *data, t_visual *vis)
 
 	room = data->rooms;
 	vis->delta_x = (WIDTH - 400) / (data->max_coords.max_x - data->max_coords.min_x);
-	vis->delta_y = (WIDTH - 400) / (data->max_coords.max_y - data->max_coords.min_y);
+	vis->delta_y = (HEIGHT - 400) / (data->max_coords.max_y - data->max_coords.min_y);
 	while (room != NULL)
 	{
 		room->room_data->coords.x -= data->max_coords.min_x;
