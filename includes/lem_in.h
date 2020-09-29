@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/28 20:28:04 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/29 21:19:58 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 
 # define INF 1000000000
+# define HASH_TABLE_SIZE 200
 
 typedef enum	e_room_type
 {
@@ -85,6 +86,12 @@ typedef struct	s_dinic_data
 	int				n;
 }				t_dinic_data;
 
+typedef struct	s_node
+{
+	t_room_data		*room;
+	struct s_node	*next;
+}				t_node;
+
 typedef struct	s_data
 {
 	int				ants_num;
@@ -92,13 +99,14 @@ typedef struct	s_data
 	int				rooms_number;
 	char 			**rooms_by_id;
 	int 			*direction_id;
-	t_room_list		*rooms;
+	t_node			*hash_table[HASH_TABLE_SIZE];
 	t_paths			*paths;
 	int				**adjacency_matrix;
 	int				start;
 	int				end;
 }				t_data;
 
+int 			hasher(const char *name);
 void			init_structure(t_data *data);
 
 void 			find_best_path(t_paths **best_paths,
@@ -127,14 +135,14 @@ void			parse_links(t_data *data);
 t_room_type		check_if_comment(char **line, t_data *data);
 int				size_of_matrix_rows(char **matrix);
 
-t_room_data		*create_room(char *line, t_room_type room_type);
+t_room_data		*create_room(char **line, t_room_type room_type, t_data *data);
 void			parse_rooms(t_data *data);
 
 /*
  * adjacency_matrix.c
  */
-void			init_matrix(int ***adjacency_matrix, int size);
-void			fill_adjacency_matrix(t_room_data *room1,
+int				init_matrix(int ***adjacency_matrix, int size);
+int				fill_adjacency_matrix(t_room_data *room1,
 							 t_room_data *room2,
 							 int ***adjacency_matrix,
 							 int size);
@@ -142,13 +150,20 @@ void			fill_adjacency_matrix(t_room_data *room1,
 /*
  * deleting.c
  */
-void			delete_splitted_line(char **splitted_line);
-void			free_delete_exit(char **line, char **splitted_line, int exit_num);
+void			free_data(t_data *data);
+void 			free_paths(t_paths **paths);
+void			delete_splitted_line(char ***splitted_line);
+t_exit_code		free_line_and_splitted_exit(char **line, char ***splitted_line, t_data *data, t_exit_code exit_code);
+t_exit_code		free_line_exit(char **line, t_data *data, t_exit_code exit_code);
+t_exit_code		free_splitted_exit(char ***splitted_line, t_data *data, t_exit_code exit_code);
+t_exit_code		free_data_exit(t_data *data, t_exit_code exit_code);
+t_exit_code		no_free_exit(t_exit_code exit_code);
+void 			free_matrix(int ***matrix, int size);
 
 /*
  * room_list.c
  */
-t_room_data		*return_room(char *room_name, t_room_list *list);
+t_room_data		*return_room(char *room_name, t_node *hash_table[HASH_TABLE_SIZE]);
 void			push_back_room(t_room_list **list, t_room_data *room_data, int *id_counter);
 
 #endif

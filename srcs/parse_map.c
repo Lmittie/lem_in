@@ -6,56 +6,70 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:58:16 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/24 16:04:24 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/29 18:49:35 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	fill_rooms_by_id(char ***rooms, t_room_list *room_list, int n)
+int		fill_rooms_by_id(char ***rooms, t_node *(*hash_table)[HASH_TABLE_SIZE], int n)
 {
 	int				i;
-	t_room_list		*list_iter;
+	int				j;
+	t_node			*node_iter;
 
 	if (!(*rooms = malloc(sizeof(char*) * n)))
-		exit(MALLOC_ERROR);
-	i = -1;
-	list_iter = room_list;
-	while (++i < n)
+		return (0);
+	i = 0;
+	j = 0;
+	while (i < HASH_TABLE_SIZE)
 	{
-		if (!((*rooms)[i] = ft_strdup(list_iter->room_data->name)))
-			exit(MALLOC_ERROR);
-		list_iter->room_data->id = i;
-		list_iter = list_iter->next;
+		node_iter = (*hash_table)[i];
+		while (node_iter != NULL)
+		{
+			if (!((*rooms)[j] = ft_strdup(node_iter->room->name)))
+				return (0);
+			node_iter->room->id = j++;
+			node_iter = node_iter->next;
+		}
+		i++;
 	}
+	return (1);
 }
 
-void	fill_direction_id(int **direction_id, t_room_list *room_list, int n)
+int		fill_direction_id(int **direction_id, t_node *(*hash_table)[HASH_TABLE_SIZE], int n)
 {
 	int				i;
-	t_room_list		*list_iter;
+	t_node			*node_iter;
 
 	if (!(*direction_id = malloc(sizeof(int) * n)))
-		exit(MALLOC_ERROR);
-	i = -1;
-	list_iter = room_list;
-	while (++i < n)
+		return (0);
+	i = 0;
+	while (i < HASH_TABLE_SIZE)
 	{
-		(*direction_id)[i] = list_iter->room_data->id;
-		if (list_iter->room_data->type == START
-				|| list_iter->room_data->type == END
-				|| list_iter->room_data->output_id == i)
-			list_iter = list_iter->next;
+		node_iter = (*hash_table)[i];
+		while (node_iter != NULL)
+		{
+			if (node_iter->room->type != START)
+				(*direction_id)[node_iter->room->input_id] = node_iter->room->id;
+			if (node_iter->room->type != END)
+				(*direction_id)[node_iter->room->output_id] = node_iter->room->id;
+			node_iter = node_iter->next;
+		}
+		i++;
 	}
+	return (1);
 }
 
 void	parse_map(t_data *data)
 {
 	data->ants_num = parse_ants_number();
 	parse_rooms(data);
-	fill_rooms_by_id(&data->rooms_by_id, data->rooms, data->rooms_number);
-	fill_direction_id(&data->direction_id, data->rooms, data->id_counter);
+	if (!fill_rooms_by_id(&data->rooms_by_id, &data->hash_table, data->rooms_number))
+		exit(free_data_exit(data, MALLOC_ERROR));
+	if (!fill_direction_id(&data->direction_id, &data->hash_table, data->id_counter))
+		exit(free_data_exit(data, MALLOC_ERROR));
 	if (data->start == -1 || data->end == -1)
-		exit(INVALID_ROOMS);
+		exit(free_data_exit(data, INVALID_ROOMS));
 	parse_links(data);
 }

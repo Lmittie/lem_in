@@ -48,10 +48,10 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(DIR_LIB)
-	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) -I $(DIR_LIB) $(LIBNAME) -O2
+	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) -I $(DIR_LIB) $(LIBNAME) -O2 -g
 
 %.o: %.c $(INCLUDES)
-	@cc -I $(DIR_INC) -I $(DIR_LIB) $< -c -o $@ -O2
+	@cc -I $(DIR_INC) -I $(DIR_LIB) $< -c -o $@ -O2 -g
 
 clean:
 	@rm -rf $(OBJECTS)

@@ -84,6 +84,11 @@ void			find_best_path(t_paths **best_paths,
 	pathfinding(data->start, data, &current_paths, dir_id);
 	output_lines = count_ants_on_each_path(&current_paths, ants_num);
 	current_paths->output_lines = output_lines;
-	if ((*best_paths == NULL) || (output_lines < (*best_paths)->output_lines))
+	if (*best_paths == NULL)
 		*best_paths = current_paths;
+	else if (output_lines < (*best_paths)->output_lines)
+	{
+		free_paths(best_paths);
+		*best_paths = current_paths;
+	}
 }

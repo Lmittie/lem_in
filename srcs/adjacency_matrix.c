@@ -12,28 +12,30 @@
 
 #include "lem_in.h"
 
-void	init_matrix(int ***adjacency_matrix, int size)
+int		init_matrix(int ***adjacency_matrix, int size)
 {
 	int i;
 
 	i = -1;
 	if ((*adjacency_matrix = malloc(sizeof(int*) * size)) == NULL)
-		exit(10);
+		return (0);
 	while (++i < size)
 	{
 		if (((*adjacency_matrix)[i] = malloc(sizeof(int) * size)) == NULL)
-			exit(10);
+			return (0);
 		ft_bzero((*adjacency_matrix)[i], sizeof(int) * size);
 	}
+	return (1);
 }
 
-void	fill_adjacency_matrix(t_room_data *room1,
+int		fill_adjacency_matrix(t_room_data *room1,
 							t_room_data *room2,
 							int ***adjacency_matrix,
 							int size)
 {
 	if (*adjacency_matrix == NULL)
-		init_matrix(adjacency_matrix, size);
+		if (!init_matrix(adjacency_matrix, size))
+			return (0);
 	if (room1->type != END && room2->type != START)
 		(*adjacency_matrix)[room1->output_id][room2->input_id] = 1;
 	if (room2->type != END && room1->type != START)
@@ -42,4 +44,5 @@ void	fill_adjacency_matrix(t_room_data *room1,
 		(*adjacency_matrix)[room1->input_id][room1->output_id] = 1;
 	if (room2->type != START && room2->type != END)
 		(*adjacency_matrix)[room2->input_id][room2->output_id] = 1;
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/28 20:14:32 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/29 21:19:58 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,25 @@ static void	init_algo_params(t_dinic_data *dinic_data, t_data *data)
 	dinic_data->end = data->end;
 	dinic_data->n = data->id_counter;
 	if (!(dinic_data->queue = malloc(sizeof(int) * dinic_data->n)))
-		exit(MALLOC_ERROR);
+		exit(free_data_exit(data, MALLOC_ERROR));
 	if (!(dinic_data->ptr = malloc(sizeof(int) * dinic_data->n)))
-		exit(MALLOC_ERROR);
+	{
+		free(dinic_data->queue);
+		exit(free_data_exit(data, MALLOC_ERROR));
+	}
 	if (!(dinic_data->distance = malloc(sizeof(int) * dinic_data->n)))
-		exit(MALLOC_ERROR);
-	init_matrix(&dinic_data->flow_matrix, dinic_data->n);
+	{
+		free(dinic_data->ptr);
+		free(dinic_data->queue);
+		exit(free_data_exit(data, MALLOC_ERROR));
+	}
+	if (!(init_matrix(&dinic_data->flow_matrix, dinic_data->n)))
+	{
+		free(dinic_data->ptr);
+		free(dinic_data->queue);
+		free(dinic_data->distance);
+		exit(free_data_exit(data, MALLOC_ERROR));
+	}
 }
 
 static int	bfs(t_dinic_data *data, int **capacity_matrix)
@@ -101,7 +114,7 @@ t_paths		*dinic(t_data *data)
 	init_algo_params(&dinic_data, data);
 	best_paths = NULL;
 	max_flow = 0;
-	while (bfs(&dinic_data, data->adjacency_matrix) && ++max_flow)
+	while (bfs(&dinic_data, data->adjacency_matrix))
 	{
 		ft_bzero(dinic_data.ptr, sizeof(int) * data->id_counter);
 		while ((pushed = dfs(dinic_data.start,
@@ -116,14 +129,9 @@ t_paths		*dinic(t_data *data)
 						data->direction_id);
 		}
 	}
-	printf("max flow = %d\n", max_flow);
-	t_paths *iter = best_paths;
-	int count = 0;
-	while (iter)
-	{
-		count++;
-		iter = iter->next;
-	}
-	printf("count = %d\n", count);
+	free(dinic_data.queue);
+	free(dinic_data.ptr);
+	free(dinic_data.distance);
+	free_matrix(&dinic_data.flow_matrix, data->id_counter);
 	return (best_paths);
 }
