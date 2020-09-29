@@ -30,7 +30,7 @@ void	init_sdl(t_visual *vis)
 		ft_putstr(SDL_GetError());
 		exit(INIT_SDL_ERROR);
 	}
-	IMG_Init(IMG_INIT_PNG);
+	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 	vis->win = SDL_CreateWindow("LEM IN VISUAL",
 							SDL_WINDOWPOS_UNDEFINED,
 							SDL_WINDOWPOS_UNDEFINED,
@@ -50,13 +50,14 @@ int		main()
 	j = 0;
 	init_structure(&data);
 	parse_map(&data);
+	parse_path(&data, &vis);
+
 	check_coords(&data);
 	new_coords(&data, &vis);
 	init_sdl(&vis);
 	render_surface(&vis);
 	background_graph(&vis, &data);
 	destroy_all_quit(&vis);
-	return (0);
 
 	printf("rooms_number = %d\n", data.rooms_number);
 	printf ("delta_x = %d		delta_y = %d\n", vis.delta_x, vis.delta_y);

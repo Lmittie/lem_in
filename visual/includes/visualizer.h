@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/25 18:46:01 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/29 19:17:45 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <time.h>
 # include "../../libft/libft.h"
 
-# define WIDTH	1000
-# define HEIGHT	1000
+# define WIDTH	1700
+# define HEIGHT	1200
 
 typedef struct		s_max_coords
 {
@@ -95,19 +95,31 @@ typedef struct		s_line
 	int				y2;
 }					t_line;
 
+typedef struct		s_paths
+{
+	int				*path;
+	int				*path_root;
+	int				ant_num;
+	struct s_paths	*next;
+	struct s_paths	*prev;
+}					t_paths;
+
 typedef struct		s_visual
 {
 	t_window		size;
 	t_line			line;
 	int				delta_x;
 	int				delta_y;
+	int				size_node;
 	SDL_Window		*win;
 	SDL_Renderer	*rend;
 	SDL_Event		event;
 	SDL_Surface		*surface;
 	SDL_Texture		*tex;
+	SDL_Rect		pos;
 	Uint32			render_flags;
 	bool			run;
+	t_paths			*paths;
 }					t_visual;
 
 /*
@@ -141,6 +153,7 @@ void			push_back_room(t_room_list **list, t_room_data *room_data,
 							int *rooms_number);
 void			fill_adjacency_matrix(int index1, int index2,
 							int ***adjacency_matrix, int size);
+void			parse_path(t_map_data *data, t_visual *vis);
 
 
 /*
@@ -172,5 +185,10 @@ void			render_surface(t_visual *vis);
 void			background_graph(t_visual *vis, t_map_data *data);
 void			destroy_all_quit(t_visual *vis);
 
+/*
+** all_draw
+*/
+void			draw_node(t_visual *vis, t_map_data *data);
+void			draw_links(t_visual *vis, t_map_data *data);
 
 #endif
