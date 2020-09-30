@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 18:46:46 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/29 19:27:05 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/30 17:54:10 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			find_name(int **matrix, int *i, int *j, int count)
 	return (0);
 }
 
-void		draw_three_lines(t_visual *vis)
+void		draw_a_lot_lines(t_visual *vis)
 {
 		SDL_RenderDrawLine(vis->rend,	vis->line.x1,
 										vis->line.y1,
@@ -110,6 +110,10 @@ void		draw_links(t_visual *vis, t_map_data *data)
 	SDL_SetRenderDrawColor(vis->rend, 100, 100, 100, 255);
 	while (find_name(data->adjacency_matrix, &i, &j, data->rooms_number))
 	{
+		vis->line.x1 = find_coord_by_name(data, i, 'x');
+		vis->line.y1 = find_coord_by_name(data, i, 'y');
+		vis->line.x2 = find_coord_by_name(data, j, 'x');
+		vis->line.y2 = find_coord_by_name(data, j, 'y');
 		if (j == (data->rooms_number - 1))
 		{
 			i++;
@@ -117,10 +121,6 @@ void		draw_links(t_visual *vis, t_map_data *data)
 		}
 		else
 			j++;
-		vis->line.x1 = find_coord_by_name(data, i, 'x');
-		vis->line.y1 = find_coord_by_name(data, i, 'y');
-		vis->line.x2 = find_coord_by_name(data, j, 'x');
-		vis->line.y2 = find_coord_by_name(data, j, 'y');
-		draw_three_lines(vis);
+		draw_a_lot_lines(vis);
 	}
 }

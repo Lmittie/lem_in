@@ -39,21 +39,26 @@ void	init_sdl(t_visual *vis)
 							SDL_WINDOW_SHOWN);
 }
 
+int		find_id_start_room(t_map_data data)
+{
+	t_room_list *cur;
+
+	cur = data.rooms;
+	while (cur->room_data->type != START)
+		cur = cur->next;
+	return (cur->room_data->id);
+}
+
 int		main()
 {
 	t_map_data	data;
-	int			i;
-	int			j;
 	t_visual	vis;
 
-	i = 0;
-	j = 0;
 	init_structure(&data);
 	parse_map(&data);
+	data.id_start_room = find_id_start_room(data);
 	parse_path(&data, &vis);
-
-	check_coords(&data);
-	new_coords(&data, &vis);
+	check_coords(&data, &vis);
 	init_sdl(&vis);
 	render_surface(&vis);
 	background_graph(&vis, &data);

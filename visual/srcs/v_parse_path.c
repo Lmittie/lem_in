@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 17:22:39 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/29 19:10:41 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/30 20:38:38 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,24 @@ t_paths		*create_struct(t_map_data *data)
 	if (!(parse = malloc(sizeof(t_paths))))
 		exit(MALLOC_ERROR);
 	parse->ant_num = i + 1;
+	parse->start = 1;
 	parse->prev = NULL;
-	if (!(parse->path = malloc(sizeof(int) * data->rooms_number)))
+	if (!(parse->id_list = malloc(sizeof(int) * data->rooms_number)))
 		exit(MALLOC_ERROR);
-	ft_bnegative(parse->path, data->rooms_number);
-	parse->path_root = parse->path;
+	ft_bnegative(parse->id_list, data->rooms_number);
+	parse->id_list_root = parse->id_list;
 	while (i != (data->ants_num - 1))
 	{
 		if (!(parse->next = malloc(sizeof(t_paths))))
 			exit(MALLOC_ERROR);
 		prev = parse;
-		if (!(parse->next->path = malloc(sizeof(int) * data->rooms_number)))
+		if (!(parse->next->id_list = malloc(sizeof(int) * data->rooms_number)))
 			exit(MALLOC_ERROR);
-		ft_bnegative(parse->next->path, data->rooms_number);
-		parse->next->path_root = parse->next->path;
+		ft_bnegative(parse->next->id_list, data->rooms_number);
+		parse->next->id_list_root = parse->next->id_list;
 		parse = parse->next;
 		parse->prev = prev;
+		parse->start = 1;
 		parse->ant_num = i + 2;
 		parse->next = NULL;
 		i++;
@@ -79,8 +81,8 @@ void		work_with_split_line(t_room_list *rooms, char **splitted_line, t_paths *pa
 		while (paths->ant_num != number_curr_ant)
 			paths = paths->next;
 		room_id = return_id_by_name(rooms, ant_room_name[1]);
-		(*paths->path) = room_id;
-		paths->path++;
+		(*paths->id_list) = room_id;
+		paths->id_list++;
 
 		i++;
 		paths = root;
@@ -110,17 +112,13 @@ void		parse_path(t_map_data *data, t_visual *vis)
 
 	vis->paths = create_struct(data);
 	fill_path(data, vis->paths);
-	while (vis->paths != NULL)
+	while (vis->paths->next != NULL)
 	{
-		i = 0;
-		vis->paths->path = vis->paths->path_root;
-		printf ("ant_num = %d\n####################\npath_id = ", vis->paths->ant_num);
-		while (vis->paths->path[i] >= 0)
-		{
-			printf ("%d ", vis->paths->path[i]);
-			i++;
-		}
-		printf ("\n####################\n");
+		vis->paths->id_list = vis->paths->id_list_root;
 		vis->paths = vis->paths->next;
+		if (vis->paths->next == NULL)
+			vis->paths->id_list = vis->paths->id_list_root;
 	}
+	while (vis->paths->prev != NULL)
+		vis->paths = vis->paths->prev;
 }
