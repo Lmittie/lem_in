@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/29 20:37:13 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/30 20:56:01 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_room_data		*create_room(char **line, t_room_type room_type, t_data *data)
 	if ((splitted_line = ft_strsplit(*line, ' ')) == NULL)
 		exit(free_line_exit(line, data, MALLOC_ERROR));
 	if (size_of_matrix_rows(splitted_line) != 3
+		|| (splitted_line[0][0] == 'L')
 		|| (((point.x = ft_atoi(splitted_line[1])) < 0)
 			|| ((point.y = ft_atoi(splitted_line[2])) < 0)))
 		exit(free_line_and_splitted_exit(line,
@@ -69,8 +70,14 @@ int			insert_room(t_node *(*hash_table)[HASH_TABLE_SIZE], t_room_data *room_data
 	else
 	{
 		node_iter = (*hash_table)[hash_value];
+		if (!(ft_strcmp(node_iter->room->name, node->room->name)))
+			return (0);
 		while (node_iter->next)
+		{
+			if (!(ft_strcmp(node_iter->room->name, node->room->name)))
+				return (0);
 			node_iter = node_iter->next;
+		}
 		node_iter->next = node;
 	}
 	return (1);
@@ -84,11 +91,15 @@ void			parse_rooms(t_data *data)
 	room_type = DEFAULT;
 	while (get_next_line(0, &line) > 0)
 	{
+		ft_putstr(line);
+		ft_putchar('\n');
 		if (line[0] == '\0')
 			exit(free_line_exit(&line, data, INVALID_ROOMS));
 		while (line[0] == '#')
 		{
 			room_type = check_if_comment(&line, data);
+			if (!line)
+				exit(free_line_exit(&line, data, INVALID_ROOMS));
 			if (room_type == PARSE_ERROR)
 				exit(free_line_exit(&line, data, INVALID_ROOMS));
 			if (room_type == START)
@@ -99,6 +110,7 @@ void			parse_rooms(t_data *data)
 		if (ft_strchr(line, '-') != NULL)
 		{
 			add_link(line, data);
+			ft_strdel(&line);
 			break ;
 		}
 		if (!insert_room(&data->hash_table,
@@ -109,5 +121,4 @@ void			parse_rooms(t_data *data)
 		room_type = DEFAULT;
 		ft_strdel(&line);
 	}
-	// TODO check if links exists
 }

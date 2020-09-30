@@ -6,11 +6,11 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:34:59 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/21 15:42:20 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/30 21:07:04 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 int				size_of_matrix_rows(char **matrix)
 {
@@ -38,7 +38,15 @@ t_room_type		check_if_comment(char **line, t_data *data)
 		if (!ft_strcmp(*line, "##end"))
 			type = (data->end == -1) ? END : PARSE_ERROR;
 		ft_strdel(line);
-		get_next_line(0, line);
+		if (get_next_line(0, line) < 0)
+			exit(free_data_exit(data, MALLOC_ERROR));
+		if (*line)
+		{
+			ft_putstr(*line);
+			ft_putchar('\n');
+			if ((*line)[0] == '#' && (type == START || type == END))
+				return (PARSE_ERROR);
+		}
 	}
 	return (type);
 }

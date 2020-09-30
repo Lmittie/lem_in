@@ -106,28 +106,22 @@ static int	dfs(int v, int flow, t_dinic_data *data, int **capacity_matrix)
 
 t_paths		*dinic(t_data *data)
 {
-	int				max_flow;
-	int				pushed;
 	t_paths			*best_paths;
 	t_dinic_data	dinic_data;
 
 	init_algo_params(&dinic_data, data);
 	best_paths = NULL;
-	max_flow = 0;
 	while (bfs(&dinic_data, data->adjacency_matrix))
 	{
 		ft_bzero(dinic_data.ptr, sizeof(int) * data->id_counter);
-		while ((pushed = dfs(dinic_data.start,
+		while ((dfs(dinic_data.start,
 						INF,
 						&dinic_data,
 						data->adjacency_matrix)))
-		{
-			max_flow += pushed;
 			find_best_path(&best_paths,
 						&dinic_data,
 						data->ants_num,
 						data->direction_id);
-		}
 	}
 	free(dinic_data.queue);
 	free(dinic_data.ptr);

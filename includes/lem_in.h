@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:31:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/29 21:19:58 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/30 19:12:54 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 
 # define INF 1000000000
-# define HASH_TABLE_SIZE 200
+# define HASH_TABLE_SIZE 500
 
 typedef enum	e_room_type
 {
@@ -114,7 +114,7 @@ void 			find_best_path(t_paths **best_paths,
 					   int ants_num,
 					   const int *dir_id);
 
-void 			add_path(t_paths **paths, t_path *path, int path_length);
+void			add_path(t_paths **paths, t_path **path, int path_length);
 
 void			print_ants(t_data *data);
 
@@ -158,7 +158,8 @@ t_exit_code		free_line_exit(char **line, t_data *data, t_exit_code exit_code);
 t_exit_code		free_splitted_exit(char ***splitted_line, t_data *data, t_exit_code exit_code);
 t_exit_code		free_data_exit(t_data *data, t_exit_code exit_code);
 t_exit_code		no_free_exit(t_exit_code exit_code);
-void 			free_matrix(int ***matrix, int size);
+void			free_matrix(int ***matrix, int size);
+void			free_path(t_path **path);
 
 /*
  * room_list.c

@@ -109,4 +109,5 @@ void			print_ants(t_data *data)
 		}
 		print_current_movements(ants, last_ant_id, data->rooms_by_id);
 	}
+	free(ants);
 }

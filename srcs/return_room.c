@@ -15,7 +15,7 @@
 t_room_data	*return_room(char *room_name, t_node *hash_table[HASH_TABLE_SIZE])
 {
 	t_node	*node;
-	int 	hash_value;
+	int		hash_value;
 
 	hash_value = hasher(room_name);
 	if (hash_table[hash_value] == NULL)

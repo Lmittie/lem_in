@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:37:30 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/29 21:02:03 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/30 18:51:15 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	parse_links(t_data *data)
 
 	while (get_next_line(0, &line) > 0)
 	{
+		ft_putstr(line);
+		ft_putchar('\n');
 		if (line[0] == '\0')
 			exit(free_line_exit(&line, data, INVALID_LINKS));
 		while (line && !ft_strncmp(line, "#", 1))

@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:54:50 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/28 18:54:50 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/30 18:10:59 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,13 @@ static void		pathfinding(int v,
 							const int *dir_id)
 {
 	int				to;
-	static int 		path_length = 0;
+	static int		path_length = 0;
 	static t_path	*path = NULL;
 
 	if (v == data->end)
 	{
 		add_room_to_path(&path, v, dir_id, &path_length);
-		add_path(paths, path, path_length);
-		path = NULL;
+		add_path(paths, &path, path_length);
 		path_length = 0;
 		return ;
 	}
@@ -91,4 +90,6 @@ void			find_best_path(t_paths **best_paths,
 		free_paths(best_paths);
 		*best_paths = current_paths;
 	}
+	else
+		free_paths(&current_paths);
 }

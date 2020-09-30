@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ants_number.c                                :+:      :+:    :+:   */
+/*   hasher.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/15 18:22:52 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/30 18:51:15 by lmittie          ###   ########.fr       */
+/*   Created: 2020/09/30 20:09:06 by lmittie           #+#    #+#             */
+/*   Updated: 2020/09/30 20:09:06 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		parse_ants_number(void)
+int 	hasher(const char *name)
 {
-	char	*line;
-	int		ants_number;
+	int hash;
 
-	if (get_next_line(0, &line) <= 0)
+	hash = 53;
+	while (*name)
 	{
-		ft_strdel(&line);
-		write(2, "ERROR\n", 6);
-		exit(INVALID_ANTS);
+		hash = hash * 33 + hash + (int)(*name);
+		name++;
 	}
-	ft_putstr(line);
-	ft_putchar('\n');
-	if ((ants_number = ft_atoi(line)) <= 0)
-	{
-		ft_strdel(&line);
-		write(2, "ERROR\n", 6);
-		exit(INVALID_ANTS);
-	}
-	ft_strdel(&line);
-	return (ants_number);
+	if (hash < 0)
+		hash *= -1;
+	hash %= HASH_TABLE_SIZE;
+	return (hash);
 }

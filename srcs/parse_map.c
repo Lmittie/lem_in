@@ -6,13 +6,15 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:58:16 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/29 18:49:35 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/30 20:14:36 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
-int		fill_rooms_by_id(char ***rooms, t_node *(*hash_table)[HASH_TABLE_SIZE], int n)
+int		fill_rooms_by_id(char ***rooms,
+						t_node *(*hash_table)[HASH_TABLE_SIZE],
+						int n)
 {
 	int				i;
 	int				j;
@@ -37,7 +39,9 @@ int		fill_rooms_by_id(char ***rooms, t_node *(*hash_table)[HASH_TABLE_SIZE], int
 	return (1);
 }
 
-int		fill_direction_id(int **direction_id, t_node *(*hash_table)[HASH_TABLE_SIZE], int n)
+int		fill_direction_id(int **direction_id,
+						t_node *(*hash_table)[HASH_TABLE_SIZE],
+						int n)
 {
 	int				i;
 	t_node			*node_iter;
@@ -51,9 +55,11 @@ int		fill_direction_id(int **direction_id, t_node *(*hash_table)[HASH_TABLE_SIZE
 		while (node_iter != NULL)
 		{
 			if (node_iter->room->type != START)
-				(*direction_id)[node_iter->room->input_id] = node_iter->room->id;
+				(*direction_id)[node_iter->room->input_id] =
+						node_iter->room->id;
 			if (node_iter->room->type != END)
-				(*direction_id)[node_iter->room->output_id] = node_iter->room->id;
+				(*direction_id)[node_iter->room->output_id] =
+						node_iter->room->id;
 			node_iter = node_iter->next;
 		}
 		i++;
@@ -65,11 +71,16 @@ void	parse_map(t_data *data)
 {
 	data->ants_num = parse_ants_number();
 	parse_rooms(data);
-	if (!fill_rooms_by_id(&data->rooms_by_id, &data->hash_table, data->rooms_number))
+	if (!fill_rooms_by_id(&data->rooms_by_id,
+			&data->hash_table, data->rooms_number))
 		exit(free_data_exit(data, MALLOC_ERROR));
-	if (!fill_direction_id(&data->direction_id, &data->hash_table, data->id_counter))
+	if (!fill_direction_id(&data->direction_id,
+			&data->hash_table, data->id_counter))
 		exit(free_data_exit(data, MALLOC_ERROR));
 	if (data->start == -1 || data->end == -1)
 		exit(free_data_exit(data, INVALID_ROOMS));
 	parse_links(data);
+	if (!data->adjacency_matrix)
+		exit(free_data_exit(data, INVALID_LINKS));
+	ft_putchar('\n');
 }
