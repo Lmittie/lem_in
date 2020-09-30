@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/29 19:17:45 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/09/30 20:58:44 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_map_data
 	int				start;
 	t_room_list		*rooms;
 	t_max_coords	max_coords;
+	int				id_start_room;
 	char 			**rooms_by_id;
 	int				end;
 
@@ -97,9 +98,10 @@ typedef struct		s_line
 
 typedef struct		s_paths
 {
-	int				*path;
-	int				*path_root;
+	int				*id_list;
+	int				*id_list_root;
 	int				ant_num;
+	int				start;
 	struct s_paths	*next;
 	struct s_paths	*prev;
 }					t_paths;
@@ -108,6 +110,7 @@ typedef struct		s_visual
 {
 	t_window		size;
 	t_line			line;
+	t_paths			*paths;
 	int				delta_x;
 	int				delta_y;
 	int				size_node;
@@ -119,8 +122,19 @@ typedef struct		s_visual
 	SDL_Rect		pos;
 	Uint32			render_flags;
 	bool			run;
-	t_paths			*paths;
 }					t_visual;
+
+typedef struct		s_useless
+{
+		int			i;
+		int			room_id;
+		char		*line;
+		char		**splitted_line;
+		char		**ant_room_name;
+		t_paths		*parse;
+		t_paths		*root;
+		t_paths		*prev;
+}					t_useless;
 
 /*
 ** random.c
@@ -157,9 +171,10 @@ void			parse_path(t_map_data *data, t_visual *vis);
 
 
 /*
-**	check_coords.c
+**	work_with_coords.c
 */
-void			check_coords(t_map_data *data);
+void			new_coords(t_map_data *data, t_visual *vis);
+void			check_coords(t_map_data *data, t_visual *vis);
 
 
 /*
@@ -190,5 +205,11 @@ void			destroy_all_quit(t_visual *vis);
 */
 void			draw_node(t_visual *vis, t_map_data *data);
 void			draw_links(t_visual *vis, t_map_data *data);
+void			just_draw_ant_on_graph(t_visual *vis, t_room_list *buff);
+void			draw_ant_on_start(t_paths **paths, t_visual *vis,
+									t_map_data *data, t_room_list *buff);
+void			draw_ant_on_finish(t_paths **paths, t_visual *vis,
+									t_map_data *data, t_room_list *buff);
+
 
 #endif

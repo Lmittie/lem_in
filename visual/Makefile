@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/18 15:55:20 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/28 17:33:51 by acarlett         ###   ########.fr        #
+#    Updated: 2020/09/30 20:48:41 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,12 @@ LIB_NAME =	$(DIR_LIB)/libft.a
 INC_NAME =	$(DIR_INC)/visualizer.h
 
 SOURCES =	$(DIR_SRC)/background_graph.c \
-			$(DIR_SRC)/check_coords.c \
 			$(DIR_SRC)/draw_links.c \
 			$(DIR_SRC)/draw_nodes.c \
+			$(DIR_SRC)/draw_ants.c \
 			$(DIR_SRC)/flow_color.c \
 			$(DIR_SRC)/main.c \
 			$(DIR_SRC)/min_max_coords.c \
-			$(DIR_SRC)/new_coords.c \
 			$(DIR_SRC)/random.c \
 			$(DIR_SRC)/render_load_surface.c \
 			$(DIR_SRC)/v_parse_ants_number.c \
@@ -50,7 +49,8 @@ SOURCES =	$(DIR_SRC)/background_graph.c \
 			$(DIR_SRC)/v_parse_path.c \
 			$(DIR_SRC)/v_deleting.c \
 			$(DIR_SRC)/v_checkers.c \
-			$(DIR_SRC)/v_adjacency_matrix.c
+			$(DIR_SRC)/v_adjacency_matrix.c \
+			$(DIR_SRC)/work_with_coords.c 
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
 
