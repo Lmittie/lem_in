@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/30 20:58:44 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/01 21:58:22 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ typedef enum	e_exit_code
 	INVALID_ROOMS = 2,
 	INVALID_LINKS = 3,
 	INIT_SDL_ERROR = 4,
-	SIMILAR_COORDS = 5
+	SIMILAR_COORDS = 5,
+	CREATE_SURFACE = 6,
+	CREATE_RENDER = 7,
+	CREATE_TEXTURE = 8
 }				t_error_code;
 
 typedef struct	s_point
@@ -102,6 +105,9 @@ typedef struct		s_paths
 	int				*id_list_root;
 	int				ant_num;
 	int				start;
+	SDL_Surface		*surface;
+	SDL_Rect		pos;
+	SDL_Texture		*tex;
 	struct s_paths	*next;
 	struct s_paths	*prev;
 }					t_paths;
@@ -118,9 +124,15 @@ typedef struct		s_visual
 	SDL_Renderer	*rend;
 	SDL_Event		event;
 	SDL_Surface		*surface;
-	SDL_Texture		*tex;
+	SDL_Texture		*back;
+	SDL_Texture		*room_us;
+	SDL_Texture		*room_start;
+	SDL_Texture		*room_end;
+	SDL_Texture		*logo_21;
 	SDL_Rect		pos;
 	Uint32			render_flags;
+	int				delay;
+	bool			loop;
 	bool			run;
 }					t_visual;
 
@@ -205,7 +217,7 @@ void			destroy_all_quit(t_visual *vis);
 */
 void			draw_node(t_visual *vis, t_map_data *data);
 void			draw_links(t_visual *vis, t_map_data *data);
-void			just_draw_ant_on_graph(t_visual *vis, t_room_list *buff);
+void			just_draw_ant_on_graph(t_paths **paths, t_visual *vis, t_room_list *buff);
 void			draw_ant_on_start(t_paths **paths, t_visual *vis,
 									t_map_data *data, t_room_list *buff);
 void			draw_ant_on_finish(t_paths **paths, t_visual *vis,
