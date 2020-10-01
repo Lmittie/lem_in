@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 17:54:10 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/30 20:32:54 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/10/01 17:56:44 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		free_hash_table(t_node *(*hash_table)[HASH_TABLE_SIZE])
 {
 	int		i;
 	t_node	*tmp_node;
-	t_node 	*node;
+	t_node	*node;
 
 	i = 0;
 	while (i < HASH_TABLE_SIZE)
@@ -72,7 +72,7 @@ void		free_matrix(int ***matrix, int size)
 	int i;
 
 	if (*matrix == NULL)
-		return;
+		return ;
 	i = 0;
 	while (i < size)
 	{
@@ -105,50 +105,4 @@ void		free_data(t_data *data)
 	free_hash_table(&data->hash_table);
 	free_paths(&data->paths);
 	free_matrix(&data->adjacency_matrix, data->id_counter);
-}
-
-void		delete_splitted_line(char ***splitted_line)
-{
-	int i;
-
-	i = 0;
-	while ((*splitted_line)[i])
-	{
-		free((*splitted_line)[i]);
-		(*splitted_line)[i] = NULL;
-		i++;
-	}
-	free(*splitted_line);
-	splitted_line = NULL;
-}
-
-t_exit_code	free_line_and_splitted_exit(char **line, char ***splitted_line, t_data *data, t_exit_code exit_code)
-{
-	ft_strdel(line);
-	delete_splitted_line(splitted_line);
-	free_data(data);
-	write(2, "ERROR\n", 6);
-	return (exit_code);
-}
-
-t_exit_code	free_line_exit(char **line, t_data *data, t_exit_code exit_code)
-{
-	ft_strdel(line);
-	free_data(data);
-	write(2, "ERROR\n", 6);
-	return (exit_code);
-}
-
-t_exit_code	free_data_exit(t_data *data, t_exit_code exit_code)
-{
-	free_data(data);
-	if (exit_code != 0)
-		write(2, "ERROR\n", 6);
-	return (exit_code);
-}
-
-t_exit_code	no_free_exit(t_exit_code exit_code)
-{
-	write(2, "ERROR\n", 6);
-	return (exit_code);
 }

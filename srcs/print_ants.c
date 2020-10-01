@@ -68,7 +68,7 @@ static void		print_current_movements(t_path **ants,
 	ft_putchar('\n');
 }
 
-static void		init_ants(t_paths **paths)
+static int		init_ants(t_paths **paths, int *ants_at_end, int *last_ant_id)
 {
 	t_paths *path_iter;
 
@@ -77,9 +77,12 @@ static void		init_ants(t_paths **paths)
 	{
 		if (!(path_iter->ants_by_id =
 				malloc(sizeof(int) * path_iter->ants_num)))
-			exit(MALLOC_ERROR);
+			return (0);
 		path_iter = path_iter->next;
 	}
+	*ants_at_end = 0;
+	*last_ant_id = 0;
+	return (1);
 }
 
 void			print_ants(t_data *data)
@@ -89,11 +92,10 @@ void			print_ants(t_data *data)
 	t_paths		*list_iter;
 	t_path		**ants;
 
-	ants_at_end = 0;
-	last_ant_id = 0;
+	if (!init_ants(&data->paths, &ants_at_end, &last_ant_id))
+		exit(free_data_exit(data, MALLOC_ERROR));
 	if (!(ants = malloc(sizeof(t_path *) * data->ants_num)))
-		exit(MALLOC_ERROR);
-	init_ants(&data->paths);
+		exit(free_data_exit(data, MALLOC_ERROR));
 	while (ants_at_end < data->ants_num)
 	{
 		list_iter = data->paths;

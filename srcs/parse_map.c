@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-int		fill_rooms_by_id(char ***rooms,
+static int		fill_rooms_by_id(char ***rooms,
 						t_node *(*hash_table)[HASH_TABLE_SIZE],
 						int n)
 {
@@ -39,7 +39,7 @@ int		fill_rooms_by_id(char ***rooms,
 	return (1);
 }
 
-int		fill_direction_id(int **direction_id,
+static int		fill_direction_id(int **direction_id,
 						t_node *(*hash_table)[HASH_TABLE_SIZE],
 						int n)
 {
@@ -67,7 +67,7 @@ int		fill_direction_id(int **direction_id,
 	return (1);
 }
 
-void	parse_map(t_data *data)
+void			parse_map(t_data *data)
 {
 	data->ants_num = parse_ants_number();
 	parse_rooms(data);

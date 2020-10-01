@@ -21,6 +21,5 @@ int		main(void)
 	if (!(data.paths = dinic(&data)))
 		exit(free_data_exit(&data, INVALID_ROOMS));
 	print_ants(&data);
-//	printf("rooms number: %d\n", data.rooms_number);
 	return (free_data_exit(&data, 0));
 }

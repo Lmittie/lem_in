@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:53:20 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/29 21:19:58 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/10/01 19:15:57 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,25 +78,24 @@ static int	min(int a, int b)
 static int	dfs(int v, int flow, t_dinic_data *data, int **capacity_matrix)
 {
 	int pushed;
+	int to;
 
 	if (!flow || v == data->end)
 		return ((!flow) ? 0 : flow);
-	while (data->ptr[v] < data->n)
+	while ((to = data->ptr[v]) < data->n)
 	{
-		if (data->distance[data->ptr[v]] != data->distance[v] + 1
-		|| !(capacity_matrix[v][data->ptr[v]]
-			- data->flow_matrix[v][data->ptr[v]]))
+		if (data->distance[to] != data->distance[v] + 1)
 		{
 			++data->ptr[v];
 			continue ;
 		}
-		pushed = dfs(data->ptr[v],
-				min(flow, capacity_matrix[v][data->ptr[v]]
-				- data->flow_matrix[v][data->ptr[v]]), data, capacity_matrix);
+		pushed = dfs(to,
+				min(flow, capacity_matrix[v][to]
+				- data->flow_matrix[v][to]), data, capacity_matrix);
 		if (pushed)
 		{
-			data->flow_matrix[v][data->ptr[v]] += pushed;
-			data->flow_matrix[data->ptr[v]][v] -= pushed;
+			data->flow_matrix[v][to] += pushed;
+			data->flow_matrix[to][v] -= pushed;
 			return (pushed);
 		}
 		++data->ptr[v];

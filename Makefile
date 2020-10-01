@@ -6,21 +6,19 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 21:30:04 by acarlett          #+#    #+#              #
-#    Updated: 2020/09/30 20:34:18 by lmittie          ###   ########.fr        #
+#    Updated: 2020/10/01 19:42:41 by lmittie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS =		-Wall -Wextra -Werror
-
 DIR_SRC =	srcs
-
-DIR_VIS =	srcs/visual
 
 DIR_INC =	includes
 
 DIR_LIB =	libft
 
 LIBNAME =	$(DIR_LIB)/libft.a
+
+FLAGS =		-Wall -Wextra -Werror -O2 -g
 
 NAME = 		lem-in
 
@@ -39,8 +37,11 @@ SOURCES =	$(DIR_SRC)/adjacency_matrix.c \
 			$(DIR_SRC)/add_path.c \
 			$(DIR_SRC)/finding_best_path.c \
 			$(DIR_SRC)/init.c \
-			$(DIR_SRC)/hasher.c
-			
+			$(DIR_SRC)/hasher.c \
+			$(DIR_SRC)/error.c \
+			$(DIR_SRC)/insert_room.c \
+			$(DIR_SRC)/print_line.c
+
 INCLUDES = 	$(DIR_INC)
 
 OBJECTS =	$(patsubst %.c,%.o,$(SOURCES))
@@ -49,10 +50,10 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(DIR_LIB)
-	@gcc -o $(NAME) $(SOURCES) -I $(DIR_INC) -I $(DIR_LIB) $(LIBNAME) -O2 -g
+	@gcc $(FLAGS) -o $(NAME) $(SOURCES) -I $(DIR_INC) -I $(DIR_LIB) $(LIBNAME)
 
 %.o: %.c $(INCLUDES)
-	@cc -I $(DIR_INC) -I $(DIR_LIB) $< -c -o $@ -O2 -g
+	@gcc $(FLAGS) -I $(DIR_INC) -I $(DIR_LIB) $< -c -o $@
 
 clean:
 	@rm -rf $(OBJECTS)
