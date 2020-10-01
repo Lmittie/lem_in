@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-int 	hasher(const char *name)
+int		hasher(const char *name)
 {
 	int hash;
 
