@@ -26,17 +26,25 @@ void	init_sdl(t_visual *vis)
 {
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	{
-		ft_putstr("SDL initialization error:");
+		ft_putstr("SDL initialization error: ");
 		ft_putstr(SDL_GetError());
+		write(1, "\n", 1);
 		exit(INIT_SDL_ERROR);
 	}
 	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
-	vis->win = SDL_CreateWindow("LEM IN VISUAL",
+	if ((vis->win = SDL_CreateWindow("LEM IN VISUAL",
 							SDL_WINDOWPOS_UNDEFINED,
 							SDL_WINDOWPOS_UNDEFINED,
 							WIDTH,
 							HEIGHT,
-							SDL_WINDOW_SHOWN);
+							SDL_WINDOW_SHOWN)) == NULL)
+	{
+		ft_putstr("SDL_CreateWindow error: ");
+		ft_putstr(SDL_GetError());
+		write(1, "\n", 1);
+		exit(INIT_SDL_ERROR);
+	}
+	vis->loop = false;
 }
 
 int		find_id_start_room(t_map_data data)
@@ -54,32 +62,15 @@ int		main()
 	t_map_data	data;
 	t_visual	vis;
 
+	init_sdl(&vis);
 	init_structure(&data);
 	parse_map(&data);
 	data.id_start_room = find_id_start_room(data);
+	render_surface(&vis);
 	parse_path(&data, &vis);
 	check_coords(&data, &vis);
-	init_sdl(&vis);
-	render_surface(&vis);
 	background_graph(&vis, &data);
 	destroy_all_quit(&vis);
-
-	printf("rooms_number = %d\n", data.rooms_number);
-	printf ("delta_x = %d		delta_y = %d\n", vis.delta_x, vis.delta_y);
-	while (data.rooms != NULL)
-	{
-		printf("NAME = %s	ID = %d		X_CORD = %d		Y_CORD = %d\n",
-					data.rooms->room_data->name,
-					data.rooms->room_data->id,
-					data.rooms->room_data->coords.x,
-					data.rooms->room_data->coords.y);
-		data.rooms = data.rooms->next;		
-	}
-	printf ("X = (max, min) = (%d; %d)		Y = (max, min) = (%d; %d)\n",
-					data.max_coords.max_x,
-					data.max_coords.min_x,
-					data.max_coords.max_y,
-					data.max_coords.min_y);
 	return (0);
 }
 

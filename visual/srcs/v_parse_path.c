@@ -6,13 +6,44 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 17:22:39 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/30 20:38:38 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/01 22:27:37 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/visualizer.h"
 
-t_paths		*create_struct(t_map_data *data)
+void		image_load(t_visual *vis, t_paths **parse, t_map_data *data, int i)
+{
+	char	*line;
+	int		tmp;
+	char	a[6];
+
+	tmp = i % 10;
+	if (!tmp)
+		tmp = 1;
+	a[0] = tmp + 48;
+	a[1] = '.';
+	a[2] = 'p';
+	a[3] = 'n';
+	a[4] = 'g';
+	a[5] = '\0';
+	line = ft_strjoin("images/ant\0", a);
+	if (((*parse)->surface = IMG_Load(line)) == NULL)
+	{
+		ft_putstr(SDL_GetError());
+		write (1, "\n", 1);
+		exit(CREATE_SURFACE);
+	}
+	if (((*parse)->tex = SDL_CreateTextureFromSurface(vis->rend, (*parse)->surface)) == NULL)
+	{
+		ft_putstr(SDL_GetError());
+		write (1, "\n", 1);
+		exit(CREATE_TEXTURE);
+	}
+	SDL_FreeSurface((*parse)->surface);
+}
+
+t_paths		*create_struct(t_map_data *data, t_visual *vis)
 {
 	int		i;
 	t_paths	*parse;
@@ -22,6 +53,7 @@ t_paths		*create_struct(t_map_data *data)
 	i = 0;
 	if (!(parse = malloc(sizeof(t_paths))))
 		exit(MALLOC_ERROR);
+	image_load(vis, &parse, data, i + 1);
 	parse->ant_num = i + 1;
 	parse->start = 1;
 	parse->prev = NULL;
@@ -44,6 +76,7 @@ t_paths		*create_struct(t_map_data *data)
 		parse->ant_num = i + 2;
 		parse->next = NULL;
 		i++;
+		image_load(vis, &parse, data, i + 1);
 	}
 	while (parse->prev != NULL)
 		parse = parse->prev;
@@ -110,7 +143,7 @@ void		parse_path(t_map_data *data, t_visual *vis)
 {
 	int i;
 
-	vis->paths = create_struct(data);
+	vis->paths = create_struct(data, vis);
 	fill_path(data, vis->paths);
 	while (vis->paths->next != NULL)
 	{

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:39:13 by lmittie           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/09/17 18:56:15 by lmittie          ###   ########.fr       */
+=======
+/*   Updated: 2020/09/28 20:25:46 by acarlett         ###   ########.fr       */
+>>>>>>> 691f548c2525b04a46b399284bbccdd81717de39
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +98,7 @@ size_t cont_size);
 int				ft_str_isalpha(char *str);
 int				ft_str_isdigit(char *str);
 void			ft_lst_print(t_list *lst);
+void			ft_bnegative(int *s, size_t n);
 char			*ft_strjoin_free(char *s1, char *s2, int fl1, int fl2);
 void			delete_splitted_line(char ***splitted_line);
 

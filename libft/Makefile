@@ -6,7 +6,11 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/06 20:47:57 by lmittie           #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2020/10/01 17:54:02 by lmittie          ###   ########.fr        #
+=======
+#    Updated: 2020/09/28 20:25:25 by acarlett         ###   ########.fr        #
+>>>>>>> 691f548c2525b04a46b399284bbccdd81717de39
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +31,11 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lst_push_back.c\
 	ft_lstiter.c ft_lstmap.c ft_lstadd.c ft_putnbr.c  ft_strjoin_free.c \
 	ft_lst_push_front.c ft_str_isalpha.c ft_str_isdigit.c ft_lst_print.c \
+<<<<<<< HEAD
 	get_next_line.c delete_splitted_line.c
+=======
+	get_next_line.c ft_bnegative.c
+>>>>>>> 691f548c2525b04a46b399284bbccdd81717de39
 
 OBJS = $(SRCS:.c=.o)
 

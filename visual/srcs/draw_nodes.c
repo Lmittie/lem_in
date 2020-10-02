@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 18:45:04 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/27 18:49:38 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/01 19:59:18 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,14 @@ void		draw_node(t_visual *vis, t_map_data *data)
 	SDL_SetRenderDrawColor(vis->rend, 255, 255, 255, 255);
 	room = data->rooms;
 	if (data->rooms_number < 10)
-		vis->size_node = 18;
+		vis->size_node = 25;
 	else if (data->rooms_number >= 10 && data->rooms_number < 20)
-		vis->size_node = 15;
+		vis->size_node = 20;
+	else if (data->rooms_number >= 20 && data->rooms_number < 40)
+		vis->size_node = 10;
 	else
-		vis->size_node = 8;
+		vis->size_node = 7;
+	
 	while(room != NULL)
 	{
 		set_color(vis, room);
