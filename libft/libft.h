@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:39:13 by lmittie           #+#    #+#             */
-/*   Updated: 2019/09/23 16:13:14 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/09/17 18:56:15 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ int				ft_str_isalpha(char *str);
 int				ft_str_isdigit(char *str);
 void			ft_lst_print(t_list *lst);
 char			*ft_strjoin_free(char *s1, char *s2, int fl1, int fl2);
+void			delete_splitted_line(char ***splitted_line);
 
 #endif
