@@ -6,16 +6,71 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 17:54:10 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/02 17:56:18 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/02 20:45:47 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/visualizer.h"
 
-void		free_delete_exit(char **line, char **splitted_line, int exit_num)
+void		free_delete_exit(char **line, char **splitted_line, int exit_num, t_map_data *data)
 {
 	ft_strdel(line);
 	ft_putnbr(exit_num);
+	free_data(data);
 	delete_splitted_line(&splitted_line);
 	exit(exit_num);
+}
+
+void		free_matrix(int ***matrix, int size)
+{
+	int i;
+
+	if (*matrix == NULL)
+		return ;
+	i = 0;
+	while (i < size)
+	{
+		if ((*matrix)[i])
+			free((*matrix)[i]);
+		(*matrix)[i] = NULL;
+		i++;
+	}
+	free(*matrix);
+	*matrix = NULL;
+}
+
+void		free_rooms(t_room_list **room)
+{
+	t_room_list	*tmp;
+	char		*line;
+
+	while ((*room) != NULL)
+	{
+		tmp = (*room);
+		line = tmp->room_data->name;
+		ft_strdel(&line);
+		tmp->next = NULL;
+		free(tmp);
+		(*room) = (*room)->next;
+	}
+}
+
+void		free_data(t_map_data *data)
+{
+	int i;
+
+
+	if (data->rooms_by_id)
+	{
+		i = 0;
+		while (i < data->rooms_number)
+		{
+			if (data->rooms_by_id[i])
+				ft_strdel(&data->rooms_by_id[i]);
+			i++;
+		}
+		free(data->rooms_by_id);
+	}
+	free_rooms(&data->rooms);
+	free_matrix(&(data->adjacency_matrix), data->rooms_number);
 }

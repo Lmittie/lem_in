@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/18 15:55:20 by acarlett          #+#    #+#              #
-#    Updated: 2020/10/02 17:42:37 by acarlett         ###   ########.fr        #
+#    Updated: 2020/10/02 20:33:32 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,10 +56,10 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(DIR_LIB)
-	@cc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(SDL_INC) $(FRAME) $(LIB_NAME)
+	@cc -o $(NAME) $(SOURCES) -I $(DIR_INC) $(SDL_INC) $(FRAME) $(LIB_NAME) -g
 
 %.o: %.c $(INC_NAME)
-	@cc -I $(DIR_INC) $< -c -o $@
+	@cc -I $(DIR_INC) $< -c -o $@ -g
 
 clean:
 	@make -C $(DIR_LIB) clean

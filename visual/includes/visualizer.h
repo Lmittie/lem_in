@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/02 17:37:31 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/02 20:22:50 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,15 @@ typedef struct			s_room_list
 
 typedef struct		s_map_data
 {
-	int				rooms_number;
 	int				ants_num;
-	int				**adjacency_matrix;
-	int				start;
+	int				rooms_number;
+	char 			**rooms_by_id;
 	t_room_list		*rooms;
 	t_max_coords	max_coords;
+	int				**adjacency_matrix;
 	int				id_start_room;
-	char 			**rooms_by_id;
+	int				start;
 	int				end;
-
 }					t_map_data;
 
 typedef struct		s_window
@@ -171,11 +170,11 @@ void			parse_map(t_map_data *data);
 void			parse_rooms(t_map_data *data);
 t_room_type		check_if_comment(char **line, t_map_data *data);
 int				size_of_matrix_rows(char **matrix);
-void			free_delete_exit(char **line, char **splitted_line, int exit_num);
+void			free_delete_exit(char **line, char **splitted_line, int exit_num, t_map_data *data);
 int				return_room_index(char *room_name, t_room_list *list);
 void			add_link(char *line, t_map_data *data);
 void			push_back_room(t_room_list **list, t_room_data *room_data,
-							int *rooms_number);
+							t_map_data *data, char **line);
 void			fill_adjacency_matrix(int index1, int index2,
 							int ***adjacency_matrix, int size);
 void			parse_path(t_map_data *data, t_visual *vis);
@@ -222,5 +221,11 @@ void			draw_ant_on_start(t_paths **paths, t_visual *vis,
 void			draw_ant_on_finish(t_paths **paths, t_visual *vis,
 									t_map_data *data, t_room_list *buff);
 
+
+/*
+** delete
+*/
+
+void			free_data(t_map_data *data);
 
 #endif

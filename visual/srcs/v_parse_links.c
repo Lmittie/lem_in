@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:37:30 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/02 18:28:27 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/02 20:20:35 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ void	add_link(char *line, t_map_data *data)
 	{
 		write (1, "1\n", 2);
 		ft_strdel(&line);
+		free_data(data);
 		exit(MALLOC_ERROR);
 	}
 	index1 = return_room_index(splitted_line[0], data->rooms);
 	index2 = return_room_index(splitted_line[1], data->rooms);
 	if ((index1 == -1) || (index2 == -1))
-		free_delete_exit(&line, splitted_line, INVALID_LINKS);
+		free_delete_exit(&line, splitted_line, INVALID_LINKS, data);
 	fill_adjacency_matrix(index1, index2, &(data->adjacency_matrix), data->rooms_number);
 	
 }
@@ -46,6 +47,7 @@ void	parse_links(t_map_data *data)
 			{
 				ft_putstr("Parse Error\n");
 				ft_strdel(&line);
+				free_data(data);
 				exit(INVALID_ROOMS);
 			}
 			if (!line)

@@ -17,6 +17,7 @@ void	init_structure(t_map_data *data)
 	(data)->ants_num = -1;
 	(data)->adjacency_matrix = NULL;
 	(data)->rooms = NULL;
+	(data)->rooms_by_id = NULL;
 	(data)->rooms_number = 0;
 	(data)->start = -1;
 	(data)->end = -1;
