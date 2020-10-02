@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:37:30 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/01 20:26:24 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/02 18:28:27 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	add_link(char *line, t_map_data *data)
 
 	if ((splitted_line = ft_strsplit(line, '-')) == NULL)
 	{
+		write (1, "1\n", 2);
 		ft_strdel(&line);
 		exit(MALLOC_ERROR);
 	}
@@ -43,11 +44,16 @@ void	parse_links(t_map_data *data)
 		{
 			if (check_if_comment(&line, data) == PARSE_ERROR)
 			{
+				ft_putstr("Parse Error\n");
 				ft_strdel(&line);
 				exit(INVALID_ROOMS);
 			}
 			if (!line)
 				return ;
+		}
+		if (line[0] == '\0' || line[0] == '\n')
+		{
+			return ;
 		}
 		add_link(line, data);
 		ft_strdel(&line);

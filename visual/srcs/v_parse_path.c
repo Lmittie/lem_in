@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 17:22:39 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/01 22:27:37 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/02 17:38:56 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void		work_with_split_line(t_room_list *rooms, char **splitted_line, t_paths *pa
 	{
 		if (!(ant_room_name = ft_strsplit(splitted_line[i], '-')))
 		{
-			delete_splitted_line(splitted_line);
+			delete_splitted_line(&splitted_line);
 			exit (MALLOC_ERROR);
 		}
 		number_curr_ant = ft_atoi((ant_room_name[0] + 1));
@@ -135,7 +135,7 @@ void		fill_path(t_map_data *data, t_paths *paths)
 			exit(MALLOC_ERROR);
 		}
 		work_with_split_line(data->rooms, splitted_line, paths);
-		delete_splitted_line(splitted_line);
+		delete_splitted_line(&splitted_line);
 	}
 }
 

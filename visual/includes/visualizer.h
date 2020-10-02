@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/01 21:58:22 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/02 17:37:31 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,6 @@ void			parse_rooms(t_map_data *data);
 t_room_type		check_if_comment(char **line, t_map_data *data);
 int				size_of_matrix_rows(char **matrix);
 void			free_delete_exit(char **line, char **splitted_line, int exit_num);
-void			delete_splitted_line(char **splitted_line);
 int				return_room_index(char *room_name, t_room_list *list);
 void			add_link(char *line, t_map_data *data);
 void			push_back_room(t_room_list **list, t_room_data *room_data,

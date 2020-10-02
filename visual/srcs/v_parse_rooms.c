@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/25 20:57:02 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/02 18:30:32 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_room_data		*create_room(char *line, t_room_type room_type)
 		free_delete_exit(&line, splitted_line, MALLOC_ERROR);
 	room_data->coords = point;
 	room_data->type = room_type;
-	delete_splitted_line(splitted_line);
+	delete_splitted_line(&splitted_line);
 	return (room_data);
 }
 
@@ -47,26 +47,29 @@ void			parse_rooms(t_map_data *data)
 	{
 		if (line[0] == '\0')
 		{
+			ft_putstr("Empty line\n");
 			ft_strdel(&line);
 			exit(INVALID_ROOMS);
 		}
 		if (ft_strchr(line, '-') != NULL)
 		{
 			add_link(line, data);
+			ft_strdel(&line);
 			break ;
 		}
 		while (!ft_strncmp(line, "#", 1))
 		{
 			room_type = check_if_comment(&line, data);
-		if (room_type == PARSE_ERROR)
-		{
-			ft_strdel(&line);
-			exit(INVALID_ROOMS);
-		}
-		if (room_type == START)
-			data->start = data->rooms_number;
-		if (room_type == END)
-			data->end = data->rooms_number;
+			if (room_type == PARSE_ERROR)
+			{
+				ft_putstr("too much start- or end- rooms\n");
+				ft_strdel(&line);
+				exit(INVALID_ROOMS);
+			}
+			if (room_type == START)
+				data->start = data->rooms_number;
+			if (room_type == END)
+				data->end = data->rooms_number;
 		}
 		push_back_room(&data->rooms, create_room(line, room_type), &data->rooms_number);
 		room_type = DEFAULT;

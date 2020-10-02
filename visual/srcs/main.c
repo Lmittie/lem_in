@@ -62,10 +62,10 @@ int		main()
 	t_map_data	data;
 	t_visual	vis;
 
-	init_sdl(&vis);
 	init_structure(&data);
 	parse_map(&data);
 	data.id_start_room = find_id_start_room(data);
+	init_sdl(&vis);
 	render_surface(&vis);
 	parse_path(&data, &vis);
 	check_coords(&data, &vis);
