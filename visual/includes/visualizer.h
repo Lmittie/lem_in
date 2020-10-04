@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/02 20:22:50 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 18:35:45 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,6 @@ typedef struct		s_visual
 	SDL_Event		event;
 	SDL_Surface		*surface;
 	SDL_Texture		*back;
-	SDL_Texture		*room_us;
-	SDL_Texture		*room_start;
-	SDL_Texture		*room_end;
 	SDL_Texture		*logo_21;
 	SDL_Rect		pos;
 	Uint32			render_flags;
@@ -202,7 +199,7 @@ void			new_coords(t_map_data *data, t_visual *vis);
 /*
 ** render_load_surface.c
 */
-void			render_surface(t_visual *vis);
+void			render_surface(t_map_data *data, t_visual *vis);
 
 /*
 ** background_graph.c
@@ -225,7 +222,10 @@ void			draw_ant_on_finish(t_paths **paths, t_visual *vis,
 /*
 ** delete
 */
-
+void			free_paths(t_paths **paths);
 void			free_data(t_map_data *data);
+
+bool			keys_managment(t_visual *vis, t_map_data *data);
+
 
 #endif

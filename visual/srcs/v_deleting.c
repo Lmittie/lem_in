@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 17:54:10 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/02 20:45:47 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 16:42:34 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,29 @@ void		free_rooms(t_room_list **room)
 		tmp->next = NULL;
 		free(tmp);
 		(*room) = (*room)->next;
+	}
+}
+
+void		free_paths(t_paths **paths)
+{
+	t_paths *tmp;
+	t_paths *root;
+
+	while ((*paths)->prev != NULL)
+	{
+		if ((*paths) != NULL)
+			(*paths)->id_list = (*paths)->id_list_root;
+		(*paths) = (*paths)->prev;
+	}
+	while ((*paths) != NULL)
+	{
+		tmp = (*paths);
+		(*paths) = (*paths)->next;
+		free(tmp->id_list_root);
+		SDL_DestroyTexture(tmp->tex);
+		tmp->prev = NULL;
+		tmp->next = NULL;
+		free(tmp);
 	}
 }
 

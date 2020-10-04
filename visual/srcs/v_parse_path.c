@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 17:22:39 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/02 17:38:56 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 18:26:07 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		image_load(t_visual *vis, t_paths **parse, t_map_data *data, int i)
 		write (1, "\n", 1);
 		exit(CREATE_TEXTURE);
 	}
+	ft_strdel(&line);
 	SDL_FreeSurface((*parse)->surface);
 }
 
@@ -51,22 +52,22 @@ t_paths		*create_struct(t_map_data *data, t_visual *vis)
 	t_paths *prev;
 
 	i = 0;
-	if (!(parse = malloc(sizeof(t_paths))))
+	if (!(parse = ft_memalloc(sizeof(t_paths))))
 		exit(MALLOC_ERROR);
 	image_load(vis, &parse, data, i + 1);
 	parse->ant_num = i + 1;
 	parse->start = 1;
 	parse->prev = NULL;
-	if (!(parse->id_list = malloc(sizeof(int) * data->rooms_number)))
+	if (!(parse->id_list = ft_memalloc(sizeof(int) * data->rooms_number)))
 		exit(MALLOC_ERROR);
 	ft_bnegative(parse->id_list, data->rooms_number);
 	parse->id_list_root = parse->id_list;
 	while (i != (data->ants_num - 1))
 	{
-		if (!(parse->next = malloc(sizeof(t_paths))))
+		if (!(parse->next = ft_memalloc(sizeof(t_paths))))
 			exit(MALLOC_ERROR);
 		prev = parse;
-		if (!(parse->next->id_list = malloc(sizeof(int) * data->rooms_number)))
+		if (!(parse->next->id_list = ft_memalloc(sizeof(int) * data->rooms_number)))
 			exit(MALLOC_ERROR);
 		ft_bnegative(parse->next->id_list, data->rooms_number);
 		parse->next->id_list_root = parse->next->id_list;
@@ -119,6 +120,7 @@ void		work_with_split_line(t_room_list *rooms, char **splitted_line, t_paths *pa
 
 		i++;
 		paths = root;
+		delete_splitted_line(&ant_room_name);
 	}
 }
 
@@ -136,6 +138,7 @@ void		fill_path(t_map_data *data, t_paths *paths)
 		}
 		work_with_split_line(data->rooms, splitted_line, paths);
 		delete_splitted_line(&splitted_line);
+		ft_strdel(&line);
 	}
 }
 

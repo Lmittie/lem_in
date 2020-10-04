@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 17:58:16 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/28 18:28:16 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 15:15:26 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void 	fill_rooms_by_id(char ***rooms, t_room_list *room_list, int n)
 
 void	parse_map(t_map_data *data)
 {
+	
 	data->ants_num = parse_ants_number();
 	parse_rooms(data);
 	fill_rooms_by_id(&data->rooms_by_id, data->rooms, data->rooms_number);

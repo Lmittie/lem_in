@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:02:00 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/01 21:54:29 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 18:08:36 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,13 @@ void		background_graph(t_visual *vis, t_map_data *data)
 			vis->paths = vis->paths->next;
 
 		SDL_RenderPresent(vis->rend);
-
 	}
 }
 
 void		destroy_all_quit(t_visual *vis)
 {
+	SDL_DestroyTexture(vis->logo_21);
+	SDL_DestroyTexture(vis->back);
 	SDL_DestroyRenderer(vis->rend);
 	SDL_DestroyWindow(vis->win);
 	SDL_Quit();
