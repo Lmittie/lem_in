@@ -6,13 +6,14 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 17:54:10 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/04 16:42:34 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:51:41 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/visualizer.h"
 
-void		free_delete_exit(char **line, char **splitted_line, int exit_num, t_map_data *data)
+void		free_delete_exit(char **line, char **splitted_line,
+											int exit_num, t_map_data *data)
 {
 	ft_strdel(line);
 	ft_putnbr(exit_num);
@@ -81,7 +82,6 @@ void		free_paths(t_paths **paths)
 void		free_data(t_map_data *data)
 {
 	int i;
-
 
 	if (data->rooms_by_id)
 	{

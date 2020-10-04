@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 18:46:46 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/04 16:28:46 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:48:26 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			ft_abs(int first, int second)
 	if (first >= second)
 		answer = first - second;
 	else
-		answer = second - first;	
+		answer = second - first;
 	return (answer);
 }
 
@@ -62,42 +62,26 @@ int			find_name(int **matrix, int *i, int *j, int count)
 
 void		draw_a_lot_lines(t_visual *vis)
 {
-		SDL_RenderDrawLine(vis->rend,	vis->line.x1,
-										vis->line.y1,
-										vis->line.x2,
-										vis->line.y2);
-		SDL_RenderDrawLine(vis->rend,	vis->line.x1,
-										vis->line.y1 + 1,
-										vis->line.x2,
-										vis->line.y2 + 1);
-		SDL_RenderDrawLine(vis->rend,	vis->line.x1 + 1,
-										vis->line.y1,
-										vis->line.x2 + 1,
-										vis->line.y2);
-		SDL_RenderDrawLine(vis->rend,	vis->line.x1,
-										vis->line.y1 - 1,
-										vis->line.x2,
-										vis->line.y2 - 1);
-		SDL_RenderDrawLine(vis->rend,	vis->line.x1 - 1,
-										vis->line.y1,
-										vis->line.x2 - 1,
-										vis->line.y2);
-		SDL_RenderDrawLine(vis->rend,	vis->line.x1,
-										vis->line.y1 + 2,
-										vis->line.x2,
-										vis->line.y2 + 2);
-		SDL_RenderDrawLine(vis->rend,	vis->line.x1,
-										vis->line.y1 - 2,
-										vis->line.x2,
-										vis->line.y2 - 2);
-		if (ft_abs(vis->line.y1, vis->line.y2) > ft_abs(vis->line.x1, vis->line.x2))
-		{
-
-			SDL_RenderDrawLine(vis->rend,	vis->line.x1 + 2,
-											vis->line.y1,
-											vis->line.x2 + 2,
-											vis->line.y2);
-		}
+	SDL_RenderDrawLine(vis->rend, vis->line.x1, vis->line.y1,
+									vis->line.x2, vis->line.y2);
+	SDL_RenderDrawLine(vis->rend, vis->line.x1, vis->line.y1 + 1,
+									vis->line.x2, vis->line.y2 + 1);
+	SDL_RenderDrawLine(vis->rend, vis->line.x1 + 1, vis->line.y1,
+									vis->line.x2 + 1, vis->line.y2);
+	SDL_RenderDrawLine(vis->rend, vis->line.x1, vis->line.y1 - 1,
+									vis->line.x2, vis->line.y2 - 1);
+	SDL_RenderDrawLine(vis->rend, vis->line.x1 - 1, vis->line.y1,
+									vis->line.x2 - 1, vis->line.y2);
+	SDL_RenderDrawLine(vis->rend, vis->line.x1, vis->line.y1 + 2,
+									vis->line.x2, vis->line.y2 + 2);
+	SDL_RenderDrawLine(vis->rend, vis->line.x1, vis->line.y1 - 2,
+									vis->line.x2, vis->line.y2 - 2);
+	if (ft_abs(vis->line.y1, vis->line.y2) > ft_abs(vis->line.x1,
+														vis->line.x2))
+	{
+		SDL_RenderDrawLine(vis->rend, vis->line.x1 + 2, vis->line.y1,
+										vis->line.x2 + 2, vis->line.y2);
+	}
 }
 
 void		draw_links(t_visual *vis, t_map_data *data)

@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 17:22:39 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/04 18:26:07 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:55:33 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ void		image_load(t_visual *vis, t_paths **parse, t_map_data *data, int i)
 	if (((*parse)->surface = IMG_Load(line)) == NULL)
 	{
 		ft_putstr(SDL_GetError());
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 		exit(CREATE_SURFACE);
 	}
-	if (((*parse)->tex = SDL_CreateTextureFromSurface(vis->rend, (*parse)->surface)) == NULL)
+	if (((*parse)->tex = SDL_CreateTextureFromSurface(vis->rend,
+											(*parse)->surface)) == NULL)
 	{
 		ft_putstr(SDL_GetError());
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 		exit(CREATE_TEXTURE);
 	}
 	ft_strdel(&line);
@@ -67,7 +68,8 @@ t_paths		*create_struct(t_map_data *data, t_visual *vis)
 		if (!(parse->next = ft_memalloc(sizeof(t_paths))))
 			exit(MALLOC_ERROR);
 		prev = parse;
-		if (!(parse->next->id_list = ft_memalloc(sizeof(int) * data->rooms_number)))
+		if (!(parse->next->id_list = ft_memalloc(sizeof(int) *
+									data->rooms_number)))
 			exit(MALLOC_ERROR);
 		ft_bnegative(parse->next->id_list, data->rooms_number);
 		parse->next->id_list_root = parse->next->id_list;
@@ -91,10 +93,11 @@ int			return_id_by_name(t_room_list *rooms, char *name_room)
 	cur = rooms;
 	while (ft_strcmp(cur->room_data->name, name_room))
 		cur = cur->next;
-	return(cur->room_data->id);
+	return (cur->room_data->id);
 }
 
-void		work_with_split_line(t_room_list *rooms, char **splitted_line, t_paths *paths)
+void		work_with_split_line(t_room_list *rooms,
+							char **splitted_line, t_paths *paths)
 {
 	int		i;
 	char	**ant_room_name;
@@ -109,7 +112,7 @@ void		work_with_split_line(t_room_list *rooms, char **splitted_line, t_paths *pa
 		if (!(ant_room_name = ft_strsplit(splitted_line[i], '-')))
 		{
 			delete_splitted_line(&splitted_line);
-			exit (MALLOC_ERROR);
+			exit(MALLOC_ERROR);
 		}
 		number_curr_ant = ft_atoi((ant_room_name[0] + 1));
 		while (paths->ant_num != number_curr_ant)
@@ -117,7 +120,6 @@ void		work_with_split_line(t_room_list *rooms, char **splitted_line, t_paths *pa
 		room_id = return_id_by_name(rooms, ant_room_name[1]);
 		(*paths->id_list) = room_id;
 		paths->id_list++;
-
 		i++;
 		paths = root;
 		delete_splitted_line(&ant_room_name);

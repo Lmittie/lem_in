@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/04 18:35:45 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:56:22 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,14 +134,14 @@ typedef struct		s_visual
 
 typedef struct		s_useless
 {
-		int			i;
-		int			room_id;
-		char		*line;
-		char		**splitted_line;
-		char		**ant_room_name;
-		t_paths		*parse;
-		t_paths		*root;
-		t_paths		*prev;
+	int		i;
+	int		room_id;
+	char	*line;
+	char	**splitted_line;
+	char	**ant_room_name;
+	t_paths	*parse;
+	t_paths	*root;
+	t_paths	*prev;
 }					t_useless;
 
 /*
@@ -155,7 +155,6 @@ void			draw_random_points(int nbr_points, bool randomize_color, SDL_Renderer *re
 /*
 ** flow_color.c
 */
-int				flow_color(int low, int high, int *flag, int myself);
 
 
 /*
@@ -225,7 +224,7 @@ void			draw_ant_on_finish(t_paths **paths, t_visual *vis,
 void			free_paths(t_paths **paths);
 void			free_data(t_map_data *data);
 
-bool			keys_managment(t_visual *vis, t_map_data *data);
-
+void			handle_room_type(t_map_data *data, t_room_type room_type, char *line, int exit_code);
+void			free_strdel_exit(int str_out, t_map_data *data, char *line, int exit_code);
 
 #endif

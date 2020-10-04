@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 18:45:04 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/01 19:59:18 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:48:42 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,22 @@ void		set_color(t_visual *vis, t_room_list *room)
 
 void		make_four_lines(t_visual *vis, t_room_list *room, int x, int y)
 {
-    	SDL_RenderDrawLine(vis->rend,	room->room_data->coords.x + x,
-										room->room_data->coords.y + y,
-										room->room_data->coords.x - x,
-										room->room_data->coords.y + y);
-
-    	SDL_RenderDrawLine(vis->rend,	room->room_data->coords.x + x,
-										room->room_data->coords.y + y,
-										room->room_data->coords.x + x,
-										room->room_data->coords.y - y);
-
-
-
-    	SDL_RenderDrawLine(vis->rend,	room->room_data->coords.x - x,
-										room->room_data->coords.y - y,
-										room->room_data->coords.x - x,
-										room->room_data->coords.y + y);
-
-
-    	SDL_RenderDrawLine(vis->rend,	room->room_data->coords.x - x,
-										room->room_data->coords.y - y,
-										room->room_data->coords.x + x,
-										room->room_data->coords.y - y);
-
+	SDL_RenderDrawLine(vis->rend, room->room_data->coords.x + x,
+									room->room_data->coords.y + y,
+									room->room_data->coords.x - x,
+									room->room_data->coords.y + y);
+	SDL_RenderDrawLine(vis->rend, room->room_data->coords.x + x,
+									room->room_data->coords.y + y,
+									room->room_data->coords.x + x,
+									room->room_data->coords.y - y);
+	SDL_RenderDrawLine(vis->rend, room->room_data->coords.x - x,
+									room->room_data->coords.y - y,
+									room->room_data->coords.x - x,
+									room->room_data->coords.y + y);
+	SDL_RenderDrawLine(vis->rend, room->room_data->coords.x - x,
+									room->room_data->coords.y - y,
+									room->room_data->coords.x + x,
+									room->room_data->coords.y - y);
 }
 
 void		make_node(t_visual *vis, t_room_list *room, int y)
@@ -61,10 +54,10 @@ void		make_node(t_visual *vis, t_room_list *room, int y)
 	{
 		make_four_lines(vis, room, x, y);
 		error = 2 * (delta + y) - 1;
-    	if ((delta < 0) && (error <= 0))
-        	delta += 2 * ++x + 1;
+		if ((delta < 0) && (error <= 0))
+			delta += 2 * ++x + 1;
 		else if ((delta > 0) && (error > 0))
-        	delta -= 2 * --y + 1;
+			delta -= 2 * --y + 1;
 		else
 			delta += 2 * (++x - --y);
 	}
@@ -84,8 +77,7 @@ void		draw_node(t_visual *vis, t_map_data *data)
 		vis->size_node = 10;
 	else
 		vis->size_node = 7;
-	
-	while(room != NULL)
+	while (room != NULL)
 	{
 		set_color(vis, room);
 		make_node(vis, room, vis->size_node);

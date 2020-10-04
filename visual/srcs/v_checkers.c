@@ -6,13 +6,14 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:34:59 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/02 20:18:56 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:50:40 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/visualizer.h"
 
-static void	create_room_list(t_room_list **list, t_room_data *room_data, char **line, t_map_data *data)
+static void	create_room_list(t_room_list **list, t_room_data *room_data,
+												char **line, t_map_data *data)
 {
 	if (((*list) = malloc(sizeof(t_room_list))) == NULL)
 	{
@@ -67,7 +68,7 @@ int			return_room_index(char *room_name, t_room_list *list)
 	return (-1);
 }
 
-int				size_of_matrix_rows(char **matrix)
+int			size_of_matrix_rows(char **matrix)
 {
 	int counter;
 
@@ -81,7 +82,7 @@ int				size_of_matrix_rows(char **matrix)
 	return (counter);
 }
 
-t_room_type		check_if_comment(char **line, t_map_data *data)
+t_room_type	check_if_comment(char **line, t_map_data *data)
 {
 	t_room_type type;
 

@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:02:00 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/04 18:08:36 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:52:45 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,16 @@ void		draw_and_move_ant(t_visual *vis, t_map_data *data, t_paths **paths)
 	while ((*paths) != NULL)
 	{
 		if ((*paths)->start)
-		{
 			draw_ant_on_start(paths, vis, data, buff);
-		}
 		else if ((*(*paths)->id_list) == -1)
-		{
 			draw_ant_on_finish(paths, vis, data, buff);
-		}
 		else
 		{
-			while (buff->next != NULL && buff->room_data->id != (*(*paths)->id_list))
+			while (buff->next != NULL && buff->room_data->id !=
+														(*(*paths)->id_list))
 				buff = buff->next;
 			(*paths)->id_list++;
-			
 			just_draw_ant_on_graph(paths, vis, buff);
-
 			buff = data->rooms;
 			(*paths) = (*paths)->prev;
 		}
@@ -97,31 +92,19 @@ void		background_graph(t_visual *vis, t_map_data *data)
 	while (vis->run)
 	{
 		while (SDL_PollEvent(&(vis->event)))
-		{
 			vis->run = keys_managment(vis, data);
-		}
 		if (vis->loop)
 			continue ;
 		tmp_id = vis->paths->id_list[0];
-		while (vis->paths->next != NULL && vis->paths->next->id_list[0] != tmp_id)
+		while (vis->paths->next != NULL &&
+							vis->paths->next->id_list[0] != tmp_id)
 			vis->paths = vis->paths->next;
 		draw_background(vis, data);
 		draw_links(vis, data);
 		draw_node(vis, data);
 		draw_and_move_ant(vis, data, &(vis->paths));
-		
 		if (vis->paths->next != NULL)
 			vis->paths = vis->paths->next;
-
 		SDL_RenderPresent(vis->rend);
 	}
-}
-
-void		destroy_all_quit(t_visual *vis)
-{
-	SDL_DestroyTexture(vis->logo_21);
-	SDL_DestroyTexture(vis->back);
-	SDL_DestroyRenderer(vis->rend);
-	SDL_DestroyWindow(vis->win);
-	SDL_Quit();
 }

@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:28:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/25 18:44:21 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:53:13 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	init_matrix(int ***adjacency_matrix, int size)
 	}
 }
 
-void	fill_adjacency_matrix(int index1, int index2, int ***adjacency_matrix, int size)
+void	fill_adjacency_matrix(int index1, int index2,
+									int ***adjacency_matrix, int size)
 {
 	if (*adjacency_matrix == NULL)
 		init_matrix(adjacency_matrix, size);

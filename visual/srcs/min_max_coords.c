@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:11:40 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/23 17:39:22 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:32:55 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void		init_coord(t_room_list *room, t_map_data *data)
 
 void		find_min_max(t_room_list *room, t_map_data *data)
 {
-	/*
-	** Сравнение координат текущей комнаты с максимальными и минимальными
-	** найденными значениями
-	*/
 	if (room->room_data->coords.x > data->max_coords.max_x)
 	{
 		data->max_coords.max_x = room->room_data->coords.x;

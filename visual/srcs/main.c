@@ -1,4 +1,4 @@
-// /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 16:08:37 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/21 16:20:37 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:50:05 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_structure(t_map_data *data)
 
 void	init_sdl(t_map_data *data, t_visual *vis)
 {
-	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0)
 	{
 		ft_putstr("SDL initialization error: ");
 		ft_putstr(SDL_GetError());
@@ -60,7 +60,16 @@ int		find_id_start_room(t_map_data data)
 	return (cur->room_data->id);
 }
 
-int		main()
+void	destroy_all_quit(t_visual *vis)
+{
+	SDL_DestroyTexture(vis->logo_21);
+	SDL_DestroyTexture(vis->back);
+	SDL_DestroyRenderer(vis->rend);
+	SDL_DestroyWindow(vis->win);
+	SDL_Quit();
+}
+
+int		main(void)
 {
 	t_map_data	data;
 	t_visual	vis;
@@ -77,4 +86,3 @@ int		main()
 	destroy_all_quit(&vis);
 	return (0);
 }
-
