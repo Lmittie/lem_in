@@ -89,4 +89,5 @@ add_executable(lem_lem
         srcs/parse_links.c
         srcs/parse_map.c
         srcs/parse_rooms.c
-        srcs/room_list.c srcs/count_ants_on_each_path.c srcs/print_ants.c)
+        srcs/return_room.c srcs/count_ants_on_each_path.c srcs/print_ants.c
+        srcs/add_path.c srcs/finding_best_path.c srcs/init.c srcs/hasher.c srcs/error.c libft/delete_splitted_line.c srcs/insert_room.c srcs/print_line.c libft/ft_min.c)
