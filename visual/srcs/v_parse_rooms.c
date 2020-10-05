@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/04 20:42:12 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/05 17:37:33 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			parse_rooms(t_map_data *data)
 	room_type = DEFAULT;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (line[0] == '\0')
+		if (line[0] == '\0' || (ft_strcmp(line, "ERROR") == 0))
 			free_strdel_exit(1, data, line, INVALID_ROOMS);
 		if (ft_strchr(line, '-') != NULL)
 		{

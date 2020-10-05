@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/18 15:55:20 by acarlett          #+#    #+#              #
-#    Updated: 2020/10/04 20:31:39 by acarlett         ###   ########.fr        #
+#    Updated: 2020/10/05 17:32:57 by acarlett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SOURCES =	$(DIR_SRC)/background_graph.c \
 			$(DIR_SRC)/draw_links.c \
 			$(DIR_SRC)/draw_nodes.c \
 			$(DIR_SRC)/draw_ants.c \
+			$(DIR_SRC)/free_show_error.c \
 			$(DIR_SRC)/main.c \
 			$(DIR_SRC)/min_max_coords.c \
 			$(DIR_SRC)/random.c \

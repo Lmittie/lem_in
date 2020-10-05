@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 17:22:39 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/05 14:05:45 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/05 18:05:06 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,11 @@ void		fill_path(t_map_data *data, t_paths *paths)
 
 	while (get_next_line(0, &line) > 0)
 	{
+		if (line[0] == '\0')
+		{
+			ft_strdel(&line);
+			break ;
+		}
 		if ((splitted_line = ft_strsplit(line, ' ')) == NULL)
 		{
 			ft_strdel(&line);
@@ -124,4 +129,9 @@ void		parse_path(t_map_data *data, t_visual *vis)
 	}
 	while (vis->paths->prev != NULL)
 		vis->paths = vis->paths->prev;
+}
+
+int main ()
+{
+
 }
