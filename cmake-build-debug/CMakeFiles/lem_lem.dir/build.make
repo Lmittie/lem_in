@@ -1091,18 +1091,18 @@ CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/parse_rooms.c -o CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.s
 
-CMakeFiles/lem_lem.dir/srcs/room_list.c.o: CMakeFiles/lem_lem.dir/flags.make
-CMakeFiles/lem_lem.dir/srcs/room_list.c.o: ../srcs/room_list.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/lem_lem.dir/srcs/room_list.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/room_list.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/room_list.c
+CMakeFiles/lem_lem.dir/srcs/return_room.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/return_room.c.o: ../srcs/return_room.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/lem_lem.dir/srcs/return_room.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/return_room.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/return_room.c
 
-CMakeFiles/lem_lem.dir/srcs/room_list.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/room_list.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/room_list.c > CMakeFiles/lem_lem.dir/srcs/room_list.c.i
+CMakeFiles/lem_lem.dir/srcs/return_room.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/return_room.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/return_room.c > CMakeFiles/lem_lem.dir/srcs/return_room.c.i
 
-CMakeFiles/lem_lem.dir/srcs/room_list.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/room_list.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/room_list.c -o CMakeFiles/lem_lem.dir/srcs/room_list.c.s
+CMakeFiles/lem_lem.dir/srcs/return_room.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/return_room.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/return_room.c -o CMakeFiles/lem_lem.dir/srcs/return_room.c.s
 
 CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o: CMakeFiles/lem_lem.dir/flags.make
 CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o: ../srcs/count_ants_on_each_path.c
@@ -1129,6 +1129,123 @@ CMakeFiles/lem_lem.dir/srcs/print_ants.c.i: cmake_force
 CMakeFiles/lem_lem.dir/srcs/print_ants.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/print_ants.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/print_ants.c -o CMakeFiles/lem_lem.dir/srcs/print_ants.c.s
+
+CMakeFiles/lem_lem.dir/srcs/add_path.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/add_path.c.o: ../srcs/add_path.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building C object CMakeFiles/lem_lem.dir/srcs/add_path.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/add_path.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/add_path.c
+
+CMakeFiles/lem_lem.dir/srcs/add_path.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/add_path.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/add_path.c > CMakeFiles/lem_lem.dir/srcs/add_path.c.i
+
+CMakeFiles/lem_lem.dir/srcs/add_path.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/add_path.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/add_path.c -o CMakeFiles/lem_lem.dir/srcs/add_path.c.s
+
+CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.o: ../srcs/finding_best_path.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building C object CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/finding_best_path.c
+
+CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/finding_best_path.c > CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.i
+
+CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/finding_best_path.c -o CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.s
+
+CMakeFiles/lem_lem.dir/srcs/init.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/init.c.o: ../srcs/init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building C object CMakeFiles/lem_lem.dir/srcs/init.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/init.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/init.c
+
+CMakeFiles/lem_lem.dir/srcs/init.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/init.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/init.c > CMakeFiles/lem_lem.dir/srcs/init.c.i
+
+CMakeFiles/lem_lem.dir/srcs/init.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/init.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/init.c -o CMakeFiles/lem_lem.dir/srcs/init.c.s
+
+CMakeFiles/lem_lem.dir/srcs/hasher.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/hasher.c.o: ../srcs/hasher.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building C object CMakeFiles/lem_lem.dir/srcs/hasher.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/hasher.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/hasher.c
+
+CMakeFiles/lem_lem.dir/srcs/hasher.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/hasher.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/hasher.c > CMakeFiles/lem_lem.dir/srcs/hasher.c.i
+
+CMakeFiles/lem_lem.dir/srcs/hasher.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/hasher.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/hasher.c -o CMakeFiles/lem_lem.dir/srcs/hasher.c.s
+
+CMakeFiles/lem_lem.dir/srcs/error.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/error.c.o: ../srcs/error.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building C object CMakeFiles/lem_lem.dir/srcs/error.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/error.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/error.c
+
+CMakeFiles/lem_lem.dir/srcs/error.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/error.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/error.c > CMakeFiles/lem_lem.dir/srcs/error.c.i
+
+CMakeFiles/lem_lem.dir/srcs/error.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/error.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/error.c -o CMakeFiles/lem_lem.dir/srcs/error.c.s
+
+CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.o: ../libft/delete_splitted_line.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building C object CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.o   -c /Users/lmittie/Desktop/lem_lem/libft/delete_splitted_line.c
+
+CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/libft/delete_splitted_line.c > CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.i
+
+CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/libft/delete_splitted_line.c -o CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.s
+
+CMakeFiles/lem_lem.dir/srcs/insert_room.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/insert_room.c.o: ../srcs/insert_room.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building C object CMakeFiles/lem_lem.dir/srcs/insert_room.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/insert_room.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/insert_room.c
+
+CMakeFiles/lem_lem.dir/srcs/insert_room.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/insert_room.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/insert_room.c > CMakeFiles/lem_lem.dir/srcs/insert_room.c.i
+
+CMakeFiles/lem_lem.dir/srcs/insert_room.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/insert_room.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/insert_room.c -o CMakeFiles/lem_lem.dir/srcs/insert_room.c.s
+
+CMakeFiles/lem_lem.dir/srcs/print_line.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/srcs/print_line.c.o: ../srcs/print_line.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building C object CMakeFiles/lem_lem.dir/srcs/print_line.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/srcs/print_line.c.o   -c /Users/lmittie/Desktop/lem_lem/srcs/print_line.c
+
+CMakeFiles/lem_lem.dir/srcs/print_line.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/srcs/print_line.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/srcs/print_line.c > CMakeFiles/lem_lem.dir/srcs/print_line.c.i
+
+CMakeFiles/lem_lem.dir/srcs/print_line.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/srcs/print_line.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/srcs/print_line.c -o CMakeFiles/lem_lem.dir/srcs/print_line.c.s
+
+CMakeFiles/lem_lem.dir/libft/ft_min.c.o: CMakeFiles/lem_lem.dir/flags.make
+CMakeFiles/lem_lem.dir/libft/ft_min.c.o: ../libft/ft_min.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building C object CMakeFiles/lem_lem.dir/libft/ft_min.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_lem.dir/libft/ft_min.c.o   -c /Users/lmittie/Desktop/lem_lem/libft/ft_min.c
+
+CMakeFiles/lem_lem.dir/libft/ft_min.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_lem.dir/libft/ft_min.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/lmittie/Desktop/lem_lem/libft/ft_min.c > CMakeFiles/lem_lem.dir/libft/ft_min.c.i
+
+CMakeFiles/lem_lem.dir/libft/ft_min.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_lem.dir/libft/ft_min.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/lmittie/Desktop/lem_lem/libft/ft_min.c -o CMakeFiles/lem_lem.dir/libft/ft_min.c.s
 
 # Object files for target lem_lem
 lem_lem_OBJECTS = \
@@ -1210,9 +1327,18 @@ lem_lem_OBJECTS = \
 "CMakeFiles/lem_lem.dir/srcs/parse_links.c.o" \
 "CMakeFiles/lem_lem.dir/srcs/parse_map.c.o" \
 "CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o" \
-"CMakeFiles/lem_lem.dir/srcs/room_list.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/return_room.c.o" \
 "CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o" \
-"CMakeFiles/lem_lem.dir/srcs/print_ants.c.o"
+"CMakeFiles/lem_lem.dir/srcs/print_ants.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/add_path.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/init.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/hasher.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/error.c.o" \
+"CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/insert_room.c.o" \
+"CMakeFiles/lem_lem.dir/srcs/print_line.c.o" \
+"CMakeFiles/lem_lem.dir/libft/ft_min.c.o"
 
 # External object files for target lem_lem
 lem_lem_EXTERNAL_OBJECTS =
@@ -1295,12 +1421,21 @@ lem_lem: CMakeFiles/lem_lem.dir/srcs/parse_ants_number.c.o
 lem_lem: CMakeFiles/lem_lem.dir/srcs/parse_links.c.o
 lem_lem: CMakeFiles/lem_lem.dir/srcs/parse_map.c.o
 lem_lem: CMakeFiles/lem_lem.dir/srcs/parse_rooms.c.o
-lem_lem: CMakeFiles/lem_lem.dir/srcs/room_list.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/return_room.c.o
 lem_lem: CMakeFiles/lem_lem.dir/srcs/count_ants_on_each_path.c.o
 lem_lem: CMakeFiles/lem_lem.dir/srcs/print_ants.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/add_path.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/init.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/hasher.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/error.c.o
+lem_lem: CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/insert_room.c.o
+lem_lem: CMakeFiles/lem_lem.dir/srcs/print_line.c.o
+lem_lem: CMakeFiles/lem_lem.dir/libft/ft_min.c.o
 lem_lem: CMakeFiles/lem_lem.dir/build.make
 lem_lem: CMakeFiles/lem_lem.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Linking C executable lem_lem"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lmittie/Desktop/lem_lem/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Linking C executable lem_lem"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lem_lem.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -87,6 +87,9 @@
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/includes/lem_in.h">
 			<Option target="lem_lem"/>
 		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/libft/delete_splitted_line.c">
+			<Option target="lem_lem"/>
+		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/libft/ft_atoi.c">
 			<Option target="lem_lem"/>
 		</Unit>
@@ -169,6 +172,9 @@
 			<Option target="lem_lem"/>
 		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/libft/ft_memset.c">
+			<Option target="lem_lem"/>
+		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/libft/ft_min.c">
 			<Option target="lem_lem"/>
 		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/libft/ft_putchar.c">
@@ -300,6 +306,9 @@
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/libft/libft.h">
 			<Option target="lem_lem"/>
 		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/add_path.c">
+			<Option target="lem_lem"/>
+		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/adjacency_matrix.c">
 			<Option target="lem_lem"/>
 		</Unit>
@@ -313,6 +322,21 @@
 			<Option target="lem_lem"/>
 		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/dinic_algorithm.c">
+			<Option target="lem_lem"/>
+		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/error.c">
+			<Option target="lem_lem"/>
+		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/finding_best_path.c">
+			<Option target="lem_lem"/>
+		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/hasher.c">
+			<Option target="lem_lem"/>
+		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/init.c">
+			<Option target="lem_lem"/>
+		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/insert_room.c">
 			<Option target="lem_lem"/>
 		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/main.c">
@@ -333,7 +357,10 @@
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/print_ants.c">
 			<Option target="lem_lem"/>
 		</Unit>
-		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/room_list.c">
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/print_line.c">
+			<Option target="lem_lem"/>
+		</Unit>
+		<Unit filename="/Users/lmittie/Desktop/lem_lem/srcs/return_room.c">
 			<Option target="lem_lem"/>
 		</Unit>
 		<Unit filename="/Users/lmittie/Desktop/lem_lem/CMakeLists.txt">

@@ -143,6 +143,33 @@ lem_lem/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/build
 .PHONY : lem_lem/fast
 
+libft/delete_splitted_line.o: libft/delete_splitted_line.c.o
+
+.PHONY : libft/delete_splitted_line.o
+
+# target to build an object file
+libft/delete_splitted_line.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.o
+.PHONY : libft/delete_splitted_line.c.o
+
+libft/delete_splitted_line.i: libft/delete_splitted_line.c.i
+
+.PHONY : libft/delete_splitted_line.i
+
+# target to preprocess a source file
+libft/delete_splitted_line.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.i
+.PHONY : libft/delete_splitted_line.c.i
+
+libft/delete_splitted_line.s: libft/delete_splitted_line.c.s
+
+.PHONY : libft/delete_splitted_line.s
+
+# target to generate assembly for a file
+libft/delete_splitted_line.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/libft/delete_splitted_line.c.s
+.PHONY : libft/delete_splitted_line.c.s
+
 libft/ft_atoi.o: libft/ft_atoi.c.o
 
 .PHONY : libft/ft_atoi.o
@@ -898,6 +925,33 @@ libft/ft_memset.s: libft/ft_memset.c.s
 libft/ft_memset.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/libft/ft_memset.c.s
 .PHONY : libft/ft_memset.c.s
+
+libft/ft_min.o: libft/ft_min.c.o
+
+.PHONY : libft/ft_min.o
+
+# target to build an object file
+libft/ft_min.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/libft/ft_min.c.o
+.PHONY : libft/ft_min.c.o
+
+libft/ft_min.i: libft/ft_min.c.i
+
+.PHONY : libft/ft_min.i
+
+# target to preprocess a source file
+libft/ft_min.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/libft/ft_min.c.i
+.PHONY : libft/ft_min.c.i
+
+libft/ft_min.s: libft/ft_min.c.s
+
+.PHONY : libft/ft_min.s
+
+# target to generate assembly for a file
+libft/ft_min.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/libft/ft_min.c.s
+.PHONY : libft/ft_min.c.s
 
 libft/ft_putchar.o: libft/ft_putchar.c.o
 
@@ -2006,6 +2060,33 @@ libft/get_next_line.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/libft/get_next_line.c.s
 .PHONY : libft/get_next_line.c.s
 
+srcs/add_path.o: srcs/add_path.c.o
+
+.PHONY : srcs/add_path.o
+
+# target to build an object file
+srcs/add_path.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/add_path.c.o
+.PHONY : srcs/add_path.c.o
+
+srcs/add_path.i: srcs/add_path.c.i
+
+.PHONY : srcs/add_path.i
+
+# target to preprocess a source file
+srcs/add_path.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/add_path.c.i
+.PHONY : srcs/add_path.c.i
+
+srcs/add_path.s: srcs/add_path.c.s
+
+.PHONY : srcs/add_path.s
+
+# target to generate assembly for a file
+srcs/add_path.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/add_path.c.s
+.PHONY : srcs/add_path.c.s
+
 srcs/adjacency_matrix.o: srcs/adjacency_matrix.c.o
 
 .PHONY : srcs/adjacency_matrix.o
@@ -2140,6 +2221,141 @@ srcs/dinic_algorithm.s: srcs/dinic_algorithm.c.s
 srcs/dinic_algorithm.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/dinic_algorithm.c.s
 .PHONY : srcs/dinic_algorithm.c.s
+
+srcs/error.o: srcs/error.c.o
+
+.PHONY : srcs/error.o
+
+# target to build an object file
+srcs/error.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/error.c.o
+.PHONY : srcs/error.c.o
+
+srcs/error.i: srcs/error.c.i
+
+.PHONY : srcs/error.i
+
+# target to preprocess a source file
+srcs/error.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/error.c.i
+.PHONY : srcs/error.c.i
+
+srcs/error.s: srcs/error.c.s
+
+.PHONY : srcs/error.s
+
+# target to generate assembly for a file
+srcs/error.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/error.c.s
+.PHONY : srcs/error.c.s
+
+srcs/finding_best_path.o: srcs/finding_best_path.c.o
+
+.PHONY : srcs/finding_best_path.o
+
+# target to build an object file
+srcs/finding_best_path.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.o
+.PHONY : srcs/finding_best_path.c.o
+
+srcs/finding_best_path.i: srcs/finding_best_path.c.i
+
+.PHONY : srcs/finding_best_path.i
+
+# target to preprocess a source file
+srcs/finding_best_path.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.i
+.PHONY : srcs/finding_best_path.c.i
+
+srcs/finding_best_path.s: srcs/finding_best_path.c.s
+
+.PHONY : srcs/finding_best_path.s
+
+# target to generate assembly for a file
+srcs/finding_best_path.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/finding_best_path.c.s
+.PHONY : srcs/finding_best_path.c.s
+
+srcs/hasher.o: srcs/hasher.c.o
+
+.PHONY : srcs/hasher.o
+
+# target to build an object file
+srcs/hasher.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/hasher.c.o
+.PHONY : srcs/hasher.c.o
+
+srcs/hasher.i: srcs/hasher.c.i
+
+.PHONY : srcs/hasher.i
+
+# target to preprocess a source file
+srcs/hasher.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/hasher.c.i
+.PHONY : srcs/hasher.c.i
+
+srcs/hasher.s: srcs/hasher.c.s
+
+.PHONY : srcs/hasher.s
+
+# target to generate assembly for a file
+srcs/hasher.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/hasher.c.s
+.PHONY : srcs/hasher.c.s
+
+srcs/init.o: srcs/init.c.o
+
+.PHONY : srcs/init.o
+
+# target to build an object file
+srcs/init.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/init.c.o
+.PHONY : srcs/init.c.o
+
+srcs/init.i: srcs/init.c.i
+
+.PHONY : srcs/init.i
+
+# target to preprocess a source file
+srcs/init.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/init.c.i
+.PHONY : srcs/init.c.i
+
+srcs/init.s: srcs/init.c.s
+
+.PHONY : srcs/init.s
+
+# target to generate assembly for a file
+srcs/init.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/init.c.s
+.PHONY : srcs/init.c.s
+
+srcs/insert_room.o: srcs/insert_room.c.o
+
+.PHONY : srcs/insert_room.o
+
+# target to build an object file
+srcs/insert_room.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/insert_room.c.o
+.PHONY : srcs/insert_room.c.o
+
+srcs/insert_room.i: srcs/insert_room.c.i
+
+.PHONY : srcs/insert_room.i
+
+# target to preprocess a source file
+srcs/insert_room.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/insert_room.c.i
+.PHONY : srcs/insert_room.c.i
+
+srcs/insert_room.s: srcs/insert_room.c.s
+
+.PHONY : srcs/insert_room.s
+
+# target to generate assembly for a file
+srcs/insert_room.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/insert_room.c.s
+.PHONY : srcs/insert_room.c.s
 
 srcs/main.o: srcs/main.c.o
 
@@ -2303,32 +2519,59 @@ srcs/print_ants.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/print_ants.c.s
 .PHONY : srcs/print_ants.c.s
 
-srcs/room_list.o: srcs/room_list.c.o
+srcs/print_line.o: srcs/print_line.c.o
 
-.PHONY : srcs/room_list.o
+.PHONY : srcs/print_line.o
 
 # target to build an object file
-srcs/room_list.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/room_list.c.o
-.PHONY : srcs/room_list.c.o
+srcs/print_line.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/print_line.c.o
+.PHONY : srcs/print_line.c.o
 
-srcs/room_list.i: srcs/room_list.c.i
+srcs/print_line.i: srcs/print_line.c.i
 
-.PHONY : srcs/room_list.i
+.PHONY : srcs/print_line.i
 
 # target to preprocess a source file
-srcs/room_list.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/room_list.c.i
-.PHONY : srcs/room_list.c.i
+srcs/print_line.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/print_line.c.i
+.PHONY : srcs/print_line.c.i
 
-srcs/room_list.s: srcs/room_list.c.s
+srcs/print_line.s: srcs/print_line.c.s
 
-.PHONY : srcs/room_list.s
+.PHONY : srcs/print_line.s
 
 # target to generate assembly for a file
-srcs/room_list.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/room_list.c.s
-.PHONY : srcs/room_list.c.s
+srcs/print_line.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/print_line.c.s
+.PHONY : srcs/print_line.c.s
+
+srcs/return_room.o: srcs/return_room.c.o
+
+.PHONY : srcs/return_room.o
+
+# target to build an object file
+srcs/return_room.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/return_room.c.o
+.PHONY : srcs/return_room.c.o
+
+srcs/return_room.i: srcs/return_room.c.i
+
+.PHONY : srcs/return_room.i
+
+# target to preprocess a source file
+srcs/return_room.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/return_room.c.i
+.PHONY : srcs/return_room.c.i
+
+srcs/return_room.s: srcs/return_room.c.s
+
+.PHONY : srcs/return_room.s
+
+# target to generate assembly for a file
+srcs/return_room.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lem_lem.dir/build.make CMakeFiles/lem_lem.dir/srcs/return_room.c.s
+.PHONY : srcs/return_room.c.s
 
 # Help Target
 help:
@@ -2339,6 +2582,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lem_lem"
+	@echo "... libft/delete_splitted_line.o"
+	@echo "... libft/delete_splitted_line.i"
+	@echo "... libft/delete_splitted_line.s"
 	@echo "... libft/ft_atoi.o"
 	@echo "... libft/ft_atoi.i"
 	@echo "... libft/ft_atoi.s"
@@ -2423,6 +2669,9 @@ help:
 	@echo "... libft/ft_memset.o"
 	@echo "... libft/ft_memset.i"
 	@echo "... libft/ft_memset.s"
+	@echo "... libft/ft_min.o"
+	@echo "... libft/ft_min.i"
+	@echo "... libft/ft_min.s"
 	@echo "... libft/ft_putchar.o"
 	@echo "... libft/ft_putchar.i"
 	@echo "... libft/ft_putchar.s"
@@ -2546,6 +2795,9 @@ help:
 	@echo "... libft/get_next_line.o"
 	@echo "... libft/get_next_line.i"
 	@echo "... libft/get_next_line.s"
+	@echo "... srcs/add_path.o"
+	@echo "... srcs/add_path.i"
+	@echo "... srcs/add_path.s"
 	@echo "... srcs/adjacency_matrix.o"
 	@echo "... srcs/adjacency_matrix.i"
 	@echo "... srcs/adjacency_matrix.s"
@@ -2561,6 +2813,21 @@ help:
 	@echo "... srcs/dinic_algorithm.o"
 	@echo "... srcs/dinic_algorithm.i"
 	@echo "... srcs/dinic_algorithm.s"
+	@echo "... srcs/error.o"
+	@echo "... srcs/error.i"
+	@echo "... srcs/error.s"
+	@echo "... srcs/finding_best_path.o"
+	@echo "... srcs/finding_best_path.i"
+	@echo "... srcs/finding_best_path.s"
+	@echo "... srcs/hasher.o"
+	@echo "... srcs/hasher.i"
+	@echo "... srcs/hasher.s"
+	@echo "... srcs/init.o"
+	@echo "... srcs/init.i"
+	@echo "... srcs/init.s"
+	@echo "... srcs/insert_room.o"
+	@echo "... srcs/insert_room.i"
+	@echo "... srcs/insert_room.s"
 	@echo "... srcs/main.o"
 	@echo "... srcs/main.i"
 	@echo "... srcs/main.s"
@@ -2579,9 +2846,12 @@ help:
 	@echo "... srcs/print_ants.o"
 	@echo "... srcs/print_ants.i"
 	@echo "... srcs/print_ants.s"
-	@echo "... srcs/room_list.o"
-	@echo "... srcs/room_list.i"
-	@echo "... srcs/room_list.s"
+	@echo "... srcs/print_line.o"
+	@echo "... srcs/print_line.i"
+	@echo "... srcs/print_line.s"
+	@echo "... srcs/return_room.o"
+	@echo "... srcs/return_room.i"
+	@echo "... srcs/return_room.s"
 .PHONY : help
 
 
