@@ -6,7 +6,7 @@
 /*   By: lmittie <lmittie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:28:33 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/05 16:56:56 by lmittie          ###   ########.fr       */
+/*   Updated: 2020/10/05 17:41:09 by lmittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_edge	init_edge(int a, int b, int cap, int flow)
 void			add_edge(int v1, int v2, int **last_id, t_edge ***edge_matrix)
 {
 	t_edge	edge;
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (i < (*last_id)[v1])
