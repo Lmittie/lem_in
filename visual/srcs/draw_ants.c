@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 20:47:02 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/01 20:11:50 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:41:43 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void		draw_ant_on_finish(t_paths **paths, t_visual *vis,
 	(*paths) = (*paths)->prev;
 }
 
-void		just_draw_ant_on_graph(t_paths **paths, t_visual *vis, t_room_list *buff)
+void		just_draw_ant_on_graph(t_paths **paths,
+					t_visual *vis, t_room_list *buff)
 {
 	vis->pos.w = vis->size_node * 5;
 	vis->pos.h = vis->size_node * 4;

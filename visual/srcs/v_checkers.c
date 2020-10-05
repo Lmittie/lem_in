@@ -6,30 +6,35 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:34:59 by lmittie           #+#    #+#             */
-/*   Updated: 2020/09/30 19:13:28 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:50:40 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/visualizer.h"
 
-static void	create_room_list(t_room_list **list, t_room_data *room_data)
+static void	create_room_list(t_room_list **list, t_room_data *room_data,
+												char **line, t_map_data *data)
 {
 	if (((*list) = malloc(sizeof(t_room_list))) == NULL)
+	{
+		free_data(data);
+		ft_strdel(line);
 		exit(10);
+	}
 	(*list)->room_data = room_data;
 	(*list)->next = NULL;
 }
 
 void		push_back_room(t_room_list **list, t_room_data *room_data,
-							int *rooms_number)
+							t_map_data *data, char **line)
 {
 	t_room_list *last;
 
 	if (*list == NULL)
 	{
-		room_data->id = *rooms_number;
-		create_room_list(list, room_data);
-		(*rooms_number)++;
+		room_data->id = data->rooms_number;
+		create_room_list(list, room_data, line, data);
+		data->rooms_number++;
 	}
 	else
 	{
@@ -37,10 +42,14 @@ void		push_back_room(t_room_list **list, t_room_data *room_data,
 		while (last->next)
 			last = last->next;
 		if (((last)->next = malloc(sizeof(t_room_list))) == NULL)
+		{
+			ft_strdel(line);
+			free_data(data);
 			exit(10);
-		room_data->id = *rooms_number;
+		}
+		room_data->id = data->rooms_number;
 		(last)->next->room_data = room_data;
-		(*rooms_number)++;
+		data->rooms_number++;
 		(last)->next->next = NULL;
 	}
 }
@@ -59,7 +68,7 @@ int			return_room_index(char *room_name, t_room_list *list)
 	return (-1);
 }
 
-int				size_of_matrix_rows(char **matrix)
+int			size_of_matrix_rows(char **matrix)
 {
 	int counter;
 
@@ -73,7 +82,7 @@ int				size_of_matrix_rows(char **matrix)
 	return (counter);
 }
 
-t_room_type		check_if_comment(char **line, t_map_data *data)
+t_room_type	check_if_comment(char **line, t_map_data *data)
 {
 	t_room_type type;
 

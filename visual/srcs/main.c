@@ -1,4 +1,4 @@
-// /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 16:08:37 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/21 16:20:37 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:50:05 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ void	init_structure(t_map_data *data)
 	(data)->ants_num = -1;
 	(data)->adjacency_matrix = NULL;
 	(data)->rooms = NULL;
+	(data)->rooms_by_id = NULL;
 	(data)->rooms_number = 0;
 	(data)->start = -1;
 	(data)->end = -1;
 }
 
-void	init_sdl(t_visual *vis)
+void	init_sdl(t_map_data *data, t_visual *vis)
 {
-	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0)
 	{
 		ft_putstr("SDL initialization error: ");
 		ft_putstr(SDL_GetError());
 		write(1, "\n", 1);
+		free_data(data);
 		exit(INIT_SDL_ERROR);
 	}
 	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
@@ -42,6 +44,7 @@ void	init_sdl(t_visual *vis)
 		ft_putstr("SDL_CreateWindow error: ");
 		ft_putstr(SDL_GetError());
 		write(1, "\n", 1);
+		free_data(data);
 		exit(INIT_SDL_ERROR);
 	}
 	vis->loop = false;
@@ -57,20 +60,29 @@ int		find_id_start_room(t_map_data data)
 	return (cur->room_data->id);
 }
 
-int		main()
+void	destroy_all_quit(t_visual *vis)
+{
+	SDL_DestroyTexture(vis->logo_21);
+	SDL_DestroyTexture(vis->back);
+	SDL_DestroyRenderer(vis->rend);
+	SDL_DestroyWindow(vis->win);
+	SDL_Quit();
+}
+
+int		main(void)
 {
 	t_map_data	data;
 	t_visual	vis;
 
-	init_sdl(&vis);
 	init_structure(&data);
 	parse_map(&data);
 	data.id_start_room = find_id_start_room(data);
-	render_surface(&vis);
+	init_sdl(&data, &vis);
+	render_surface(&data, &vis);
 	parse_path(&data, &vis);
 	check_coords(&data, &vis);
 	background_graph(&vis, &data);
+	free_paths(&vis.paths);
 	destroy_all_quit(&vis);
 	return (0);
 }
-

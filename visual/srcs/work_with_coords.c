@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 15:24:56 by acarlett          #+#    #+#             */
-/*   Updated: 2020/09/30 20:55:59 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/04 20:54:06 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		check_coords(t_map_data *data, t_visual *vis)
 		{
 			if (compare_coord(root, cur))
 			{
-				write (1, "SIMILAR COORDS\n", 15);
+				write(1, "SIMILAR COORDS\n", 15);
 				exit(SIMILAR_COORDS);
 			}
 			cur = cur->next;
@@ -55,16 +55,15 @@ void		new_coords(t_map_data *data, t_visual *vis)
 	t_room_list	*room;
 
 	room = data->rooms;
-
-
-	vis->delta_x = (WIDTH - 400) / (data->max_coords.max_x - data->max_coords.min_x);
-	vis->delta_y = (HEIGHT - 400) / (data->max_coords.max_y - data->max_coords.min_y);
+	vis->delta_x = (WIDTH - 400) /
+			(data->max_coords.max_x - data->max_coords.min_x);
+	vis->delta_y = (HEIGHT - 400) /
+			(data->max_coords.max_y - data->max_coords.min_y);
 	while (room != NULL)
 	{
 		room->room_data->coords.x -= data->max_coords.min_x;
 		room->room_data->coords.x *= vis->delta_x;
 		room->room_data->coords.x += 200;
-
 		room->room_data->coords.y -= data->max_coords.min_y;
 		room->room_data->coords.y *= vis->delta_y;
 		room->room_data->coords.y += 200;
