@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 17:22:39 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/05 18:05:06 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/05 20:01:34 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		allocate_memory_to_paths(t_paths **parse, t_paths **prev,
 		exit(MALLOC_ERROR);
 	(*prev) = (*parse);
 	if (!((*parse)->next->id_list = ft_memalloc(sizeof(int) *
-								data->rooms_number)))
+								data->rooms_number + 1)))
 		exit(MALLOC_ERROR);
 	ft_bnegative((*parse)->next->id_list, data->rooms_number);
 	(*parse)->next->id_list_root = (*parse)->next->id_list;
@@ -34,7 +34,6 @@ t_paths		*create_struct(t_map_data *data, t_visual *vis)
 {
 	int		i;
 	t_paths	*parse;
-	t_paths	*root;
 	t_paths *prev;
 
 	i = 0;
@@ -81,6 +80,7 @@ void		work_with_split_line(t_room_list *rooms,
 		while (paths->ant_num != number_curr_ant)
 			paths = paths->next;
 		room_id = return_id_by_name(rooms, ant_room_name[1]);
+
 		(*paths->id_list) = room_id;
 		paths->id_list++;
 		i++;
@@ -114,8 +114,6 @@ void		fill_path(t_map_data *data, t_paths *paths)
 
 void		parse_path(t_map_data *data, t_visual *vis)
 {
-	int i;
-
 	vis->paths = create_struct(data, vis);
 	while (vis->paths->prev != NULL)
 		vis->paths = vis->paths->prev;
@@ -123,15 +121,12 @@ void		parse_path(t_map_data *data, t_visual *vis)
 	while (vis->paths->next != NULL)
 	{
 		vis->paths->id_list = vis->paths->id_list_root;
+		if (vis->paths->id_list[0] == -1)
+			exit (1);
 		vis->paths = vis->paths->next;
-		if (vis->paths->next == NULL)
-			vis->paths->id_list = vis->paths->id_list_root;
 	}
+	if (vis->paths->next == NULL)
+		vis->paths->id_list = vis->paths->id_list_root;
 	while (vis->paths->prev != NULL)
 		vis->paths = vis->paths->prev;
-}
-
-int main ()
-{
-
 }

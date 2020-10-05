@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:27:31 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/05 17:37:33 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/05 19:52:48 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ t_room_data		*create_room(char *line, t_room_type room_type,
 		free_data(for_free);
 		exit(MALLOC_ERROR);
 	}
+	point.x = ft_atoi(splitted_line[1]);
+	point.y = ft_atoi(splitted_line[2]);
 	if (size_of_matrix_rows(splitted_line) != 3
-		|| (((point.x = ft_atoi(splitted_line[1])) < 0)
-			|| ((point.y = ft_atoi(splitted_line[2])) < 0)))
+		|| point.x < 0 || point.y < 0)
 		free_delete_exit(&line, splitted_line, INVALID_ROOMS, for_free);
 	if ((room_data = malloc(sizeof(t_room_data))) == NULL)
 		free_delete_exit(&line, splitted_line, MALLOC_ERROR, for_free);
