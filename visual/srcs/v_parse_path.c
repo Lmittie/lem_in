@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 17:22:39 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/05 20:01:34 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/06 17:11:01 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,17 @@ t_paths		*create_struct(t_map_data *data, t_visual *vis)
 void		work_with_split_line(t_room_list *rooms,
 							char **splitted_line, t_paths *paths)
 {
-	int		i;
 	char	**ant_room_name;
 	int		number_curr_ant;
 	int		room_id;
 	t_paths	*root;
 
-	i = 0;
 	root = paths;
-	while (splitted_line[i])
+	root->i = 0;
+	while (splitted_line[root->i])
 	{
-		if (!(ant_room_name = ft_strsplit(splitted_line[i], '-')))
+		if ((ant_room_name = ft_strsplit(splitted_line[root->i], '-')) &&
+		(size_of_matrix_rows(ant_room_name) != 2))
 		{
 			delete_splitted_line(&splitted_line);
 			exit(MALLOC_ERROR);
@@ -80,10 +80,9 @@ void		work_with_split_line(t_room_list *rooms,
 		while (paths->ant_num != number_curr_ant)
 			paths = paths->next;
 		room_id = return_id_by_name(rooms, ant_room_name[1]);
-
 		(*paths->id_list) = room_id;
 		paths->id_list++;
-		i++;
+		root->i++;
 		paths = root;
 		delete_splitted_line(&ant_room_name);
 	}
@@ -122,7 +121,7 @@ void		parse_path(t_map_data *data, t_visual *vis)
 	{
 		vis->paths->id_list = vis->paths->id_list_root;
 		if (vis->paths->id_list[0] == -1)
-			exit (1);
+			exit(1);
 		vis->paths = vis->paths->next;
 	}
 	if (vis->paths->next == NULL)

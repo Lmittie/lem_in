@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 21:41:07 by acarlett          #+#    #+#             */
-/*   Updated: 2020/10/05 19:50:56 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/06 14:28:04 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct	s_paths
 	SDL_Texture		*tex;
 	struct s_paths	*next;
 	struct s_paths	*prev;
+	int				i;
 }				t_paths;
 
 typedef struct	s_visual
@@ -223,6 +224,5 @@ int				return_id_by_name(t_room_list *rooms, char *name_room);
 */
 void			handle_room_number(t_map_data *data);
 void			free_show_error(t_map_data *data);
-
 
 #endif
