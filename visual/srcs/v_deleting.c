@@ -6,7 +6,7 @@
 /*   By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 17:54:10 by lmittie           #+#    #+#             */
-/*   Updated: 2020/10/05 17:06:55 by acarlett         ###   ########.fr       */
+/*   Updated: 2020/10/05 19:53:31 by acarlett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		free_rooms(t_room_list **room)
 void		free_paths(t_paths **paths)
 {
 	t_paths *tmp;
-	t_paths *root;
 
 	while ((*paths)->prev != NULL)
 	{
