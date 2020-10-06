@@ -28,6 +28,7 @@ typedef struct	s_list
 
 int				get_next_line(const int fd, char **line);
 
+void			ft_bnegative(int *s, size_t n);
 int				ft_min(int a, int b);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);

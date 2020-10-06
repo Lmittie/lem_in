@@ -27,7 +27,7 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lst_push_back.c\
 	ft_lstiter.c ft_lstmap.c ft_lstadd.c ft_putnbr.c  ft_strjoin_free.c \
 	ft_lst_push_front.c ft_str_isalpha.c ft_str_isdigit.c ft_lst_print.c \
-	get_next_line.c delete_splitted_line.c ft_min.c
+	get_next_line.c delete_splitted_line.c ft_min.c ft_bnegative.c
 
 OBJS = $(SRCS:.c=.o)
 
