@@ -6,7 +6,7 @@
 #    By: acarlett <acarlett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/14 21:30:04 by acarlett          #+#    #+#              #
-#    Updated: 2020/10/05 17:30:08 by lmittie          ###   ########.fr        #
+#    Updated: 2020/10/06 17:22:42 by lmittie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIR_LIB =	libft
 
 LIBNAME =	$(DIR_LIB)/libft.a
 
-FLAGS =		-Wall -Wextra -Werror -O2 -g
+FLAGS =		-Wall -Wextra -Werror -O2
 
 NAME = 		lem-in
 
